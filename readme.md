@@ -1,1 +1,1 @@
-## Simple Blog with a CMS written iin Laravel and Vue
+## Simple Blog with a CMS written in Laravel and Vue
