@@ -21,7 +21,9 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 import router from './router/router.js';
 import store from './store/store.js';
-
+import 'nprogress/nprogress.css';
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+//import MainHome from './MainHome.vue';
 Vue.component('MainHome', require('./MainHome.vue').default);
 
 /**
@@ -30,8 +32,9 @@ Vue.component('MainHome', require('./MainHome.vue').default);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
+new Vue({
   el: '#app',
   router,
   store
-});
+  //render: h => h(MainHome)
+}); //.$mount('#app');

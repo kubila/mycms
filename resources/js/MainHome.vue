@@ -2,7 +2,6 @@
   <div class="wrapper">
     <Navbar />
     <router-view :key="$route.fullPath" />
-
     <Footer />
   </div>
 </template>

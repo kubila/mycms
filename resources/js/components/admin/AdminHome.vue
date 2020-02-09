@@ -3,6 +3,7 @@
     <div class="row">
       <admin-sidebar></admin-sidebar>
       <admin-card></admin-card>
+      <router-view></router-view>
     </div>
   </div>
 </template>

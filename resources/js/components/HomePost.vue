@@ -18,30 +18,37 @@
         <div class="p-0">
           <!-- card-body -->
 
-          <h5 class="text-secondary">
+          <h5>
             <!-- card-title -->
-            <router-link :to="{ name: 'getcategory', params: { name: wasd } }">
-              {{ post.category_id }}Some Category</router-link
+            <router-link
+              :to="{
+                name: 'getcategory',
+                params: { name: post.category.name }
+              }"
+              class="card-category-title"
+            >
+              {{ post.category.name }}</router-link
             >
           </h5>
 
-          <h5 class="text-alert card-title">
+          <h5>
             <!-- card-title -->
             <router-link
               :to="{
                 name: 'read',
                 params: { title: post.title }
               }"
+              class="card-main-title"
             >
               {{ post.title }}</router-link
             >
           </h5>
           <p>
             By
-            <span class="text-dark">
-              <span class="text-black">
+            <span>
+              <span>
                 <router-link
-                  :to="{ name: 'getauthor', params: { name: qwert } }"
+                  :to="{ name: 'getauthor', params: { name: post.author_id } }"
                   ><strong>Unknown Author</strong>
                 </router-link></span
               >

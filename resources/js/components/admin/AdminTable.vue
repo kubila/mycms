@@ -15,7 +15,7 @@
         <td class="text-center align-middle text-justify">
           <img
             :src="`/images/${post.image}`"
-            :alt="`/images/${post.image}`"
+            :alt="`/images/${post.title}`"
             class="img-fluid"
             width="100"
             height="50"
@@ -25,10 +25,7 @@
         <td v-if="post.content.length > 100" class="align-middle text-justify">
           {{ post.content.substring(0, 100) + '...' }}
         </td>
-        <td
-          v-else="post.content.length > 100"
-          class="align-middle text-justify"
-        >
+        <td v-else class="align-middle text-justify">
           {{ post.content.substring(0, 100) }}
         </td>
 
@@ -45,7 +42,13 @@
           <router-link
             :to="{ name: 'editpost', params: { title: post.title } }"
           >
-            <button class="btn btn-sm btn-success ">Edit</button>
+            <button
+              class="btn btn-sm btn-success "
+              data-toggle="modal"
+              data-target="#myModal"
+            >
+              Edit
+            </button>
           </router-link>
         </td>
         <td class="text-center align-middle text-justify">

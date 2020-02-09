@@ -14,16 +14,21 @@
         <router-link
           :to="{
             name: 'getcategory',
-            params: { name: post.category_id }
+            params: { name: post.category.name }
           }"
-        ></router-link>
-        <h5 class="card-category-title">{{ post.category_id }} A Category</h5>
-
-        <router-link :to="{ name: 'read', params: { title: post.title } }">
-          <h5 class="card-main-title">
-            {{ post.title }}
-          </h5>
+          class="card-category-title"
+        >
+          {{ post.category.name }}
         </router-link>
+
+        <h5>
+          <router-link
+            :to="{ name: 'read', params: { title: post.title } }"
+            class="card-main-title"
+          >
+            {{ post.title }}
+          </router-link>
+        </h5>
 
         <p class="m-1" v-if="post.content.length > 120">
           {{ post.content.slice(0, 120) + '...' }}

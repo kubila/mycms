@@ -3,9 +3,9 @@
     <div class="container-fluid footer">
       <div class="row">
         <div class="col-sm-12">
-          <div class="mx-auto">
+          <div class="text-center footer-inner">
             <p class="lead text-white">
-              Copyright @ 2019 by Kubila
+              Copyright @ {{ writeToday }} by Kubila
             </p>
           </div>
         </div>
@@ -15,7 +15,23 @@
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    writeToday() {
+      let today = new Date();
+      /*
+      let date =
+        today.getDate() +
+        ' ' +
+        (today.getMonth() + 1) +
+        ' ' +
+        today.getFullYear();
+      let time = today.getHours() + ':' + today.getMinutes();
+      */
+      return today.toLocaleDateString();
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped></style>

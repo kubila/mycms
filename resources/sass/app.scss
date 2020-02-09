@@ -5,8 +5,9 @@
 @import 'variables';
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
-
+//@import '~bootstrap/scss/bootstrap';
+@import 'node_modules/bootstrap/scss/bootstrap';
+@import 'node_modules/bootstrap-vue/src/index.scss';
 body {
   background: #f5f5f6;
   /*background-color: #3e3e3e;*/
@@ -33,7 +34,7 @@ body {
 }
 
 .article-title h1 {
-  font-size: 2.50rem;
+  font-size: 2.5rem;
   font-weight: 600;
 }
 
@@ -49,19 +50,20 @@ body {
   padding-top: 5px;
   color: #10abcc;
   font-weight: 600;
-  font-size: 1.0rem;
-  margin: 0 !important;
+  font-size: 1rem;
+  margin: 0;
+  text-decoration: none !important;
 }
 
 .card-date-title {
-  font-size: 1.0rem;
+  font-size: 1rem;
 }
 
 .card-main-title {
   font-weight: 600;
   font-size: 1.25rem;
   color: #575757;
-  margin: 0 !important;
+  margin: 0;
   line-height: normal;
   text-decoration: none !important;
 }
@@ -76,7 +78,6 @@ body {
   height: 2px;
 }
 
-
 .main-image {
   background-image: url('~/images/russia.jpg');
   background-repeat: no-repeat;
@@ -89,51 +90,40 @@ body {
   left: 0;
   bottom: 0;
   right: 0;
-}
-
-.main-image:hover {
-  opacity: 0.9;
+  &:hover {
+    opacity: 0.9;
+  }
 }
 
 .main-top {
   color: #e7eff3;
   margin-top: 18rem;
-
 }
 
 .sutun {
   /*overflow: hidden !important;*/
-}
-
-.sutun:hover {
-  // filter: drop-shadow(0 0 0.7rem rgb(140, 107, 184));
-  filter: drop-shadow(0 0 0.7rem rgb(203, 180, 230));
+  &:hover {
+    // filter: drop-shadow(0 0 0.7rem rgb(140, 107, 184));
+    // filter: drop-shadow(0 0 0.7rem rgb(158, 100, 224));
+    filter: drop-shadow(0 0 0.7rem rgb(241, 204, 204));
+  }
 }
 
 .main-post {
   background-color: #fff;
-  transition: transform .2s ease;
+  transition: transform 0.2s ease;
   outline: 3px solid #f5f5f6;
   /*background-color: #252525;*/
   /*background-color: #3e3e3e;*/
   /*border: 1px solid #efeff0;*/
   /*border: 7px solid #f5f5f6;*/
-
-}
-
-.main-post:hover {
-  background: #f5f5f6;
-  cursor: pointer;
-  transform: scale(1.07);
-  outline: 6px solid rgb(255, 255, 255);
-  // -webkit-transition: background-color 300ms ease-out;
-  // -moz-transition: background-color 300ms ease-out;
-  // -o-transition: background-color 300ms ease-out;
-  // transition: background-color 300ms ease-out;  
-  /*box-shadow: 3px 3px lavender, 3px 3px lavender;*/
-  /*background-color: royalblue;*/
-  /*padding: 0 !important;*/
-  /*border-radius: 2rem;*/
+  &:hover {
+    background: #f5f5f6;
+    cursor: pointer;
+    transform: scale(1.05);
+    outline: 6px solid rgb(255, 255, 255);
+    /*box-shadow: 3px 3px lavender, 3px 3px lavender;*/
+  }
 }
 
 .poster {
@@ -143,33 +133,36 @@ body {
   border: 4px solid #f5f5f6;
   background-color: #ffffff;
   margin-bottom: 5px;
-  transition: transform .2s ease;
-}
-
-.poster img {
-  /* border-radius: 10px 0 0 10px;*/
-  min-height: 105px;
-}
-
-.poster:hover {
-  /*background: rgb(223, 243, 255);*/
-  cursor: pointer;
-  // -webkit-transition: background-color 300ms ease-in-out;
-  // -moz-transition: background-color 300ms ease-in-out;
-  // -o-transition: background-color 300ms ease-in-out;
-  // transition: background-color 300ms ease-out;
-  /* box-shadow: 3px 3px lavender, 3px 3px lavender; */
-  filter: drop-shadow(0 0 0.7rem rgb(27, 94, 161));
-  transform: scale(1.05);
-  /* padding: 0 !important;*/
+  transition: transform 0.2s ease;
+  &:hover {
+    cursor: pointer;
+    /* box-shadow: 3px 3px lavender, 3px 3px lavender; */
+    // filter: drop-shadow(0 0 0.7rem rgb(27, 94, 161));
+    filter: drop-shadow(0 0 0.7rem rgb(169, 195, 211));
+    transform: scale(1.02);
+  }
+  img {
+    min-height: 105px;
+  }
 }
 
 .sidebar {
   background-color: rgb(255, 255, 255);
   height: 100%;
 }
+.login-col {
+  text-align-last: center;
+  transition: transform 0.2s ease-in;
+  &:hover {
+    filter: drop-shadow(0 0 1rem rgb(133, 133, 165));
+  }
+}
 
-
+.login-card {
+  border: none;
+  border-radius: 1rem;
+  background-color: #290144;
+}
 
 .footer {
   position: absolute;
@@ -178,4 +171,11 @@ body {
   /*background-color: #1e1e1e;*/
   height: 15rem;
   bottom: 0;
+  &-inner {
+    margin-top: 7rem;
+  }
+}
+
+.form-text {
+  font-size: 1rem;
 }

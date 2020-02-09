@@ -1,6 +1,5 @@
 <template>
-  <div v-if="$store.loading">Loading...</div>
-  <div v-else class="inner-wrapper">
+  <div v-if="!isLoading" class="inner-wrapper">
     <div class="container-fluid">
       <div class="row main">
         <div class="col main-image img-fluid">
@@ -21,32 +20,44 @@
       </div>
 
       <main role="main mt-3">
-        <div class="row">
+        <div class="row mb-2">
           <div class="col-lg-8 p-0">
             <home-post v-for="post in posts" :key="post.id" :post="post" />
           </div>
-          <aside class="col-lg-4">
-            <div class="sidebar mt-2"></div>
+          <aside class="col-lg-4 px-3">
+            <div class="sidebar">
+              <h5 class="lead d-flex justify-content-center pt-2">
+                Editor Picks
+              </h5>
+            </div>
           </aside>
         </div>
       </main>
     </div>
     <!-- container -->
   </div>
+  <div v-else class="inner-wrapper">Loading...</div>
 </template>
 
 <script>
 import HomeCard from './HomeCard.vue';
 import HomePost from './HomePost.vue';
-import { mapActions, mapState } from 'vuex';
+import { mapState } from 'vuex';
+import _ from 'lodash';
 
 export default {
+  data() {
+    return {
+      isLoading: true
+    };
+  },
   components: {
     HomePost,
     HomeCard
   },
   created() {
     this.$store.dispatch('fetchPosts');
+    this.isLoading = false;
   },
   computed: {
     ...mapState(['posts']),
@@ -55,30 +66,13 @@ export default {
       return fas;
     }
   }
-
-  /*
-computed: {
-    ...mapState({
-      posts: 'posts'
-    })
-*/
-  //mapActions
-  //posts: state => state.posts
-  //...mapActions(['fetchPosts']) this.$store.dispatch('fetchPosts')
 };
-/*
-created() {
-    this.$store.dispatch('event/fetchEvent', this.id);
-  },
-  computed: mapState({
-    event: state => state.event.event
-  })
-*/
 </script>
 <style>
 /*
 .main {
   flex-grow: 1;
   overflow-y: hidden;
-}*/
+}
+*/
 </style>
