@@ -16,13 +16,13 @@
 
     <div class="container">
       <div class="row mt-3">
-        <home-card v-for="post in featured" :post="post" :key="post.id" />
+        <home-card v-for="card in featured" :card="card" :key="card.id" />
       </div>
 
       <main role="main mt-3">
         <div class="row mb-2">
           <div class="col-lg-8 p-0">
-            <home-post v-for="post in posts" :key="post.id" :post="post" />
+            <home-post v-for="post in cards" :key="post.id" :post="post" />
           </div>
           <aside class="col-lg-4 px-3">
             <div class="sidebar">
@@ -62,8 +62,12 @@ export default {
   computed: {
     ...mapState(['posts']),
     featured() {
-      const fas = _.sampleSize(this.posts, 5);
+      const fas = _.sampleSize(this.posts, 6);
       return fas;
+    },
+    cards() {
+      const card = _.sampleSize(this.posts, 5);
+      return card;
     }
   }
 };

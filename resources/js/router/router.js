@@ -9,6 +9,7 @@ import GetCategory from '../components/GetCategory.vue';
 import GetAuthor from '../components/GetAuthor.vue';
 import AdminHome from '../components/admin/AdminHome.vue';
 import Login from '../components/auth/Login.vue';
+import Register from '../components/auth/Register.vue';
 import nProgress from 'nprogress';
 import Edit from '../components/admin/EditModal.vue';
 
@@ -33,6 +34,14 @@ const router = new VueRouter({
       path: '/login',
       component: Login,
       name: 'login',
+      meta: {
+        guest: true
+      }
+    },
+    {
+      path: '/register',
+      component: Register,
+      name: 'register',
       meta: {
         guest: true
       }
@@ -141,14 +150,12 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  // to and from are both route objects. must call `next`.
   nProgress.start();
   next();
 });
 
 // eslint-disable-next-line no-unused-vars
 router.afterEach((to, from) => {
-  // to and from are both route objects.
   nProgress.done();
 });
 

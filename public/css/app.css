@@ -13602,11 +13602,6 @@ body {
   text-decoration: none !important;
 }
 
-.main-post p {
-  color: #727171;
-  font-weight: 600;
-}
-
 .card-hr {
   background-color: #10abcc;
   height: 2px;
@@ -13635,15 +13630,6 @@ body {
   margin-top: 18rem;
 }
 
-.sutun {
-  /*overflow: hidden !important;*/
-}
-
-.sutun:hover {
-  -webkit-filter: drop-shadow(0 0 0.7rem #f1cccc);
-          filter: drop-shadow(0 0 0.7rem #f1cccc);
-}
-
 .main-post {
   background-color: #fff;
   -webkit-transition: -webkit-transform 0.2s ease;
@@ -13664,6 +13650,20 @@ body {
           transform: scale(1.05);
   outline: 6px solid white;
   /*box-shadow: 3px 3px lavender, 3px 3px lavender;*/
+}
+
+.main-post p {
+  color: #727171;
+  font-weight: 600;
+}
+
+.sutun {
+  /*overflow: hidden !important;*/
+}
+
+.sutun:hover {
+  -webkit-filter: drop-shadow(0 0 0.7rem #f1cccc);
+          filter: drop-shadow(0 0 0.7rem #f1cccc);
 }
 
 .poster {

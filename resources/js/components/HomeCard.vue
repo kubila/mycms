@@ -2,9 +2,9 @@
   <div class="col-md-4 my-3 sutun">
     <div class="main-post">
       <div>
-        <router-link :to="{ name: 'read', params: { title: post.title } }">
+        <router-link :to="{ name: 'read', params: { title: card.title } }">
           <img
-            :src="`/images/${post.image}`"
+            :src="`/images/${card.image}`"
             alt="Just a pic"
             class="img-fluid"
           />
@@ -14,27 +14,27 @@
         <router-link
           :to="{
             name: 'getcategory',
-            params: { name: post.category.name }
+            params: { name: card.category.name }
           }"
           class="card-category-title"
         >
-          {{ post.category.name }}
+          {{ card.category.name }}
         </router-link>
 
         <h5>
           <router-link
-            :to="{ name: 'read', params: { title: post.title } }"
+            :to="{ name: 'read', params: { title: card.title } }"
             class="card-main-title"
           >
-            {{ post.title }}
+            {{ card.title }}
           </router-link>
         </h5>
 
-        <p class="m-1" v-if="post.content.length > 120">
-          {{ post.content.slice(0, 120) + '...' }}
+        <p class="m-1" v-if="card.content.length > 120">
+          {{ card.content.slice(0, 120) + '...' }}
         </p>
         <p class="m-1" v-else>
-          {{ post.content }}
+          {{ card.content }}
         </p>
       </div>
       <hr class="card-hr m-0" />
@@ -46,7 +46,7 @@
 export default {
   inheritAttrs: false,
   props: {
-    post: {
+    card: {
       type: Object,
       required: true
     }

@@ -27,15 +27,13 @@ body {
   font-family: 'Cambria', 'Georgia', Serif;
   font-size: 1.25rem;
   color: #222635;
-}
-
-.article-title {
-  clear: both;
-}
-
-.article-title h1 {
-  font-size: 2.5rem;
-  font-weight: 600;
+  &-title {
+    clear: both;
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+    }
+  }
 }
 
 .content {
@@ -68,11 +66,6 @@ body {
   text-decoration: none !important;
 }
 
-.main-post p {
-  color: #727171;
-  font-weight: 600;
-}
-
 .card-hr {
   background-color: #10abcc;
   height: 2px;
@@ -100,15 +93,6 @@ body {
   margin-top: 18rem;
 }
 
-.sutun {
-  /*overflow: hidden !important;*/
-  &:hover {
-    // filter: drop-shadow(0 0 0.7rem rgb(140, 107, 184));
-    // filter: drop-shadow(0 0 0.7rem rgb(158, 100, 224));
-    filter: drop-shadow(0 0 0.7rem rgb(241, 204, 204));
-  }
-}
-
 .main-post {
   background-color: #fff;
   transition: transform 0.2s ease;
@@ -123,6 +107,20 @@ body {
     transform: scale(1.05);
     outline: 6px solid rgb(255, 255, 255);
     /*box-shadow: 3px 3px lavender, 3px 3px lavender;*/
+  }
+}
+
+.main-post p {
+  color: #727171;
+  font-weight: 600;
+}
+
+.sutun {
+  /*overflow: hidden !important;*/
+  &:hover {
+    // filter: drop-shadow(0 0 0.7rem rgb(140, 107, 184));
+    // filter: drop-shadow(0 0 0.7rem rgb(158, 100, 224));
+    filter: drop-shadow(0 0 0.7rem rgb(241, 204, 204));
   }
 }
 
