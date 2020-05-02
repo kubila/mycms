@@ -80,6 +80,7 @@ export default new Vuex.Store({
         .then(response => {
           if (response.message) {
             commit('LOG_OUT');
+            //this.$router.push('/');
           }
         })
         // .then(router.push('/'))

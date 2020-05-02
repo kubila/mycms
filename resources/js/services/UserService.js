@@ -19,5 +19,8 @@ export default {
   },
   logOut() {
     return apiClient.post('/api/auth/logout');
+  },
+  signUp(credentials) {
+    return apiClient.post('/api/auth/signup', credentials);
   }
 };

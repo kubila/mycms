@@ -22,7 +22,11 @@ window.Vue = require('vue');
 import router from './router/router.js';
 import store from './store/store.js';
 import 'nprogress/nprogress.css';
+import Vuelidate from 'vuelidate';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+Vue.use(Vuelidate);
+Vue.use(BootstrapVue);
+Vue.use(IconsPlugin);
 //import MainHome from './MainHome.vue';
 Vue.component('MainHome', require('./MainHome.vue').default);
 

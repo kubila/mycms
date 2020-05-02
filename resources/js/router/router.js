@@ -20,6 +20,7 @@ const router = new VueRouter({
   routes: [
     {
       path: '/',
+      name: 'home',
       redirect: { name: 'app-home' }
     },
     {

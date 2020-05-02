@@ -21,19 +21,19 @@ Route::get('/categories/{category}', 'CategoryController@show');
 Route::get('/authors', 'AuthorController@index');
 Route::get('/authors/{author}', 'AuthorController@show');
 Route::fallback(function () {
-    return view('newhome');
+  return view('newhome');
 });
 
 Route::group([
-    'middleware' => 'api',
+  'middleware' => 'api',
 
-    'prefix' => 'auth',
+  'prefix' => 'auth',
 
 ], function ($router) {
 
-    Route::post('login', 'AuthController@login');
-    Route::post('logout', 'AuthController@logout');
-    Route::post('refresh', 'AuthController@refresh');
-    Route::post('me', 'AuthController@me');
-
+  Route::post('login', 'AuthController@login');
+  Route::post('logout', 'AuthController@logout');
+  Route::post('signup', 'AuthController@signup');
+  Route::post('refresh', 'AuthController@refresh');
+  Route::post('me', 'AuthController@me');
 });

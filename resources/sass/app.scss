@@ -44,31 +44,30 @@ body {
   color: #545f68;
 }
 
-.card-category-title {
-  padding-top: 5px;
-  color: #10abcc;
-  font-weight: 600;
-  font-size: 1rem;
-  margin: 0;
-  text-decoration: none !important;
-}
-
-.card-date-title {
-  font-size: 1rem;
-}
-
-.card-main-title {
-  font-weight: 600;
-  font-size: 1.25rem;
-  color: #575757;
-  margin: 0;
-  line-height: normal;
-  text-decoration: none !important;
-}
-
-.card-hr {
-  background-color: #10abcc;
-  height: 2px;
+.card {
+  &-category-title {
+    padding-top: 5px;
+    color: #10abcc;
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0;
+    text-decoration: none !important;
+  }
+  &-date-title {
+    font-size: 1rem;
+  }
+  &-main-title {
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: #575757;
+    margin: 0;
+    line-height: normal;
+    text-decoration: none !important;
+  }
+  &-hr {
+    background-color: #10abcc;
+    height: 2px;
+  }
 }
 
 .main-image {
@@ -108,11 +107,10 @@ body {
     outline: 6px solid rgb(255, 255, 255);
     /*box-shadow: 3px 3px lavender, 3px 3px lavender;*/
   }
-}
-
-.main-post p {
-  color: #727171;
-  font-weight: 600;
+  p {
+    color: #727171;
+    font-weight: 600;
+  }
 }
 
 .sutun {
@@ -148,12 +146,11 @@ body {
   background-color: rgb(255, 255, 255);
   height: 100%;
 }
+
 .login-col {
-  text-align-last: center;
+  //text-align-last: center;
   transition: transform 0.2s ease-in;
-  &:hover {
-    filter: drop-shadow(0 0 1rem rgb(133, 133, 165));
-  }
+  filter: drop-shadow(0 0 1rem rgb(133, 133, 165));
 }
 
 .login-card {
@@ -173,7 +170,20 @@ body {
     margin-top: 7rem;
   }
 }
-
-.form-text {
-  font-size: 1rem;
+.form {
+  &-text {
+    font-size: 2rem;
+  }
+  &-login {
+    margin-top: 25vh !important;
+  }
+  &-register {
+    margin-top: 15vh !important;
+  }
+  &-error {
+    font-size: 1rem !important;
+    font-weight: 600;
+    //color: rgb(241, 204, 204);
+    color: rgb(247, 0, 0);
+  }
 }

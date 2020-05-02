@@ -14,5 +14,5 @@
 /*Auth::routes();*/
 
 Route::fallback(function () {
-    return view('newhome');
+  return view('newhome');
 });

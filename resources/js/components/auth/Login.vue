@@ -1,7 +1,7 @@
 <template>
-  <div class="container inner-wrapper" style="margin-top: 8rem;">
+  <div class="container inner-wrapper form-login">
     <div class="row mb-5">
-      <div class="col-lg-4 col-md-4 col-sm-6 mx-auto login-col">
+      <div class="col-lg-5 col-md-7 col-sm-9 mx-auto login-col">
         <div class="card login-card">
           <div class="card-header bg-grey">
             <h6 class="form-text text-white-50">Login</h6>

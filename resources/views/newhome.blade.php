@@ -1,5 +1,5 @@
 @extends('layouts.template')
-@section('title', ' - Anasayfa')
+@section('title', ' - BlogHome')
 
 @section('content')
 
