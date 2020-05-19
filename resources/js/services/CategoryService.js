@@ -1,18 +1,14 @@
-import axios from 'axios';
+import http from './httpService';
 
-const apiClient = axios.create({
-  baseURL: `http://localhost:3000`,
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json'
-  }
-});
+async function getCategories() {
+  return await http.get('/api/categories');
+}
+
+async function getCategory(adi) {
+  return await http.post('/api/categories/' + adi);
+}
 
 export default {
-  getCategories() {
-    return apiClient.get('/api/categories');
-  },
-  getCategory(adi) {
-    return apiClient.post('/api/categories/' + adi);
-  }
+  getCategory,
+  getCategories
 };

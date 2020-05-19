@@ -55,7 +55,7 @@
               >
             </span>
           </div>
-          <span class="navbar-text mr-2" v-if="!isLoggedIn">
+          <span class="navbar-text mr-3" v-if="!isLoggedIn">
             <div>
               <router-link :to="{ name: 'register' }" class="text-light"
                 >Register</router-link

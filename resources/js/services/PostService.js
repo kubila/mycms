@@ -1,18 +1,14 @@
-import axios from 'axios';
+import http from './httpService';
 
-const apiClient = axios.create({
-  baseURL: `http://localhost:3000`,
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json'
-  }
-});
+async function getPosts() {
+  return await http.get('/api/posts');
+}
+
+async function getPost(adi) {
+  return await http.get('/api/posts/' + adi);
+}
 
 export default {
-  getPosts() {
-    return apiClient.get('/api/posts');
-  },
-  getPost(adi) {
-    return apiClient.get('/api/posts/' + adi);
-  }
+  getPost,
+  getPosts
 };

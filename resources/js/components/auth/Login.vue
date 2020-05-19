@@ -40,6 +40,8 @@
 </template>
 
 <script>
+import { required, email } from 'vuelidate/lib/validators';
+
 export default {
   data() {
     return {
@@ -47,17 +49,31 @@ export default {
       password: ''
     };
   },
+  validations: {
+    form: {
+      email: {
+        required,
+        email
+      },
+      password: {
+        required
+      }
+    }
+  },
   methods: {
     async login() {
-      await this.$store.dispatch('fetchToken', {
-        email: this.email,
-        password: this.password
-      });
-
+      await this.$store
+        .dispatch('fetchToken', {
+          email: this.email,
+          password: this.password
+        })
+        .then(() => this.$store.dispatch('fetchUser'))
+        .then(() => this.$store.dispatch('isLoggedIn'))
+        .then(() => this.$router.push({ name: 'app-home' }));
       //const token = localStorage.getItem('token');
-      await this.$store.dispatch('fetchUser');
-      await this.$store.dispatch('isLoggedIn');
-      await this.$router.push({ name: 'app-home' });
+      // await this.$store.dispatch('fetchUser');
+      // await this.$store.dispatch('isLoggedIn');
+      // await this.$router.push({ name: 'app-home' });
     }
   }
 };

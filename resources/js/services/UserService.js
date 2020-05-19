@@ -1,26 +1,26 @@
-import axios from 'axios';
+import http from './httpService';
 
-const apiClient = axios.create({
-  baseURL: `http://localhost:3000`,
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json'
-  }
-});
+async function getToken(credentials) {
+  return await http.post('/api/auth/login', credentials);
+}
+
+async function getUser() {
+  const token = localStorage.getItem('token');
+  http.setJwt(token);
+  return await http.post('/api/auth/me');
+}
+
+async function logOut() {
+  return await http.post('/api/auth/logout');
+}
+
+async function signUp(credentials) {
+  return await http.post('/api/auth/signup', credentials);
+}
 
 export default {
-  getToken(credentials) {
-    return apiClient.post('/api/auth/login', credentials);
-  },
-  getUser() {
-    const token = localStorage.getItem('token');
-    apiClient.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    return apiClient.post('/api/auth/me');
-  },
-  logOut() {
-    return apiClient.post('/api/auth/logout');
-  },
-  signUp(credentials) {
-    return apiClient.post('/api/auth/signup', credentials);
-  }
+  getToken,
+  getUser,
+  logOut,
+  signUp
 };

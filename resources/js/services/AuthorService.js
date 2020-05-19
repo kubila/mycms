@@ -1,18 +1,14 @@
-import axios from 'axios';
+import http from './httpService';
 
-const apiClient = axios.create({
-  baseURL: `http://localhost:3000`,
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json'
-  }
-});
+async function getAuthors() {
+  return await http.get('/api/authors/');
+}
+
+async function getAuthor(adi) {
+  return await http.post('/api/authors/' + adi);
+}
 
 export default {
-  getAuthors() {
-    apiClient.get('/api/authors/');
-  },
-  getAuthors(adi) {
-    apiClient.get('/api/authors/' + adi);
-  }
+  getAuthor,
+  getAuthors
 };

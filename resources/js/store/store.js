@@ -3,7 +3,7 @@ import Vuex from 'vuex';
 import PostService from '../services/PostService.js';
 import UserService from '../services/UserService.js';
 import CategoryService from '../services/CategoryService.js';
-import router from '../router/router.js';
+//import router from '../router/router.js';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -18,33 +18,36 @@ export default new Vuex.Store({
     token: {},
     isLoggedIn: false
   },
+
   actions: {
-    async fetchPosts({ commit }) {
+    fetchPosts({ commit }) {
       const psts = this.getters.allPosts;
       if (psts) {
         console.log(true);
       } else {
-        return await PostService.getPosts()
+        return PostService.getPosts()
           .then(response => {
             commit('SET_POSTS', response.data);
           })
           .catch(error => error.response);
       }
     },
-    async fetchCategories({ commit }) {
-      return await CategoryService.getCategories()
+
+    fetchCategories({ commit }) {
+      return CategoryService.getCategories()
         .then(response => {
           commit('SET_CATEGORIES', response.data);
         })
         .catch(error => console.log(error.response));
     },
-    async fetchPost({ commit }, adi) {
+
+    fetchPost({ commit }, adi) {
       const post = this.getters.getPostByName(adi);
       if (post) {
         commit('SET_POST', post);
         return post;
       } else {
-        return await PostService.getPost(adi)
+        return PostService.getPost(adi)
           .then(response => {
             commit('SET_POST', response.data);
             return response.data;
@@ -52,21 +55,24 @@ export default new Vuex.Store({
           .catch(error => error.response);
       }
     },
-    async fetchToken({ commit }, credentials) {
-      return await UserService.getToken(credentials)
+
+    fetchToken({ commit }, credentials) {
+      return UserService.getToken(credentials)
         .then(({ data }) => {
           commit('SET_TOKEN', data);
           return data;
         })
         .catch(error => error.response);
     },
-    async fetchUser({ commit }, token) {
-      return await UserService.getUser(token).then(({ data }) => {
+
+    fetchUser({ commit }, token) {
+      return UserService.getUser(token).then(({ data }) => {
         commit('SET_USER', data);
         commit('SET_LOGGED_IN');
         return data;
       });
     },
+
     isLoggedIn({ commit }) {
       const status = this.getters.Login;
       const token = localStorage.getItem('token');
@@ -75,52 +81,66 @@ export default new Vuex.Store({
         console.log('Not logged in');
       }
     },
-    async Logout({ commit }) {
-      return await UserService.logOut()
-        .then(response => {
-          if (response.message) {
-            commit('LOG_OUT');
-            //this.$router.push('/');
-          }
-        })
-        // .then(router.push('/'))
-        .catch(error => {
-          console.log(error.response);
-        });
+
+    Logout({ commit }) {
+      return (
+        UserService.logOut()
+          .then(response => {
+            if (response.message) {
+              commit('LOG_OUT');
+              //this.$router.push('/');
+            }
+          })
+          // .then(router.push('/'))
+          .catch(error => {
+            console.log(error.response);
+          })
+      );
     }
   },
+
   mutations: {
     SET_POSTS(state, posts) {
       state.posts = posts;
     },
+
     SET_POST(state, post) {
       state.post = post;
     },
+
     SET_CATEGORIES(state, categories) {
       state.categories = categories;
     },
+
     SET_CATEGORY(state, category) {
       state.category = category;
     },
+
     SET_AUTHORS(state, authors) {
       state.authors = authors;
     },
+
     SET_AUTHOR(state, author) {
       state.author = author;
     },
+
     SET_TOKEN(state, data) {
       state.token = data.access_token;
       localStorage.setItem('token', data.access_token);
     },
+
     SET_USER(state, data) {
       state.user = data;
     },
+
     SET_LOGGED_IN(state) {
       state.isLoggedIn = true;
     },
+
     SET_NOT_LOGGED_IN(state) {
       state.isLoggedIn = false;
     },
+
     LOG_OUT(state) {
       state.isLoggedIn = false;
       state.token = {};
@@ -132,9 +152,11 @@ export default new Vuex.Store({
     getPostByName: state => title => {
       return state.posts.find(post => post.title === title);
     },
+
     allPosts: state => {
       return state.posts.length;
     },
+
     Login: state => {
       return state.isLoggedIn;
     }
