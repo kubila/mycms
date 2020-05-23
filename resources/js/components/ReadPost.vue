@@ -18,6 +18,10 @@
             by Somebody {{ post.author_id }} {{ post.created_at }} in
             {{ post.category.name }}
           </p>
+
+          <p class="lead text-secondary text-italic">
+            Tags will be here
+          </p>
           <figure>
             <img
               :src="`/images/${post.image}`"

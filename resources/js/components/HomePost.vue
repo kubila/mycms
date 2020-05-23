@@ -49,6 +49,7 @@
               <span>
                 <router-link
                   :to="{ name: 'getauthor', params: { name: post.author_id } }"
+                  class="card-author-title"
                   ><strong>Unknown Author</strong>
                 </router-link></span
               >

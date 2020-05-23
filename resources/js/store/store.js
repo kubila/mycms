@@ -76,9 +76,10 @@ export default new Vuex.Store({
     isLoggedIn({ commit }) {
       const status = this.getters.Login;
       const token = localStorage.getItem('token');
-      if (!status && token) {
-        commit('SET_NOT_LOGGED_IN');
-        console.log('Not logged in');
+      if (!status && !token) {
+        console.log('Not logged in', status, token);
+        //commit('SET_NOT_LOGGED_IN');
+        //console.log('Not logged in');
       }
     },
 

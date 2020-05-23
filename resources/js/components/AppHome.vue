@@ -27,7 +27,7 @@
           <aside class="col-lg-4 px-3">
             <div class="sidebar">
               <h5 class="lead d-flex justify-content-center pt-2">
-                Editor Picks
+                News Corner
               </h5>
             </div>
           </aside>
@@ -42,6 +42,8 @@
 <script>
 import HomeCard from './HomeCard.vue';
 import HomePost from './HomePost.vue';
+import News from './News';
+
 import { mapState } from 'vuex';
 import _ from 'lodash';
 
@@ -53,7 +55,8 @@ export default {
   },
   components: {
     HomePost,
-    HomeCard
+    HomeCard,
+    News
   },
   created() {
     this.$store.dispatch('fetchPosts');
@@ -72,11 +75,4 @@ export default {
   }
 };
 </script>
-<style>
-/*
-.main {
-  flex-grow: 1;
-  overflow-y: hidden;
-}
-*/
-</style>
+<style></style>

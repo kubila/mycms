@@ -53,12 +53,33 @@ body {
     margin: 0;
     text-decoration: none !important;
   }
+  &-author-title {
+    padding-top: 5px;
+    color: #8f8d8d;
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0;
+    text-decoration: none !important;
+  }
+  &-date {
+    display: inline;
+    font-style: italic;
+    font-size: small;
+  }
   &-date-title {
     font-size: 1rem;
   }
   &-main-title {
     font-weight: 600;
     font-size: 1.25rem;
+    color: #575757;
+    margin: 0;
+    line-height: normal;
+    text-decoration: none !important;
+  }
+  &-main-text {
+    // font-weight: 600;
+    font-size: 0.9rem;
     color: #575757;
     margin: 0;
     line-height: normal;

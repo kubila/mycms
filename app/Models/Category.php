@@ -6,16 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    protected $fillable = [
-        'adi',
-    ];
-    public function getRouteKeyName()
-    {
-        return 'adi';
-    }
+  protected $fillable = [];
 
-    public function posts()
-    {
-        return $this->hasMany(Post::class);
-    }
+  public function getRouteKeyName()
+  {
+    return 'name';
+  }
+
+  public function posts()
+  {
+    return $this->hasMany(Post::class);
+  }
 }

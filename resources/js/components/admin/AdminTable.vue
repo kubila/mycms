@@ -6,9 +6,10 @@
       <th class="text-center text-justify">Content</th>
       <th class="text-center text-justify">Author</th>
       <th class="text-center text-justify">Category</th>
-      <th class="text-center text-justify">Comments</th>
-      <th class="text-center text-justify">Edit</th>
-      <th class="text-center text-justify">Delete</th>
+      <!-- <th class="text-center text-justify">Comments</th> -->
+      <!-- <th class="text-center text-justify">Edit</th>
+      <th class="text-center text-justify">Delete</th> -->
+      <th class="text-center text-justify">Actions</th>
     </thead>
     <tbody>
       <tr v-for="post in posts" :key="post.id">
@@ -35,24 +36,20 @@
         <td class="text-center align-middle text-justify">
           {{ post.category_id }}
         </td>
-        <td class="text-center align-middle text-justify">
-          {{ post.comment_id }}
-        </td>
-        <td class="text-center align-middle text-justify">
-          <router-link
-            :to="{ name: 'editpost', params: { title: post.title } }"
+
+        <td class="text-left align-middle text-justify">
+          <button
+            class="btn btn-sm btn-secondary "
+            data-toggle="modal"
+            data-target="#myModal"
           >
-            <button
-              class="btn btn-sm btn-success "
-              data-toggle="modal"
-              data-target="#myModal"
-            >
-              Edit
-            </button>
-          </router-link>
-        </td>
-        <td class="text-center align-middle text-justify">
-          <button class="btn btn-sm btn-danger">Trash</button>
+            <template>
+              <b-icon-pencil animation="fade"><em></em></b-icon-pencil>
+            </template>
+          </button>
+          <button class="btn btn-sm btn-danger">
+            <b-icon icon="trash-fill" aria-hidden="true"></b-icon>
+          </button>
         </td>
       </tr>
     </tbody>
@@ -60,7 +57,13 @@
 </template>
 
 <script>
+import { BIcon, BIconPencil } from 'bootstrap-vue';
+
 export default {
+  components: {
+    BIcon,
+    BIconPencil
+  },
   props: {
     posts: {
       type: [Object, Array],

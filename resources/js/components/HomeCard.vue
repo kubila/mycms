@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-4 my-3 sutun">
+  <div class="col-md-4 my-2 sutun">
     <div class="main-post">
       <div>
         <router-link :to="{ name: 'read', params: { title: card.title } }">
@@ -10,7 +10,7 @@
           />
         </router-link>
       </div>
-      <div class="mx-3 mt-1">
+      <div class="mx-3 mt-2">
         <router-link
           :to="{
             name: 'getcategory',
@@ -21,7 +21,19 @@
           {{ card.category.name }}
         </router-link>
 
-        <h5>
+        <router-link
+          :to="{
+            name: 'getauthor',
+            params: { name: card.author.name }
+          }"
+          class="card-author-title pl-1"
+        >
+          by {{ card.author.name }}
+        </router-link>
+        <span>
+          <p class="m-0 card-date">on May 28, 2020</p>
+        </span>
+        <h5 class="mt-1">
           <router-link
             :to="{ name: 'read', params: { title: card.title } }"
             class="card-main-title"
@@ -31,13 +43,23 @@
         </h5>
 
         <p class="m-1" v-if="card.content.length > 120">
-          {{ card.content.slice(0, 120) + '...' }}
+          <router-link
+            :to="{ name: 'read', params: { title: card.title } }"
+            class="card-main-text"
+          >
+            {{ card.content.slice(0, 120) + '...' }}
+          </router-link>
         </p>
         <p class="m-1" v-else>
-          {{ card.content }}
+          <router-link
+            :to="{ name: 'read', params: { title: card.title } }"
+            class="card-main-text"
+          >
+            {{ card.content }}
+          </router-link>
         </p>
       </div>
-      <hr class="card-hr m-0" />
+      <hr class="card-hr" />
     </div>
   </div>
 </template>

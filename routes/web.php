@@ -11,7 +11,7 @@
 |
  */
 
-/*Auth::routes();*/
+Auth::routes();
 
 Route::fallback(function () {
   return view('newhome');

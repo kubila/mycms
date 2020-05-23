@@ -19,13 +19,21 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 Vue.use(Vuelidate);
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
-//import MainHome from './MainHome.vue';
-Vue.component('MainHome', require('./MainHome.vue').default);
+import MainHome from './MainHome.vue';
+//Vue.component('MainHome', require('./MainHome.vue').default);
 Vue.config.productionTip = false;
+
+// new Vue({
+//   el: '#app',
+//   router,
+//   store
+//   //render: h => h(MainHome)
+// }); //.$mount('#app');
 
 new Vue({
   el: '#app',
+  components: { MainHome },
+  template: '<MainHome/>',
   router,
   store
-  //render: h => h(MainHome)
-}); //.$mount('#app');
+});

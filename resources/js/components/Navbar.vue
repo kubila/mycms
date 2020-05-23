@@ -9,7 +9,7 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item-dropdown text="Categories" left variant="dark">
+          <!-- <b-nav-item-dropdown text="Categories" left variant="dark">
             <b-dropdown-item
               class="dropdown-item"
               href="#"
@@ -18,13 +18,21 @@
               :category="category"
               >{{ category.name }}
             </b-dropdown-item>
-          </b-nav-item-dropdown>
+          </b-nav-item-dropdown> -->
+          <b-nav-item
+            v-for="category in categories"
+            :category="category"
+            :key="category.id"
+            :to="{ name: 'getcategory', params: { name: category.name } }"
+          >
+            {{ category.name }}
+          </b-nav-item>
 
-          <b-nav-item-dropdown text="Authors" left variant="light">
+          <!-- <b-nav-item-dropdown text="Authors" left variant="light">
             <b-dropdown-item class="dropdown-item" href="#"
               >{{ 'wasd' }}
             </b-dropdown-item>
-          </b-nav-item-dropdown>
+          </b-nav-item-dropdown> -->
           <!-- <b-nav-item href="#">Link</b-nav-item> -->
         </b-navbar-nav>
 
@@ -84,12 +92,12 @@
                 >
               </div>
             </div>
-          </div>
+          </div>  -->
           <span class="navbar-text ml-1 mr-2" v-if="isLoggedIn">
             <router-link :to="{ name: 'admin' }" class="text-light"
               >Admin</router-link
             >
-          </span> -->
+          </span>
 
           <b-nav-item-dropdown right class="ml-1 mr-3" v-if="isLoggedIn">
             <!-- Using 'button-content' slot -->

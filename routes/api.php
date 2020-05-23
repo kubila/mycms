@@ -20,6 +20,9 @@ Route::get('/categories', 'CategoryController@index');
 Route::get('/categories/{category}', 'CategoryController@show');
 Route::get('/authors', 'AuthorController@index');
 Route::get('/authors/{author}', 'AuthorController@show');
+Route::apiResource('news', 'NewsController');
+Route::apiResource('tags', 'TagsController');
+
 Route::fallback(function () {
   return view('newhome');
 });

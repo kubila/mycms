@@ -19,4 +19,4 @@ mix
 if (mix.inProduction) {
   mix.version();
 }
-mix.browserSync('mycms.test');
+mix.browserSync('mycms.test/cms');

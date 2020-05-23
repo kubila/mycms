@@ -29,7 +29,8 @@ export default {};
   //background-color: #241717;
   //background-color: #130144;
   //background-color: #390391;
-  background-color: #290144;
+  // background-color: #290144;
+  background-color: #322348 !important;
 }
 .admin-list {
 }

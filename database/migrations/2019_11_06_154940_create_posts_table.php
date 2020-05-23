@@ -23,11 +23,9 @@ class CreatePostsTable extends Migration
       $table->dateTime('published');
       $table->unsignedBigInteger('category_id')->nullable();
       $table->unsignedBigInteger('author_id')->nullable();
-      $table->unsignedBigInteger('comment_id')->nullable();
       $table->timestamps();
       $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('set null');
       $table->foreign('author_id')->references('id')->on('authors')->onUpdate('cascade')->onDelete('set null');
-      $table->foreign('comment_id')->references('id')->on('comments')->onUpdate('cascade')->onDelete('set null');
     });
   }
 
