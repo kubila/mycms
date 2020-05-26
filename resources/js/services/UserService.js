@@ -11,6 +11,8 @@ async function getUser() {
 }
 
 async function logOut() {
+  const token = localStorage.getItem('token');
+  http.setJwt(token);
   return await http.post('/api/auth/logout');
 }
 

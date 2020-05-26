@@ -100,6 +100,7 @@
 
 <script>
 import { required, email, minLength } from 'vuelidate/lib/validators';
+import UserService from '../../services/UserService';
 
 export default {
   data() {
@@ -130,12 +131,27 @@ export default {
     }
   },
   methods: {
-    register() {
+    async register() {
       this.$v.form.$touch();
       if (this.$v.form.$invalid) {
         return;
       }
-      console.log(this.form);
+
+      const credentials = {
+        name: this.form.name,
+        email: this.form.email,
+        password: this.form.password,
+        password_confirmation: this.form.password_confirm
+      };
+      return UserService.signUp(credentials)
+        .then(response => {
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.log(error.response);
+        });
+
+      //console.log(this.form);
     }
   }
 };

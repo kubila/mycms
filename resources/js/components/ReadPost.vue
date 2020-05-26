@@ -1,7 +1,7 @@
 <template>
   <div class="container inner-wrapper">
     <div class="row">
-      <div class="col-sm-8 content mt-4 mb-4">
+      <div class="col-sm-10 content mt-4 mb-4">
         <div class="mt-2 ml-2">
           <div class="article-title">
             <h1>

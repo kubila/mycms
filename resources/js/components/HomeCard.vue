@@ -21,6 +21,10 @@
           {{ card.category.name }}
         </router-link>
 
+        <span class="pl-1">
+          <p class="m-0 card-date">on May 28, 2020</p>
+        </span>
+
         <router-link
           :to="{
             name: 'getauthor',
@@ -30,9 +34,7 @@
         >
           by {{ card.author.name }}
         </router-link>
-        <span>
-          <p class="m-0 card-date">on May 28, 2020</p>
-        </span>
+
         <h5 class="mt-1">
           <router-link
             :to="{ name: 'read', params: { title: card.title } }"

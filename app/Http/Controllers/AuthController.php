@@ -18,7 +18,7 @@ class AuthController extends Controller
   public function __construct()
   {
 
-    $this->middleware('auth:api', ['except' => ['login', 'signup']]);
+    $this->middleware('auth:api', ['except' => ['login', 'signup', 'logout']]);
   }
 
   /**
@@ -47,7 +47,15 @@ class AuthController extends Controller
     $user = $request->validated();
     if ($user) {
       User::create($user);
-      $this->login($request);
+      if ($token = $this->guard()->attempt($user)) {
+        $this->login($request);
+        $this->respondWithToken($token);
+        // decide what to do after registration, auto login or not?
+      } else {
+        return response()->json(['cant_login' => 'User created but cannot logged in, please login.']);
+      }
+    } else {
+      return response()->json(['error' => 'User cannot validated.']);
     }
   }
 
@@ -58,7 +66,7 @@ class AuthController extends Controller
    */
   public function me()
   {
-    return response()->json($this->guard()->user());
+    return response()->json($this->guard()->user()->only(['email', 'name']));
   }
 
   /**
@@ -95,7 +103,7 @@ class AuthController extends Controller
     return response()->json([
       'access_token' => $token,
       'token_type' => 'bearer',
-      'expires_in' => $this->guard()->factory()->getTTL() * 60,
+      'expires_in' => $this->guard()->factory()->getTTL() * 3600,
       'user' => $this->guard()->user()->name,
     ]);
   }

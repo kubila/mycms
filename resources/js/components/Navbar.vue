@@ -38,16 +38,19 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <b-nav-form class="mr-2">
+          <b-nav-form class="mr-2" @submit="search">
             <b-form-input
               size="sm"
               class="mr-sm-2"
               placeholder="Search"
+              name="search"
+              v-model="form.searches"
             ></b-form-input>
             <b-button size="sm" class="my-2 my-sm-0" type="submit"
               >Search</b-button
             >
           </b-nav-form>
+          <Search :searchString="searchString" />
 
           <!-- <b-nav-item-dropdown text="Lang" right variant="dark">
             <b-dropdown-item href="#">EN</b-dropdown-item>
@@ -114,19 +117,28 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapGetters } from 'vuex';
 import { BIcon, BIconPeopleCircle, BIconPersonFill } from 'bootstrap-vue';
+import { required, email, minLength } from 'vuelidate/lib/validators';
+import Search from './Search';
+
 export default {
   components: {
     BIcon,
     BIconPeopleCircle,
-    BIconPersonFill
+    BIconPersonFill,
+    Search
   },
   data() {
-    return {};
+    return {
+      form: {
+        searches: null
+      },
+      searchString: null
+    };
   },
-  created() {
-    this.$store.dispatch('fetchCategories');
+  async created() {
+    await this.$store.dispatch('fetchCategories');
   },
   computed: {
     ...mapState(['categories']),
@@ -138,34 +150,10 @@ export default {
   methods: {
     async logout() {
       await this.$store.dispatch('Logout');
-      // FIX ME redirect after logout to refresh page
-      //this.$router.push({ name: 'out' });
-    }
+    },
+    search() {}
   }
-
-  // methods: {
-  //   onOver() {
-  //     this.$refs.dropdown.visible = true;
-  //   },
-  //   onLeave() {
-  //     this.$refs.dropdown.visible = false;
-  //   }
-  // }
 };
 </script>
 
-<style scoped>
-.navy {
-  /*background-color: #563d7c !important;*/
-  /*background-color: #1e1e1e;*/
-  background-color: #322348 !important;
-}
-.navbar-nav .nav-link {
-  /* color: rgba(255, 255, 255, 0.5);*/
-  font-size: 1rem;
-}
-
-.menu {
-  background-color: rgb(122, 88, 177) !important;
-}
-</style>
+<style scoped></style>

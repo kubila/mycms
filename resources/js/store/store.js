@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import PostService from '../services/PostService.js';
 import UserService from '../services/UserService.js';
 import CategoryService from '../services/CategoryService.js';
+import createPersistedState from 'vuex-persistedstate';
 //import router from '../router/router.js';
 Vue.use(Vuex);
 
@@ -16,24 +17,27 @@ export default new Vuex.Store({
     authors: [],
     user: {},
     token: {},
-    isLoggedIn: false
+    isLoggedIn: null
   },
+
+  plugins: [createPersistedState()],
 
   actions: {
     fetchPosts({ commit }) {
-      const psts = this.getters.allPosts;
-      if (psts) {
-        console.log(true);
-      } else {
-        return PostService.getPosts()
-          .then(response => {
-            commit('SET_POSTS', response.data);
-          })
-          .catch(error => error.response);
-      }
+      const posts = this.getters.allPosts;
+      if (posts) return true;
+
+      return PostService.getPosts()
+        .then(response => {
+          commit('SET_POSTS', response.data);
+        })
+        .catch(error => error.response);
     },
 
     fetchCategories({ commit }) {
+      const cats = this.getters.allCategories;
+      if (cats) return true;
+
       return CategoryService.getCategories()
         .then(response => {
           commit('SET_CATEGORIES', response.data);
@@ -75,28 +79,23 @@ export default new Vuex.Store({
 
     isLoggedIn({ commit }) {
       const status = this.getters.Login;
-      const token = localStorage.getItem('token');
-      if (!status && !token) {
-        console.log('Not logged in', status, token);
-        //commit('SET_NOT_LOGGED_IN');
-        //console.log('Not logged in');
+      if (!status) {
+        commit('SET_NOT_LOGGED_IN');
       }
     },
 
     Logout({ commit }) {
-      return (
-        UserService.logOut()
-          .then(response => {
-            if (response.message) {
-              commit('LOG_OUT');
-              //this.$router.push('/');
-            }
-          })
-          // .then(router.push('/'))
-          .catch(error => {
-            console.log(error.response);
-          })
-      );
+      return UserService.logOut()
+        .then(() => {
+          // if (response.message) {
+          //   commit('LOG_OUT');
+          //   //this.$router.push('/');
+          // }
+          commit('LOG_OUT');
+        })
+        .catch(error => {
+          console.log(error.response);
+        });
     }
   },
 
@@ -147,6 +146,7 @@ export default new Vuex.Store({
       state.token = {};
       state.user = {};
       localStorage.removeItem('token');
+      location.reload();
     }
   },
   getters: {
@@ -158,8 +158,19 @@ export default new Vuex.Store({
       return state.posts.length;
     },
 
+    allCategories: state => {
+      return state.categories.length;
+    },
+
     Login: state => {
-      return state.isLoggedIn;
+      const token = localStorage.getItem('token');
+      const stateToken = state.token;
+      const user = state.user;
+      if (token && stateToken && user) {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 });

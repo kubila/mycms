@@ -58,8 +58,8 @@ export default {
     HomeCard,
     News
   },
-  created() {
-    this.$store.dispatch('fetchPosts');
+  async created() {
+    await this.$store.dispatch('fetchPosts');
     this.isLoading = false;
   },
   computed: {

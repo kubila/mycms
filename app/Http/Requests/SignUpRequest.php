@@ -29,4 +29,19 @@ class SignUpRequest extends FormRequest
       'password' => 'required|confirmed'
     ];
   }
+
+  /**
+   * Get the validation attributes that apply to the request.
+   *
+   * @return array
+   */
+  public function attributes()
+  {
+    return [
+      'name' => 'name',
+      'email' => 'email',
+      'password' => 'password',
+      'password_confirmation' => 'password_confirm'
+    ];
+  }
 }

@@ -10,22 +10,34 @@
             <form @submit.prevent="login">
               <div class="form-group">
                 <input
-                  v-model="email"
+                  v-model="form.email"
                   type="text"
                   name="email"
                   class="form-control"
                   placeholder="Email"
+                  @blur="$v.form.email.$touch()"
                 />
+                <template v-if="$v.form.email.$error">
+                  <span v-if="!$v.form.email.required" class="form-error"
+                    >Email is required</span
+                  >
+                </template>
               </div>
 
               <div class="form-group">
                 <input
-                  v-model="password"
+                  v-model="form.password"
                   type="password"
                   name="password"
                   class="form-control"
                   placeholder="Password"
+                  @blur="$v.form.password.$touch()"
                 />
+                <template v-if="$v.form.password.$error">
+                  <span v-if="!$v.form.password.required" class="form-error"
+                    >Password is required</span
+                  >
+                </template>
               </div>
 
               <button type="submit" class="btn btn-dark btn-md">
@@ -45,8 +57,10 @@ import { required, email } from 'vuelidate/lib/validators';
 export default {
   data() {
     return {
-      email: '',
-      password: ''
+      form: {
+        email: null,
+        password: null
+      }
     };
   },
   validations: {
@@ -62,18 +76,18 @@ export default {
   },
   methods: {
     async login() {
+      this.$v.form.$touch();
+      if (this.$v.form.$invalid) {
+        return;
+      }
       await this.$store
         .dispatch('fetchToken', {
-          email: this.email,
-          password: this.password
+          email: this.form.email,
+          password: this.form.password
         })
         .then(() => this.$store.dispatch('fetchUser'))
         .then(() => this.$store.dispatch('isLoggedIn'))
         .then(() => this.$router.push({ name: 'app-home' }));
-      //const token = localStorage.getItem('token');
-      // await this.$store.dispatch('fetchUser');
-      // await this.$store.dispatch('isLoggedIn');
-      // await this.$router.push({ name: 'app-home' });
     }
   }
 };
