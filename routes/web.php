@@ -11,8 +11,8 @@
 |
  */
 
-//Auth::routes();
 
+Route::view('/path?', 'newhome');
 Route::fallback(function () {
   return view('newhome');
 });

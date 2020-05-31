@@ -5,7 +5,7 @@ async function getNews() {
 }
 
 async function getSpecificNews(name) {
-  return await http.post('/api/news/' + name);
+  return await http.get('/api/news/' + name);
 }
 
 export default {

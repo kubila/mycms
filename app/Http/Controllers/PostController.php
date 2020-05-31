@@ -14,7 +14,9 @@ class PostController extends Controller
    */
   public function index()
   {
-    return view('newhome');
+    //return view('newhome');
+    $posts = Post::with('category')->with('author')->get();
+    return response()->json($posts, 200);
   }
 
   public function posts()
@@ -55,7 +57,7 @@ class PostController extends Controller
   {
 
     //$poster = Post::find($post)->category();
-    $poster = Post::with('category')->where('title', '=', $post->title)->first();
+    $poster = Post::with('category')->where('title', $post->title)->first();
     return response()->json($poster, 200);
   }
 

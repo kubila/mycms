@@ -21,6 +21,12 @@
                   <span v-if="!$v.form.email.required" class="form-error"
                     >Email is required</span
                   >
+                  <span v-if="!$v.form.email.email" class="form-error"
+                    >This is not a valid email address</span
+                  >
+                  <span v-if="!$v.form.email.maxLength" class="form-error"
+                    >Email must be 255 or less characters length!</span
+                  >
                 </template>
               </div>
 
@@ -37,8 +43,18 @@
                   <span v-if="!$v.form.password.required" class="form-error"
                     >Password is required</span
                   >
+                  <span v-if="!$v.form.password.minLength" class="form-error"
+                    >Password must be at least 6 characters length</span
+                  >
                 </template>
               </div>
+
+              <p
+                v-if="status === 400 || status === 404 || status === 401"
+                class="form-error"
+              >
+                Login info is invalid
+              </p>
 
               <button type="submit" class="btn btn-dark btn-md">
                 Submit
@@ -52,7 +68,12 @@
 </template>
 
 <script>
-import { required, email } from 'vuelidate/lib/validators';
+import {
+  required,
+  email,
+  minLength,
+  maxLength
+} from 'vuelidate/lib/validators';
 
 export default {
   data() {
@@ -60,17 +81,20 @@ export default {
       form: {
         email: null,
         password: null
-      }
+      },
+      status: null
     };
   },
   validations: {
     form: {
       email: {
         required,
-        email
+        email,
+        maxLength: maxLength(255)
       },
       password: {
-        required
+        required,
+        minLength: minLength(6)
       }
     }
   },
@@ -87,7 +111,10 @@ export default {
         })
         .then(() => this.$store.dispatch('fetchUser'))
         .then(() => this.$store.dispatch('isLoggedIn'))
-        .then(() => this.$router.push({ name: 'app-home' }));
+        .then(() => this.$router.push({ name: 'app-home' }))
+        .catch(err => {
+          this.status = err.response.status;
+        });
     }
   }
 };

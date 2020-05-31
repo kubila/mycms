@@ -18,6 +18,8 @@ class CreateNewsTable extends Migration
       $table->string('title');
       $table->string('url');
       $table->text('content');
+      $table->date('created');
+      $table->boolean('is_published');
       $table->timestamps();
     });
   }

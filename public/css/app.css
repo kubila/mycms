@@ -14683,7 +14683,8 @@ input[type=color].form-control:disabled {
 }
 
 body {
-  background: #f5f5f6;
+  /*background: #f5f5f6;*/
+  background-color: #f8fafc;
 }
 
 .wrapper {
@@ -14792,16 +14793,16 @@ body {
 
 .main-post {
   background-color: #fff;
-  -webkit-transition: -webkit-transform 0.2s ease;
-  transition: -webkit-transform 0.2s ease;
-  transition: transform 0.2s ease;
-  transition: transform 0.2s ease, -webkit-transform 0.2s ease;
+  -webkit-transition: -webkit-transform 0.2s ease-out;
+  transition: -webkit-transform 0.2s ease-out;
+  transition: transform 0.2s ease-out;
+  transition: transform 0.2s ease-out, -webkit-transform 0.2s ease-out;
   outline: 3px solid #f5f5f6;
   /*background-color: #3e3e3e;*/
 }
 
 .main-post:hover {
-  background: #f5f5f6;
+  background-color: #f8fafc;
   cursor: pointer;
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
@@ -14835,21 +14836,21 @@ body {
 }
 
 .poster {
-  border: 4px solid #f5f5f6;
-  background-color: #ffffff;
-  margin-bottom: 5px;
-  -webkit-transition: -webkit-transform 0.2s ease;
-  transition: -webkit-transform 0.2s ease;
-  transition: transform 0.2s ease;
-  transition: transform 0.2s ease, -webkit-transform 0.2s ease;
+  margin-bottom: 30px;
+  outline: 3px solid #f5f5f6;
+  background-color: #fff;
+  -webkit-transition: -webkit-transform 0.2s ease-in-out;
+  transition: -webkit-transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
 }
 
 .poster:hover {
   cursor: pointer;
-  -webkit-filter: drop-shadow(0 0 0.7rem #f1cccc);
-          filter: drop-shadow(0 0 0.7rem #f1cccc);
+  background-color: #f8fafc;
   -webkit-transform: scale(1.02);
           transform: scale(1.02);
+  outline: 5px solid white;
 }
 
 .poster img {
@@ -14901,8 +14902,66 @@ body {
 }
 
 .form-error {
-  font-size: 1rem !important;
+  font-size: 1rem;
   font-weight: 600;
   color: #f70000;
+}
+
+.form-success {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #6ff700;
+}
+
+@media screen and (max-width: 991px) {
+  .poster {
+    -webkit-transition: none;
+    transition: none;
+  }
+
+  .poster:hover {
+    -webkit-transform: none;
+            transform: none;
+    background-color: transparent;
+  }
+
+  .sutun:hover {
+    -webkit-filter: none;
+            filter: none;
+  }
+
+  .main-post {
+    -webkit-transition: none;
+    transition: none;
+    outline: 6px solid white;
+  }
+
+  .main-post:hover {
+    -webkit-transform: none;
+            transform: none;
+    background-color: transparent;
+    -webkit-filter: none;
+            filter: none;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .poster {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+
+  .poster .img-fluid {
+    height: 20%;
+    width: 40%;
+  }
+
+  .poster .sutun-dokuz {
+    margin-left: 20px;
+  }
+
+  .poster .sutun-dokuz > div {
+    margin-top: 10px;
+  }
 }
 

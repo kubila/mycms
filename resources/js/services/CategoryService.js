@@ -5,7 +5,7 @@ async function getCategories() {
 }
 
 async function getCategory(adi) {
-  return await http.post('/api/categories/' + adi);
+  return await http.get('/api/categories/' + adi);
 }
 
 export default {

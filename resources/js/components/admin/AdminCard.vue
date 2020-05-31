@@ -8,7 +8,7 @@
 
 <script>
 import { mapState } from 'vuex';
-import AdminTable from './AdminTable.vue';
+import AdminTable from './AdminTable';
 export default {
   components: {
     AdminTable

@@ -5,7 +5,7 @@ async function getAuthors() {
 }
 
 async function getAuthor(adi) {
-  return await http.post('/api/authors/' + adi);
+  return await http.get('/api/authors/' + adi);
 }
 
 export default {

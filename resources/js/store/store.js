@@ -1,9 +1,11 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import PostService from '../services/PostService.js';
-import UserService from '../services/UserService.js';
-import CategoryService from '../services/CategoryService.js';
+import PostService from '../services/PostService';
+import UserService from '../services/UserService';
+import CategoryService from '../services/CategoryService';
+import AuthorService from '../services/AuthorService';
 import createPersistedState from 'vuex-persistedstate';
+
 //import router from '../router/router.js';
 Vue.use(Vuex);
 
@@ -96,6 +98,21 @@ export default new Vuex.Store({
         .catch(error => {
           console.log(error.response);
         });
+    },
+
+    fetchAuthor({ commit }, name) {
+      const author = this.getters.getAuthorByName(name);
+      if (author) {
+        commit('SET_AUTHOR', author);
+        return author;
+      } else {
+        return AuthorService.getAuthor(name)
+          .then(response => {
+            commit('SET_AUTHOR', response.data);
+            return response.data;
+          })
+          .catch(err => console.log(err.response));
+      }
     }
   },
 
@@ -152,6 +169,14 @@ export default new Vuex.Store({
   getters: {
     getPostByName: state => title => {
       return state.posts.find(post => post.title === title);
+    },
+
+    getAuthorByName: state => name => {
+      return state.authors.find(author => author.name === name);
+    },
+
+    getPostsByAuthorName: (state, author) => {
+      return state.posts.filter(post => post.author.name === author.name);
     },
 
     allPosts: state => {

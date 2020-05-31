@@ -2,8 +2,8 @@
 
 namespace App;
 
-use App\Models\Author;
-use App\Models\Post;
+
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
@@ -12,13 +12,23 @@ class User extends Authenticatable implements JWTSubject
 {
   use Notifiable;
 
+  protected static function boot()
+  {
+    parent::boot();
+    static::creating(function ($user) {
+      $date = Carbon::now()->format('Y-m-d');
+      $user->created = $date;
+      return true;
+    });
+  }
+
   /**
    * The attributes that are mass assignable.
    *
    * @var array
    */
   protected $fillable = [
-    'name', 'email', 'password',
+    'name', 'email', 'password', 'created'
   ];
 
   /**

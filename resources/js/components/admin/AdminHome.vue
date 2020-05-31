@@ -9,8 +9,9 @@
 </template>
 
 <script>
-import AdminCard from './AdminCard.vue';
-import AdminSidebar from './AdminSidebar.vue';
+import AdminCard from './AdminCard';
+import AdminSidebar from './AdminSidebar';
+
 export default {
   //computed: mapState(['posts'])
   components: {

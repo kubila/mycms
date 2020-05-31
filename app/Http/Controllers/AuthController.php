@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SignUpRequest;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 
 class AuthController extends Controller
 {
@@ -47,15 +49,13 @@ class AuthController extends Controller
     $user = $request->validated();
     if ($user) {
       User::create($user);
-      if ($token = $this->guard()->attempt($user)) {
-        $this->login($request);
-        $this->respondWithToken($token);
-        // decide what to do after registration, auto login or not?
-      } else {
-        return response()->json(['cant_login' => 'User created but cannot logged in, please login.']);
-      }
+      // $user['name'] = '';
+      // $token = $this->guard()->attempt($user);
+      // $this->login($request);
+      // $this->respondWithToken($token);
+      return response()->json(['success' => 'Registered successfully. You must log in now.']);
     } else {
-      return response()->json(['error' => 'User cannot validated.']);
+      return response()->json(['error' => 'User cannot be created.']);
     }
   }
 

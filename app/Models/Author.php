@@ -2,12 +2,25 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Author extends Model
 {
-  protected $fillable = [];
+
+  protected static function boot()
+  {
+    parent::boot();
+    static::creating(function ($author) {
+      $date = Carbon::now()->format('Y-m-d');
+      $author->created = $date;
+      return true;
+    });
+  }
+  protected $fillable = [
+    'name', 'description', 'created'
+  ];
 
   public function getRouteKeyName()
   {

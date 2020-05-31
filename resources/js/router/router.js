@@ -3,15 +3,15 @@ import VueRouter from 'vue-router';
 import store from '../store/store.js';
 
 Vue.use(VueRouter);
-import AppHome from '../components/AppHome.vue';
-import ReadPost from '../components/ReadPost.vue';
-import GetCategory from '../components/GetCategory.vue';
-import GetAuthor from '../components/GetAuthor.vue';
-import AdminHome from '../components/admin/AdminHome.vue';
-import Login from '../components/auth/Login.vue';
-import Register from '../components/auth/Register.vue';
+import AppHome from '../components/layout/AppHome';
+import ReadPost from '../components/posts/ReadPost';
+import GetCategory from '../components/categories/GetCategory';
+import GetAuthor from '../components/authors/GetAuthor';
+import AdminHome from '../components/admin/AdminHome';
+import Login from '../components/auth/Login';
+import Register from '../components/auth/Register';
 import nProgress from 'nprogress';
-import Edit from '../components/admin/EditModal.vue';
+import Edit from '../components/admin/EditModal';
 
 const router = new VueRouter({
   mode: 'history',
@@ -152,6 +152,18 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   nProgress.start();
+  const vm = this;
+  // FIX MEE !!!, make store named export?
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!vm.$store.isLoggedIn) {
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath }
+      });
+    } else {
+      next();
+    }
+  }
   next();
 });
 

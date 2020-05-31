@@ -5,7 +5,7 @@ async function getTags() {
 }
 
 async function getTag(name) {
-  return await http.post('/api/tags/' + name);
+  return await http.get('/api/tags/' + name);
 }
 
 export default {

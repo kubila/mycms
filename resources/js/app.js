@@ -12,7 +12,7 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 Vue.use(Vuelidate);
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
-import MainHome from './MainHome.vue';
+import MainHome from './components/MainHome.vue';
 //Vue.component('MainHome', require('./MainHome.vue').default);
 Vue.config.productionTip = false;
 

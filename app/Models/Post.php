@@ -2,12 +2,36 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-  protected $fillable = [];
+
+  protected static function boot()
+  {
+    parent::boot();
+    static::creating(function ($post) {
+      $date = Carbon::now()->format('Y-m-d');
+      $post->published = $date;
+      return true;
+    });
+
+    static::updating(function ($post) {
+      $date = Carbon::now()->format('Y-m-d');
+      $post->updated = $date;
+      return true;
+    });
+  }
+
+  protected $fillable = [
+    'title', 'image', 'content', 'description', 'published', 'updated', 'category_id', 'author_id', 'is_published'
+  ];
+
+  protected $attributes = [
+    'is_published' => false
+  ];
 
   public function getRouteKeyName()
   {

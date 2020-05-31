@@ -23,18 +23,18 @@
           />
         </td>
         <td class="align-middle text-justify">{{ post.title }}</td>
-        <td v-if="post.content.length > 100" class="align-middle text-justify">
-          {{ post.content.substring(0, 100) + '...' }}
+        <td v-if="post.content.length > 200" class="align-middle text-justify">
+          {{ post.content.substring(0, 200) + '...' }}
         </td>
         <td v-else class="align-middle text-justify">
-          {{ post.content.substring(0, 100) }}
+          {{ post.content }}
         </td>
 
         <td class="text-center align-middle text-justify">
-          {{ post.author_id }}
+          {{ post.author.name }}
         </td>
         <td class="text-center align-middle text-justify">
-          {{ post.category_id }}
+          {{ post.category.name }}
         </td>
 
         <td class="text-left align-middle text-justify">
@@ -66,7 +66,7 @@ export default {
   },
   props: {
     posts: {
-      type: [Object, Array],
+      type: Array,
       required: true
     }
   }
