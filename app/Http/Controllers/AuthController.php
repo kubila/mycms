@@ -7,6 +7,7 @@ use App\Http\Requests\SignUpRequest;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -48,12 +49,13 @@ class AuthController extends Controller
   {
     $user = $request->validated();
     if ($user) {
+      //$userPopped = Arr::except($user, ['name']);
       User::create($user);
-      // $user['name'] = '';
-      // $token = $this->guard()->attempt($user);
-      // $this->login($request);
-      // $this->respondWithToken($token);
-      return response()->json(['success' => 'Registered successfully. You must log in now.']);
+      $token = $this->guard()->attempt($user);
+      $this->login($request);
+      return $this->respondWithToken($token);
+      //return response()->json(['success' => 'You\'re registered successfully, redirecting...']);
+
     } else {
       return response()->json(['error' => 'User cannot be created.']);
     }
@@ -103,8 +105,8 @@ class AuthController extends Controller
     return response()->json([
       'access_token' => $token,
       'token_type' => 'bearer',
-      'expires_in' => $this->guard()->factory()->getTTL() * 3600,
-      'user' => $this->guard()->user()->name,
+      'expires_in' => $this->guard()->factory()->getTTL() * 360,
+      //'user' => $this->guard()->user()->name,
     ]);
   }
 

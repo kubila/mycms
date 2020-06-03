@@ -145,6 +145,7 @@ import {
   maxLength
 } from 'vuelidate/lib/validators';
 import UserService from '../../services/UserService';
+import httpService from '../../services/httpService';
 
 export default {
   data() {
@@ -194,10 +195,14 @@ export default {
         password_confirmation: this.form.password_confirm
       };
 
-      return UserService.signUp(credentials)
+      return await UserService.signUp(credentials)
         .then(response => {
           this.status = response.data;
+          localStorage.setItem('token', response.data.access_token);
         })
+        .then(() => this.$store.dispatch('fetchUser'))
+        .then(() => this.$store.dispatch('isLoggedIn'))
+        .then(() => this.$router.push({ name: 'app-home' }))
         .catch(error => {
           this.errors = error.response.data.errors;
           console.log(error.response.data.errors);

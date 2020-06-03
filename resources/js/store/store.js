@@ -11,14 +11,14 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    post: {},
+    post: null,
     posts: [],
-    category: {},
+    category: null,
     categories: [],
-    author: {},
+    author: null,
     authors: [],
-    user: {},
-    token: {},
+    user: null,
+    token: null,
     isLoggedIn: null
   },
 
@@ -160,8 +160,8 @@ export default new Vuex.Store({
 
     LOG_OUT(state) {
       state.isLoggedIn = false;
-      state.token = {};
-      state.user = {};
+      state.token = null;
+      state.user = null;
       localStorage.removeItem('token');
       location.reload();
     }
