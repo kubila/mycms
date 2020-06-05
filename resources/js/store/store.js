@@ -13,16 +13,18 @@ export default new Vuex.Store({
   state: {
     post: null,
     posts: [],
-    category: null,
+    category: [],
     categories: [],
     author: null,
+    authorPosts: [],
     authors: [],
     user: null,
     token: null,
-    isLoggedIn: null
+    isLoggedIn: null,
+    search: null
   },
 
-  plugins: [createPersistedState()],
+  //plugins: [createPersistedState()],
 
   actions: {
     fetchPosts({ commit }) {
@@ -34,17 +36,6 @@ export default new Vuex.Store({
           commit('SET_POSTS', response.data);
         })
         .catch(error => error.response);
-    },
-
-    fetchCategories({ commit }) {
-      const cats = this.getters.allCategories;
-      if (cats) return true;
-
-      return CategoryService.getCategories()
-        .then(response => {
-          commit('SET_CATEGORIES', response.data);
-        })
-        .catch(error => console.log(error.response));
     },
 
     fetchPost({ commit }, adi) {
@@ -60,6 +51,25 @@ export default new Vuex.Store({
           })
           .catch(error => error.response);
       }
+    },
+
+    fetchCategories({ commit }) {
+      const cats = this.getters.allCategories;
+      if (cats) return true;
+
+      return CategoryService.getCategories()
+        .then(response => {
+          commit('SET_CATEGORIES', response.data);
+        })
+        .catch(error => console.log(error.response));
+    },
+
+    fetchCategoryPosts({ commit }, name) {
+      CategoryService.getCategory(name)
+        .then(response => {
+          commit('SET_CATEGORY_POSTS', response.data);
+        })
+        .catch(err => console.log(err.response));
     },
 
     fetchToken({ commit }, credentials) {
@@ -89,15 +99,20 @@ export default new Vuex.Store({
     Logout({ commit }) {
       return UserService.logOut()
         .then(() => {
-          // if (response.message) {
-          //   commit('LOG_OUT');
-          //   //this.$router.push('/');
-          // }
           commit('LOG_OUT');
         })
         .catch(error => {
           console.log(error.response);
         });
+    },
+
+    fetchAuthorPosts({ commit }, name) {
+      return AuthorService.getAuthorPosts(name)
+        .then(response => {
+          commit('SET_AUTHOR_POSTS', response.data);
+          return response.data;
+        })
+        .catch(err => console.log(err.response));
     },
 
     fetchAuthor({ commit }, name) {
@@ -113,7 +128,9 @@ export default new Vuex.Store({
           })
           .catch(err => console.log(err.response));
       }
-    }
+    },
+
+    fetchSearch({ commit }, queryString) {}
   },
 
   mutations: {
@@ -125,11 +142,15 @@ export default new Vuex.Store({
       state.post = post;
     },
 
+    SET_SEARCH(state, search) {
+      state.search = search;
+    },
+
     SET_CATEGORIES(state, categories) {
       state.categories = categories;
     },
 
-    SET_CATEGORY(state, category) {
+    SET_CATEGORY_POSTS(state, category) {
       state.category = category;
     },
 
@@ -139,6 +160,10 @@ export default new Vuex.Store({
 
     SET_AUTHOR(state, author) {
       state.author = author;
+    },
+
+    SET_AUTHOR_POSTS(state, authorPosts) {
+      state.authorPosts = authorPosts;
     },
 
     SET_TOKEN(state, data) {

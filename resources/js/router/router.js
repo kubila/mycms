@@ -10,6 +10,7 @@ import GetAuthor from '../components/authors/GetAuthor';
 import AdminHome from '../components/admin/AdminHome';
 import Login from '../components/auth/Login';
 import Register from '../components/auth/Register';
+import Search from '../components/search/Search';
 import nProgress from 'nprogress';
 import Edit from '../components/admin/EditModal';
 
@@ -47,7 +48,17 @@ const router = new VueRouter({
         guest: true
       }
     },
-
+    {
+      path: '/search',
+      props: true,
+      name: 'searches',
+      component: Search,
+      beforeEnter: (to, from, next) => {
+        const sstr = from.params.searchstring;
+        to.params.searchstring = sstr;
+        next();
+      }
+    },
     {
       path: '/post/:title',
       props: true,
@@ -71,15 +82,6 @@ const router = new VueRouter({
       name: 'getcategory',
       props: true,
       component: GetCategory,
-      beforeEnter: (to, from, next) => {
-        store
-          .dispatch('fetchCategory', to.params.name)
-          .then(category => {
-            to.params.category = category;
-            next();
-          })
-          .catch(error => console.log(error.response));
-      },
       meta: {
         guest: true
       }
@@ -89,15 +91,15 @@ const router = new VueRouter({
       name: 'getauthor',
       props: true,
       component: GetAuthor,
-      beforeEnter: (to, from, next) => {
-        store
-          .dispatch('fetchAuthor', to.params.name)
-          .then(author => {
-            to.params.author = author;
-            next();
-          })
-          .catch(error => console.log(error.response));
-      },
+      // beforeEnter: (to, from, next) => {
+      //   store
+      //     .dispatch('fetchAuthor', to.params.name)
+      //     .then(author => {
+      //       to.params.author = author;
+      //       next();
+      //     })
+      //     .catch(error => console.log(error.response));
+      // },
       meta: {
         guest: true
       }

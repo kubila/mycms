@@ -31,4 +31,14 @@ class Category extends Model
   {
     return $this->hasMany(Post::class);
   }
+
+  public function authors()
+  {
+    return $this->belongsToMany(Author::class);
+  }
+
+  public function news()
+  {
+    return $this->belongsToMany(News::class);
+  }
 }

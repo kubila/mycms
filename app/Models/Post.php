@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-
+use App\Models\Tags;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
@@ -55,6 +55,6 @@ class Post extends Model
 
   public function tags()
   {
-    return $this->belongsToMany(Tags::class);
+    return $this->belongsToMany(Tags::class)->withTimestamps();
   }
 }

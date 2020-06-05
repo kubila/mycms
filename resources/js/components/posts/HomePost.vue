@@ -48,14 +48,17 @@
             <span>
               <span>
                 <router-link
-                  :to="{ name: 'getauthor', params: { name: post.author_id } }"
+                  :to="{
+                    name: 'getauthor',
+                    params: { name: post.author.name }
+                  }"
                   class="card-author-title"
-                  ><strong>Unknown Author</strong>
+                  ><strong>{{ post.author.name }}</strong>
                 </router-link></span
               >
             </span>
             on
-            <span>{{ post.created_at }}</span>
+            <span>{{ post.published }}</span>
           </p>
         </div>
       </div>

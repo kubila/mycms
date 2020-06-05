@@ -30,4 +30,9 @@ class News extends Model
   {
     return 'title';
   }
+
+  public function categories()
+  {
+    return $this->belongsToMany(Category::class);
+  }
 }

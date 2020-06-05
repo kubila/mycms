@@ -14804,8 +14804,8 @@ body {
 .main-post:hover {
   background-color: #f8fafc;
   cursor: pointer;
-  -webkit-transform: scale(1.05);
-          transform: scale(1.05);
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
   outline: 6px solid white;
   /*box-shadow: 3px 3px lavender, 3px 3px lavender;*/
 }
@@ -14848,8 +14848,8 @@ body {
 .poster:hover {
   cursor: pointer;
   background-color: #f8fafc;
-  -webkit-transform: scale(1.02);
-          transform: scale(1.02);
+  -webkit-transform: scale(1.01);
+          transform: scale(1.01);
   outline: 5px solid white;
 }
 

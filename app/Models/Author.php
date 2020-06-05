@@ -18,6 +18,7 @@ class Author extends Model
       return true;
     });
   }
+
   protected $fillable = [
     'name', 'description', 'created'
   ];
@@ -34,6 +35,11 @@ class Author extends Model
 
   public function posts()
   {
-    return $this->hasOne(Post::class);
+    return $this->hasMany(Post::class);
+  }
+
+  public function categories()
+  {
+    return $this->belongsToMany(Category::class);
   }
 }

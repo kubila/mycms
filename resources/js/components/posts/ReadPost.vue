@@ -1,7 +1,7 @@
 <template>
-  <div class="container inner-wrapper">
+  <div class="container-fluid inner-wrapper">
     <div class="row">
-      <div class="col-sm-10 content mt-4 mb-4">
+      <div class="col-sm-8 content mt-4 mb-4" style="margin-left:3rem;">
         <div class="mt-2 ml-2">
           <div class="article-title">
             <h1>
@@ -13,14 +13,26 @@
               {{ post.description }}
             </h4>
           </div>
-          <p class="lead font-weight-bold text-secondary">
-            by {{ post.author.name }} {{ post.created }} in
-            {{ post.category.name }}
-          </p>
 
-          <p class="lead text-secondary text-italic">
-            Tags will be here
-          </p>
+          <span>
+            <p class="lead font-weight-bold text-secondary">
+              by {{ post.author.name }} {{ post.created }} in
+              {{ post.category.name }}
+            </p>
+          </span>
+
+          <span v-if="post.tags.length > 0">
+            <p class="lead text-secondary text-italic" v-for="tag in post.tags">
+              {{ tag.name }}
+            </p>
+          </span>
+
+          <span v-else-if="post.tags.length > 1">
+            <p class="lead text-secondary text-italic" v-for="tag in post.tags">
+              {{ tag.name, }}
+            </p>
+          </span>
+
           <figure>
             <img
               :src="`/images/${post.image}`"
@@ -33,6 +45,7 @@
           <p class="article pt-4 text-left ">{{ post.content }}</p>
         </div>
       </div>
+      <div class="col-sm-4 bg-light">wasd</div>
     </div>
   </div>
 </template>

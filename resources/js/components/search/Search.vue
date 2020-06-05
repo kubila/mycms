@@ -1,11 +1,16 @@
 <template>
-  <div class="my-auto mr-2"></div>
+  <div class="my-auto mr-2">
+    {{ searchstring }}
+  </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {};
+  props: {
+    searchstring: {
+      type: String,
+      required: true
+    }
   }
 };
 </script>
