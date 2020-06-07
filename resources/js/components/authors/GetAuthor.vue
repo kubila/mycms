@@ -1,18 +1,26 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-8 mt-2">
-        <div v-if="isLoading">Loading...</div>
-        <div v-else-if="!isLoading">
-          <div v-if="authorCount" class="lead">
-            Posts found: {{ authorCount }}
+  <div class="inner-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-9 mt-2">
+          <div v-if="isLoading">Author posts is loading...</div>
+          <div v-else-if="!isLoading">
+            <div v-if="authorCount" class="lead">
+              Posts found: {{ authorCount }}
+            </div>
+            <author-posts
+              v-for="post in authorArticles"
+              :key="post.id"
+              :post="post"
+            />
           </div>
-          <author-posts v-for="post in Posts" :key="post.id" :post="post" />
         </div>
-      </div>
-      <div class="col-sm-4 mt-2">
-        <div v-if="isAuthorLoading">Loading...</div>
-        {{ author }}
+        <div class="col-sm-3 mt-2">
+          <div v-if="isAuthorLoading">Author is loading...</div>
+          <div v-else-if="!isAuthorLoading">
+            <Author :authorFound="authorItself" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -20,6 +28,7 @@
 
 <script>
 import AuthorPosts from './AuthorPosts';
+import Author from './Author';
 import { mapState } from 'vuex';
 export default {
   data() {
@@ -31,15 +40,15 @@ export default {
   },
   methods: {
     async getAuthorPosts() {
-      const author = this.$attrs.name;
+      const authorName = this.$attrs.name;
       await this.$store
-        .dispatch('fetchAuthorPosts', author)
+        .dispatch('fetchAuthorPosts', authorName)
         .then((this.isLoading = false));
     },
     async getAuthor() {
-      const author = this.$attrs.name;
-      this.$store
-        .dispatch('fetchAuthor', author)
+      const authorName = this.$attrs.name;
+      await this.$store
+        .dispatch('fetchAuthor', authorName)
         .then((this.isAuthorLoading = false));
     }
   },
@@ -48,16 +57,19 @@ export default {
     this.getAuthor();
   },
   components: {
-    AuthorPosts
+    AuthorPosts,
+    Author
   },
   computed: {
     ...mapState(['author', 'authorPosts']),
-    authorPosts() {
-      const allOfThem = this.author;
-      return allOfThem;
+    authorArticles() {
+      return this.authorPosts;
     },
     authorCount() {
-      return (this.count = this.category.length);
+      return (this.count = this.authorPosts.length);
+    },
+    authorItself() {
+      return this.author;
     }
   }
 };

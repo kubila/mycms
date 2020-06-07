@@ -11,6 +11,8 @@ import AdminHome from '../components/admin/AdminHome';
 import Login from '../components/auth/Login';
 import Register from '../components/auth/Register';
 import Search from '../components/search/Search';
+import News from '../components/news/News';
+import GetNews from '../components/news/GetNews';
 import nProgress from 'nprogress';
 import Edit from '../components/admin/EditModal';
 
@@ -51,12 +53,41 @@ const router = new VueRouter({
     {
       path: '/search',
       props: true,
-      name: 'searches',
+      name: 'search',
       component: Search,
       beforeEnter: (to, from, next) => {
-        const sstr = from.params.searchstring;
-        to.params.searchstring = sstr;
+        const searchStr = from.params.searchstring;
+        to.params.searchstring = searchStr;
         next();
+      },
+      meta: {
+        guest: true
+      }
+    },
+    {
+      path: '/news',
+      name: 'news',
+      component: News,
+      meta: {
+        guest: true
+      }
+    },
+    {
+      path: '/news/:title',
+      props: true,
+      name: 'getnews',
+      component: GetNews,
+      beforeEnter: (to, from, next) => {
+        store
+          .dispatch('fetchSpecificNews', to.params.title)
+          .then(news => {
+            to.params.news = news;
+            next();
+          })
+          .catch(err => console.log(err.response));
+      },
+      meta: {
+        guest: true
       }
     },
     {
@@ -91,15 +122,6 @@ const router = new VueRouter({
       name: 'getauthor',
       props: true,
       component: GetAuthor,
-      // beforeEnter: (to, from, next) => {
-      //   store
-      //     .dispatch('fetchAuthor', to.params.name)
-      //     .then(author => {
-      //       to.params.author = author;
-      //       next();
-      //     })
-      //     .catch(error => console.log(error.response));
-      // },
       meta: {
         guest: true
       }
@@ -154,10 +176,10 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   nProgress.start();
-  const vm = this;
+  //const vm = this;
   // FIX MEE !!!, make store named export?
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (!vm.$store.isLoggedIn) {
+    if (!store.isLoggedIn) {
       next({
         path: '/login',
         query: { redirect: to.fullPath }

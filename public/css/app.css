@@ -14713,6 +14713,9 @@ body {
 
 .content {
   background: #fff;
+  border: thin solid whitesmoke;
+  -webkit-filter: drop-shadow(0 0 0.2rem #8585a5);
+          filter: drop-shadow(0 0 0.2rem #8585a5);
 }
 
 .subhead h4 {
@@ -14750,7 +14753,7 @@ body {
 .card-main-title {
   font-weight: 600;
   font-size: 1.25rem;
-  color: #575757;
+  color: #3a3a3a;
   margin: 0;
   line-height: normal;
   text-decoration: none !important;
@@ -14792,37 +14795,34 @@ body {
 }
 
 .main-post {
-  background-color: #fff;
   -webkit-transition: -webkit-transform 0.2s ease-out;
   transition: -webkit-transform 0.2s ease-out;
   transition: transform 0.2s ease-out;
   transition: transform 0.2s ease-out, -webkit-transform 0.2s ease-out;
-  outline: 3px solid #f5f5f6;
-  /*background-color: #3e3e3e;*/
+  outline: 1px solid #f5f5f6;
+  -webkit-filter: drop-shadow(0 0 0.3rem #8585a5);
+          filter: drop-shadow(0 0 0.3rem #8585a5);
 }
 
 .main-post:hover {
-  background-color: #f8fafc;
   cursor: pointer;
-  -webkit-transform: scale(1.02);
-          transform: scale(1.02);
-  outline: 6px solid white;
-  /*box-shadow: 3px 3px lavender, 3px 3px lavender;*/
+  -webkit-transform: scale(1.03);
+          transform: scale(1.03);
+  outline: 5px solid white;
+  -webkit-filter: none;
+          filter: none;
 }
 
 .main-post p {
-  color: #727171;
+  color: #3a3a3a;
   font-weight: 600;
 }
 
 .navy {
-  /*background-color: #563d7c !important;*/
-  /*background-color: #1e1e1e;*/
   background-color: #322348 !important;
 }
 
 .navbar-nav .nav-link {
-  /* color: rgba(255, 255, 255, 0.5);*/
   font-size: 1rem;
 }
 
@@ -14830,27 +14830,25 @@ body {
   background-color: #7a58b1 !important;
 }
 
-.sutun:hover {
-  -webkit-filter: drop-shadow(0 0 0.7rem #f1cccc);
-          filter: drop-shadow(0 0 0.7rem #f1cccc);
-}
-
 .poster {
+  margin-top: 10px;
   margin-bottom: 30px;
-  outline: 3px solid #f5f5f6;
-  background-color: #fff;
-  -webkit-transition: -webkit-transform 0.2s ease-in-out;
-  transition: -webkit-transform 0.2s ease-in-out;
-  transition: transform 0.2s ease-in-out;
-  transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+  outline: 1px solid #f5f5f6;
+  -webkit-transition: -webkit-transform 0.1s ease-in-out;
+  transition: -webkit-transform 0.1s ease-in-out;
+  transition: transform 0.1s ease-in-out;
+  transition: transform 0.1s ease-in-out, -webkit-transform 0.1s ease-in-out;
+  -webkit-filter: drop-shadow(0 0 0.2rem #bcc0f3);
+          filter: drop-shadow(0 0 0.2rem #bcc0f3);
 }
 
 .poster:hover {
   cursor: pointer;
-  background-color: #f8fafc;
   -webkit-transform: scale(1.01);
           transform: scale(1.01);
-  outline: 5px solid white;
+  outline: 3px solid #fff;
+  -webkit-filter: none;
+          filter: none;
 }
 
 .poster img {
@@ -14925,15 +14923,9 @@ body {
     background-color: transparent;
   }
 
-  .sutun:hover {
-    -webkit-filter: none;
-            filter: none;
-  }
-
   .main-post {
     -webkit-transition: none;
     transition: none;
-    outline: 6px solid white;
   }
 
   .main-post:hover {

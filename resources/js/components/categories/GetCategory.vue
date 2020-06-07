@@ -1,13 +1,15 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-8 mt-2">
-        <div v-if="isLoading">Loading...</div>
-        <div v-else-if="!isLoading">
-          <div v-if="calculateCount">
-            <p class="lead">Posts found: {{ calculateCount }}</p>
+  <div class="inner-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-9 mt-2">
+          <div v-if="isLoading">Loading...</div>
+          <div v-else-if="!isLoading">
+            <div v-if="calculateCount">
+              <p class="lead">Posts found: {{ calculateCount }}</p>
+            </div>
+            <category-posts v-for="post in Posts" :key="post.id" :post="post" />
           </div>
-          <category-posts v-for="post in Posts" :key="post.id" :post="post" />
         </div>
       </div>
     </div>

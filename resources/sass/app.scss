@@ -37,6 +37,8 @@ body {
 
 .content {
   background: #fff;
+  border: thin solid whitesmoke;
+  filter: drop-shadow(0 0 0.2rem #8585a5);
 }
 
 .subhead h4 {
@@ -71,7 +73,8 @@ body {
   &-main-title {
     font-weight: 600;
     font-size: $font-size-article;
-    color: #575757;
+    // color: #575757;
+    color: #3a3a3a;
     margin: 0;
     line-height: normal;
     text-decoration: none !important;
@@ -112,33 +115,26 @@ body {
 }
 
 .main-post {
-  background-color: #fff;
   transition: transform 0.2s ease-out;
-  outline: 3px solid #f5f5f6;
-
-  /*background-color: #3e3e3e;*/
-
+  outline: 1px solid #f5f5f6;
+  filter: drop-shadow(0 0 0.3rem #8585a5);
   &:hover {
-    // background: #f5f5f6;
-    background-color: $body-bg;
     cursor: pointer;
-    transform: scale(1.02);
-    outline: 6px solid rgb(255, 255, 255);
-    /*box-shadow: 3px 3px lavender, 3px 3px lavender;*/
+    transform: scale(1.03);
+    outline: 5px solid rgb(255, 255, 255);
+    filter: none;
   }
   p {
-    color: #727171;
+    // color: #727171;
+    color: #3a3a3a;
     font-weight: 600;
   }
 }
 
 .navy {
-  /*background-color: #563d7c !important;*/
-  /*background-color: #1e1e1e;*/
   background-color: #322348 !important;
 }
 .navbar-nav .nav-link {
-  /* color: rgba(255, 255, 255, 0.5);*/
   font-size: $font-size-base;
 }
 
@@ -146,26 +142,19 @@ body {
   background-color: rgb(122, 88, 177) !important;
 }
 
-.sutun {
-  &:hover {
-    filter: drop-shadow(0 0 0.7rem rgb(241, 204, 204));
-  }
-}
-
 .poster {
-  // border: 4px solid #f5f5f6;
-  // margin-top: 10px;
+  margin-top: 10px;
   margin-bottom: 30px;
-  outline: 3px solid #f5f5f6;
-  background-color: #fff;
-  transition: transform 0.2s ease-in-out;
+  outline: 1px solid #f5f5f6;
+  //background-color: #fff;
+  transition: transform 0.1s ease-in-out;
+  // filter: drop-shadow(0 0 0.2rem rgb(131, 139, 248));
+  filter: drop-shadow(0 0 0.2rem rgb(188, 192, 243));
   &:hover {
     cursor: pointer;
-    background-color: $body-bg;
-    // filter: drop-shadow(0 0 0.7rem rgb(241, 204, 204));
     transform: scale(1.01);
-    // border: 4px solid rgb(255, 255, 255);
-    outline: 5px solid rgb(255, 255, 255);
+    outline: 3px solid #fff;
+    filter: none;
   }
   img {
     min-height: 105px;
@@ -188,12 +177,6 @@ body {
     background-color: #290144;
   }
 }
-
-// .login-card {
-//   border: none;
-//   border-radius: 1rem;
-//   background-color: #290144;
-// }
 
 .footer {
   position: absolute;
@@ -229,6 +212,7 @@ body {
   }
 }
 
+// poster mobile sucks, fix it somehow
 @media screen and (max-width: 991px) {
   .poster {
     transition: none;
@@ -237,14 +221,10 @@ body {
       background-color: transparent;
     }
   }
-  .sutun {
-    &:hover {
-      filter: none;
-    }
-  }
+
   .main-post {
     transition: none;
-    outline: 6px solid rgb(255, 255, 255);
+    //outline: 6px solid rgb(255, 255, 255);
     &:hover {
       transform: none;
       background-color: transparent;

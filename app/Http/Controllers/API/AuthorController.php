@@ -39,7 +39,7 @@ class AuthorController extends Controller
    */
   public function posts(Author $author)
   {
-    $posts = Post::with('category')->with('author')->where('name', $author->name)->first();
+    $posts = Post::with('category')->with('author')->where('author_id', $author->id)->get();
     return response()->json($posts, 200);
   }
 }

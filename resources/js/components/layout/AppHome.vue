@@ -13,17 +13,45 @@
         </div>
       </div>
     </div>
+    <!-- container -->
 
     <div class="container">
       <div class="row mt-3">
         <home-card v-for="card in featured" :card="card" :key="card.id" />
       </div>
+    </div>
+    <!-- <div class="container-fluid">
+      <div class="row mt-3">
+        <div class="col-sm-12">
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="row">
+                <home-card
+                  v-for="card in featured"
+                  :card="card"
+                  :key="card.id"
+                />
+              </div>
+            </div>
 
+            <div class="col-sm-4">
+              <div class="sidebar">
+                <h5 class="lead d-flex justify-content-center pt-2">
+                  <category-sidebar />
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <div class="container-fluid">
       <main role="main mt-3">
         <div class="row mb-2">
-          <div class="col-lg-8 p-0">
+          <div class="col-lg-8">
             <home-post v-for="post in cards" :key="post.id" :post="post" />
           </div>
+          <!-- News Corner -->
           <aside class="col-lg-4 px-3">
             <div class="sidebar">
               <h5 class="lead d-flex justify-content-center pt-2">
@@ -36,6 +64,7 @@
     </div>
     <!-- container -->
   </div>
+  <!-- inner wrapper -->
   <div v-else class="inner-wrapper">Loading...</div>
 </template>
 
