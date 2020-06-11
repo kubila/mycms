@@ -4,11 +4,16 @@ async function getCategories() {
   return await http.get('/api/categories');
 }
 
-async function getCategory(adi) {
+async function getCategoryPosts(adi) {
   return await http.get('/api/categories/' + adi);
 }
 
+async function getCategoryNews(adi) {
+  return await http.get('/api/categories/' + adi + 'news');
+}
+
 export default {
-  getCategory,
-  getCategories
+  getCategoryPosts,
+  getCategories,
+  getCategoryNews
 };

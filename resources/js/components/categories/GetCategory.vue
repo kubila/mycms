@@ -3,12 +3,23 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-9 mt-2">
-          <div v-if="isLoading">Loading...</div>
+          <div v-if="isLoading">Category posts are loading...</div>
           <div v-else-if="!isLoading">
-            <div v-if="calculateCount">
-              <p class="lead">Posts found: {{ calculateCount }}</p>
+            <div v-if="calculateCount" class="card-main-title">
+              Posts found:
+              <p class="text-success d-inline-block">{{ calculateCount }}</p>
             </div>
             <category-posts v-for="post in Posts" :key="post.id" :post="post" />
+            <div v-if="!calculateCount" class="card-main-title">
+              Couldn't find any post for the category:
+              <p class="text-danger d-inline-block">{{ calculateCount }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div v-if="isNewsLoading">Category News are loading...</div>
+          <div v-else-if="!isNewsLoading">
+            <category-news />
           </div>
         </div>
       </div>
@@ -18,36 +29,51 @@
 
 <script>
 import CategoryPosts from './CategoryPosts';
+import CategoryNews from './CategoryNews';
 import { mapState } from 'vuex';
 export default {
   data() {
     return {
       isLoading: true,
+      isNewsLoading: true,
       count: 0
     };
   },
   methods: {
+    // consider using a mixin for this type of requests
     async getPosts() {
       const category = this.$attrs.name;
       await this.$store
         .dispatch('fetchCategoryPosts', category)
         .then((this.isLoading = false));
+    },
+    async getNews() {
+      const category = this.$attrs.name;
+      await this.$store
+        .dispatch('fetchCategoryNews', category)
+        .then((this.isNewsLoading = false));
     }
   },
   created() {
     this.getPosts();
+    this.getNews();
   },
   components: {
-    CategoryPosts
+    CategoryPosts,
+    CategoryNews
   },
   computed: {
-    ...mapState(['category']),
+    ...mapState(['categoryPosts', 'categoryNews']),
     Posts() {
-      const allOfThem = this.category;
+      let allOfThem = this.categoryPosts;
       return allOfThem;
     },
+    categoryNews() {
+      let catNews = this.categoryNews;
+      return catNews;
+    },
     calculateCount() {
-      return (this.count = this.category.length);
+      return (this.count = this.categoryPosts.length);
     }
   }
 };

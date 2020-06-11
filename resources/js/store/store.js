@@ -13,7 +13,8 @@ export default new Vuex.Store({
   state: {
     post: null,
     posts: [],
-    category: [],
+    categoryPosts: [],
+    categoryNews: [],
     categories: [],
     author: null,
     authorPosts: [],
@@ -29,7 +30,7 @@ export default new Vuex.Store({
   actions: {
     fetchPosts({ commit }) {
       const posts = this.getters.allPosts;
-      if (posts) return true;
+      if (posts) return posts;
 
       return PostService.getPosts()
         .then(response => {
@@ -55,7 +56,7 @@ export default new Vuex.Store({
 
     fetchCategories({ commit }) {
       const cats = this.getters.allCategories;
-      if (cats) return true;
+      if (cats) return cats;
 
       return CategoryService.getCategories()
         .then(response => {
@@ -65,9 +66,19 @@ export default new Vuex.Store({
     },
 
     fetchCategoryPosts({ commit }, name) {
-      CategoryService.getCategory(name)
+      return CategoryService.getCategoryPosts(name)
         .then(response => {
           commit('SET_CATEGORY_POSTS', response.data);
+          return response.data;
+        })
+        .catch(err => console.log(err.response));
+    },
+
+    fetchCategoryNews({ commit }, name) {
+      return CategoryService.getCategoryNews(name)
+        .then(response => {
+          commit('SET_CATEGORY_NEWS', response.data);
+          return response.data;
         })
         .catch(err => console.log(err.response));
     },
@@ -90,9 +101,10 @@ export default new Vuex.Store({
     },
 
     isLoggedIn({ commit }) {
-      const status = this.getters.Login;
-      if (!status) {
+      //const status = this.getters.Login;
+      if (!this.getters.Login) {
         commit('SET_NOT_LOGGED_IN');
+        return;
       }
     },
 
@@ -150,8 +162,12 @@ export default new Vuex.Store({
       state.categories = categories;
     },
 
-    SET_CATEGORY_POSTS(state, category) {
-      state.category = category;
+    SET_CATEGORY_POSTS(state, categoryPosts) {
+      state.categoryPosts = categoryPosts;
+    },
+
+    SET_CATEGORY_NEWS(state, categoryNews) {
+      state.categoryNews = categoryNews;
     },
 
     SET_AUTHORS(state, authors) {

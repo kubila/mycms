@@ -14683,8 +14683,7 @@ input[type=color].form-control:disabled {
 }
 
 body {
-  /*background: #f5f5f6;*/
-  background-color: #f8fafc;
+  background: #f5f5f6;
 }
 
 .wrapper {
@@ -14704,6 +14703,7 @@ body {
 
 .article-title {
   clear: both;
+  margin-top: 2rem;
 }
 
 .article-title h1 {
@@ -14711,11 +14711,41 @@ body {
   font-weight: 600;
 }
 
+.post-author-title {
+  padding-top: 5px;
+  color: #8f8d8d;
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin: 0;
+  text-decoration: none !important;
+}
+
+.post-category-title {
+  padding-top: 5px;
+  color: #10abcc;
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin: 0;
+  text-decoration: none !important;
+}
+
+.post-outer {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 .content {
   background: #fff;
   border: thin solid whitesmoke;
-  -webkit-filter: drop-shadow(0 0 0.2rem #8585a5);
-          filter: drop-shadow(0 0 0.2rem #8585a5);
+  margin-top: 1rem;
+  -webkit-filter: drop-shadow(0 0 0.1rem #8585a5);
+          filter: drop-shadow(0 0 0.1rem #8585a5);
+}
+
+.content-inner {
+  margin-top: 0.5rem;
+  margin-left: 3rem;
+  margin-right: 7rem;
 }
 
 .subhead h4 {
@@ -14799,9 +14829,7 @@ body {
   transition: -webkit-transform 0.2s ease-out;
   transition: transform 0.2s ease-out;
   transition: transform 0.2s ease-out, -webkit-transform 0.2s ease-out;
-  outline: 1px solid #f5f5f6;
-  -webkit-filter: drop-shadow(0 0 0.3rem #8585a5);
-          filter: drop-shadow(0 0 0.3rem #8585a5);
+  outline: 2px solid white;
 }
 
 .main-post:hover {
@@ -14838,8 +14866,8 @@ body {
   transition: -webkit-transform 0.1s ease-in-out;
   transition: transform 0.1s ease-in-out;
   transition: transform 0.1s ease-in-out, -webkit-transform 0.1s ease-in-out;
-  -webkit-filter: drop-shadow(0 0 0.2rem #bcc0f3);
-          filter: drop-shadow(0 0 0.2rem #bcc0f3);
+  -webkit-filter: drop-shadow(0 0 0.1rem #bcc0f3);
+          filter: drop-shadow(0 0 0.1rem #bcc0f3);
 }
 
 .poster:hover {

@@ -9,8 +9,8 @@
 @import 'node_modules/bootstrap/scss/bootstrap';
 @import 'node_modules/bootstrap-vue/src/index.scss';
 body {
-  /*background: #f5f5f6;*/
-  background-color: $body-bg;
+  background: #f5f5f6;
+  // background-color: $body-bg;
 }
 
 .wrapper {
@@ -28,6 +28,7 @@ body {
   color: #222635;
   &-title {
     clear: both;
+    margin-top: 2rem;
     h1 {
       font-size: $font-size-article-title;
       font-weight: 600;
@@ -35,10 +36,39 @@ body {
   }
 }
 
+.post {
+  &-author-title {
+    padding-top: 5px;
+    color: #8f8d8d;
+    font-weight: 600;
+    font-size: $font-size-article;
+    margin: 0;
+    text-decoration: none !important;
+  }
+  &-category-title {
+    padding-top: 5px;
+    color: #10abcc;
+    font-weight: 600;
+    font-size: $font-size-article;
+    margin: 0;
+    text-decoration: none !important;
+  }
+  &-outer {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
 .content {
   background: #fff;
   border: thin solid whitesmoke;
-  filter: drop-shadow(0 0 0.2rem #8585a5);
+  margin-top: 1rem;
+  filter: drop-shadow(0 0 0.1rem #8585a5);
+  &-inner {
+    margin-top: 0.5rem;
+    margin-left: 3rem;
+    margin-right: 7rem;
+  }
 }
 
 .subhead h4 {
@@ -116,8 +146,10 @@ body {
 
 .main-post {
   transition: transform 0.2s ease-out;
-  outline: 1px solid #f5f5f6;
-  filter: drop-shadow(0 0 0.3rem #8585a5);
+  outline: 2px solid rgb(255, 255, 255);
+  //background-color: ghostwhite;
+  //filter: drop-shadow(0 0 0.1rem #8585a5);
+
   &:hover {
     cursor: pointer;
     transform: scale(1.03);
@@ -149,7 +181,7 @@ body {
   //background-color: #fff;
   transition: transform 0.1s ease-in-out;
   // filter: drop-shadow(0 0 0.2rem rgb(131, 139, 248));
-  filter: drop-shadow(0 0 0.2rem rgb(188, 192, 243));
+  filter: drop-shadow(0 0 0.1rem rgb(188, 192, 243));
   &:hover {
     cursor: pointer;
     transform: scale(1.01);

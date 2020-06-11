@@ -2,58 +2,53 @@
   <div class="inner-wrapper">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-9 mt-4 mb-4">
+        <div class="col-sm-9 my-4 mx-auto">
           <div class="content">
-            <div class="mt-2 ml-2">
+            <div class="content-inner">
+              <!-- <div class="mt-2 ml-2"> -->
               <div class="article-title">
                 <h1>
                   {{ post.title }}
                 </h1>
               </div>
               <div class="subhead">
-                <h4 class="mt-1 mb-4">
+                <h4>
                   {{ post.description }}
                 </h4>
               </div>
 
-              <span>
+              <div class="post-outer">
+                by
                 <router-link
-                  class="card-author-title"
+                  class="post-author-title"
                   :to="{
                     name: 'getauthor',
                     params: { name: post.author.name }
                   }"
-                  >by {{ post.author.name }}</router-link
                 >
-                in
-                <!-- <p class="lead font-weight-bold"> -->
+                  <strong>{{ post.author.name }}</strong></router-link
+                >
+
+                <strong class="lead">|</strong>
+
+                <strong>{{ post.published }}</strong>
+
+                <strong class="lead">|</strong>
                 <router-link
-                  class="card-category-title"
+                  class="post-category-title"
                   :to="{
                     name: 'getcategory',
                     params: { name: post.category.name }
                   }"
-                  >{{ post.category.name }}</router-link
+                  ><strong>{{ post.category.name }}</strong></router-link
                 >
-                on
-                {{ post.published }}
-                <!-- </p> -->
-              </span>
+              </div>
 
-              <p v-if="post.tags.length > 0">
+              <!-- <p v-if="post.tags.length > 0">
                 <span class="lead text-secondary font-italic">
                   {{ post.tags.name }}
                 </span>
-              </p>
-
-              <p v-else-if="post.tags.length > 1">
-                <span
-                  class="lead text-secondary font-italic"
-                  v-for="tag in post.tags"
-                >
-                  {{ tag.name }}
-                </span>
-              </p>
+              </p> -->
 
               <figure>
                 <img
@@ -62,14 +57,24 @@
                   class="img-fluid"
                   :title="`${post.title}`"
                 />
-                <!-- <figcaption>{{ post.description }}</figcaption> -->
               </figure>
-              <p class="article pt-4 text-left ">{{ post.content }}</p>
+
+              <p class="article pt-3 text-left ">{{ post.content }}</p>
+
+              <p v-if="post.tags.length > 0" class="">
+                Tag(s):
+                <span
+                  class="lead text-secondary font-italic"
+                  v-for="tag in post.tags"
+                >
+                  <router-link
+                    :to="{ name: 'get-tag', params: { name: tag.name } }"
+                    >{{ tag.name }}</router-link
+                  >
+                </span>
+              </p>
             </div>
           </div>
-        </div>
-        <div class="col-sm-3 bg-light mt-4 mb-4">
-          <category-news />
         </div>
       </div>
     </div>
@@ -77,17 +82,12 @@
 </template>
 
 <script>
-import CategoryNews from '../categories/CategoryNews';
-
 export default {
   props: {
     post: {
       type: Object,
       required: true
     }
-  },
-  components: {
-    CategoryNews
   }
 };
 </script>

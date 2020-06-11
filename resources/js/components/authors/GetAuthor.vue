@@ -2,20 +2,25 @@
   <div class="inner-wrapper">
     <div class="container">
       <div class="row">
-        <div class="col-sm-9 mt-2">
-          <div v-if="isLoading">Author posts is loading...</div>
+        <div class="col-sm-9 mt-3">
+          <div v-if="isLoading">Author posts are loading...</div>
           <div v-else-if="!isLoading">
-            <div v-if="authorCount" class="lead">
-              Posts found: {{ authorCount }}
+            <div v-if="authorCount" class="card-main-title">
+              Posts found:
+              <p class="text-success d-inline-block">{{ authorCount }}</p>
             </div>
             <author-posts
               v-for="post in authorArticles"
               :key="post.id"
               :post="post"
             />
+            <div v-if="!authorCount" class="card-main-title">
+              Couldn't find any post for the author:
+              <p class="text-danger d-inline-block">{{ authorCount }}</p>
+            </div>
           </div>
         </div>
-        <div class="col-sm-3 mt-2">
+        <div class="col-sm-3 mt-3" style="display:grid; align-content:center;">
           <div v-if="isAuthorLoading">Author is loading...</div>
           <div v-else-if="!isAuthorLoading">
             <Author :authorFound="authorItself" />

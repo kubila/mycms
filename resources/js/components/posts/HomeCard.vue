@@ -22,9 +22,10 @@
         </router-link>
 
         <span class="pl-1">
-          <p class="m-0 card-date">on May 28, 2020</p>
+          <p class="m-0 card-date">on {{ card.published }}</p>
         </span>
 
+        <strong class="text-secondary pl-1">by</strong>
         <router-link
           :to="{
             name: 'getauthor',
@@ -32,7 +33,7 @@
           }"
           class="card-author-title pl-1"
         >
-          by {{ card.author.name }}
+          {{ card.author.name }}
         </router-link>
 
         <h5 class="mt-1">

@@ -176,8 +176,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   nProgress.start();
-  //const vm = this;
-  // FIX MEE !!!, make store named export?
+
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!store.isLoggedIn) {
       next({

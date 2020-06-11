@@ -22,6 +22,7 @@ Route::namespace('API')->group(function () {
   Route::get('/posts/{post}', 'PostController@show');
   Route::get('/categories', 'CategoryController@index');
   Route::get('/categories/{category}', 'CategoryController@show'); // that one will be converted to a nested route, FIX ME!
+  Route::get('/categories/{category}/news', 'CategoryController@news');
   Route::get('/authors', 'AuthorController@index');
   Route::get('/authors/{author}', 'AuthorController@show');
   Route::get('/authors/{author}/posts', 'AuthorController@posts');
