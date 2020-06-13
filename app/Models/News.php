@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Categories;
+use App\Models\Category;
 
 class News extends Model
 {

@@ -1,6 +1,8 @@
 <template>
   <div class="mt-2">
-    Category news will be here
+    <router-link :to="{ name: 'get-news', params: { title: news.title } }">{{
+      news.title
+    }}</router-link>
   </div>
 </template>
 

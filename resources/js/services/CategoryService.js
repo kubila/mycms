@@ -9,7 +9,7 @@ async function getCategoryPosts(adi) {
 }
 
 async function getCategoryNews(adi) {
-  return await http.get('/api/categories/' + adi + 'news');
+  return await http.get('/api/categories/' + adi + '/news');
 }
 
 export default {

@@ -14745,7 +14745,7 @@ body {
 .content-inner {
   margin-top: 0.5rem;
   margin-left: 3rem;
-  margin-right: 7rem;
+  margin-right: 17rem;
 }
 
 .subhead h4 {
@@ -14982,6 +14982,12 @@ body {
 
   .poster .sutun-dokuz > div {
     margin-top: 10px;
+  }
+
+  .content-inner {
+    margin-top: 0.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
   }
 }
 

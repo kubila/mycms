@@ -16,10 +16,19 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-3 mt-2">
           <div v-if="isNewsLoading">Category News are loading...</div>
           <div v-else-if="!isNewsLoading">
-            <category-news />
+            <div v-if="calculateNews">
+              <category-news
+                v-for="news in foundNews"
+                :news="news"
+                :key="news.id"
+              />
+            </div>
+            <div v-if="!calculateNews">
+              No news for the category yet.
+            </div>
           </div>
         </div>
       </div>
@@ -36,27 +45,31 @@ export default {
     return {
       isLoading: true,
       isNewsLoading: true,
-      count: 0
+      count: 0,
+      newsCount: 0
     };
   },
   methods: {
-    // consider using a mixin for this type of requests
+    // consider using a mixin for this type of requests, news returning the old category news, make it reactive
     async getPosts() {
       const category = this.$attrs.name;
       await this.$store
         .dispatch('fetchCategoryPosts', category)
         .then((this.isLoading = false));
-    },
-    async getNews() {
-      const category = this.$attrs.name;
       await this.$store
         .dispatch('fetchCategoryNews', category)
         .then((this.isNewsLoading = false));
     }
+    // async getNews() {
+    //   const category = this.$attrs.name;
+    //   await this.$store
+    //     .dispatch('fetchCategoryNews', category)
+    //     .then((this.isNewsLoading = false));
+    // }
   },
   created() {
     this.getPosts();
-    this.getNews();
+    //this.getNews();
   },
   components: {
     CategoryPosts,
@@ -65,15 +78,16 @@ export default {
   computed: {
     ...mapState(['categoryPosts', 'categoryNews']),
     Posts() {
-      let allOfThem = this.categoryPosts;
-      return allOfThem;
+      return this.categoryPosts;
     },
-    categoryNews() {
-      let catNews = this.categoryNews;
-      return catNews;
+    foundNews() {
+      return this.categoryNews;
     },
     calculateCount() {
       return (this.count = this.categoryPosts.length);
+    },
+    calculateNews() {
+      return (this.newsCount = this.categoryNews.length);
     }
   }
 };

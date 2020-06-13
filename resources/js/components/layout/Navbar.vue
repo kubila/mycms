@@ -35,14 +35,14 @@
           </b-nav-form>
           <!-- <Search :searchstring="searchstring" /> -->
 
-          <div class="mr-2" v-if="!Login">
+          <div class="mr-2" v-if="!isLoggedIn">
             <span class="navbar-text">
               <router-link :to="{ name: 'login' }" class="text-light"
                 >Login</router-link
               >
             </span>
           </div>
-          <span class="navbar-text mr-3" v-if="!Login">
+          <span class="navbar-text mr-3" v-if="!isLoggedIn">
             <div>
               <router-link :to="{ name: 'register' }" class="text-light"
                 >Register</router-link
@@ -50,13 +50,13 @@
             </div>
           </span>
 
-          <span class="navbar-text ml-1 mr-2" v-if="Login">
+          <span class="navbar-text ml-1 mr-2" v-if="isLoggedIn">
             <router-link :to="{ name: 'admin' }" class="text-light"
               >Admin</router-link
             >
           </span>
 
-          <b-nav-item-dropdown right class="ml-1 mr-3" v-if="Login">
+          <b-nav-item-dropdown right class="ml-1 mr-3" v-if="isLoggedIn">
             <!-- Using 'button-content' slot -->
             <template v-slot:button-content>
               <b-icon-people-circle><em>User</em></b-icon-people-circle>
@@ -95,8 +95,8 @@ export default {
   },
   computed: {
     ...mapState(['categories']),
-    //...mapState(['isLoggedIn']),
-    ...mapGetters(['Login']),
+    ...mapState(['isLoggedIn']),
+    //...mapGetters(['Login']),
     user() {
       return this.$store.state.user;
     }

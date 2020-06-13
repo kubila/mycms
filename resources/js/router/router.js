@@ -13,6 +13,7 @@ import Register from '../components/auth/Register';
 import Search from '../components/search/Search';
 import News from '../components/news/News';
 import GetNews from '../components/news/GetNews';
+import GetTag from '../components/tags/GetTag';
 import nProgress from 'nprogress';
 import Edit from '../components/admin/EditModal';
 
@@ -73,24 +74,6 @@ const router = new VueRouter({
       }
     },
     {
-      path: '/news/:title',
-      props: true,
-      name: 'getnews',
-      component: GetNews,
-      beforeEnter: (to, from, next) => {
-        store
-          .dispatch('fetchSpecificNews', to.params.title)
-          .then(news => {
-            to.params.news = news;
-            next();
-          })
-          .catch(err => console.log(err.response));
-      },
-      meta: {
-        guest: true
-      }
-    },
-    {
       path: '/post/:title',
       props: true,
       name: 'read',
@@ -127,6 +110,24 @@ const router = new VueRouter({
       }
     },
     {
+      path: '/news/:title',
+      name: 'get-news',
+      props: true,
+      component: GetNews,
+      meta: {
+        guest: true
+      }
+    },
+    {
+      path: '/tag/:name',
+      name: 'get-tag',
+      props: true,
+      component: GetTag,
+      meta: {
+        guest: true
+      }
+    },
+    {
       path: '/cms/admin',
       name: 'admin',
       component: AdminHome,
@@ -153,42 +154,25 @@ const router = new VueRouter({
         requiresAuth: true
       }
     }
-    /*
-    {
-      path: '/edit-post/:title',
-      name: 'editpost',
-      component: EditPost,
-      props: true,
-      beforeEnter: (to, from, next) => {
-        store
-          .dispatch('fetchPost', to.params.title)
-          .then(post => {
-            to.params.post = post;
-            next();
-          })
-          .catch(error => {
-            console.log(error.response);
-          });
-      }
-    }*/
   ]
 });
 
-router.beforeEach((to, from, next) => {
-  nProgress.start();
+// router.beforeEach((to, from, next) => {
+//   nProgress.start();
 
-  if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (!store.isLoggedIn) {
-      next({
-        path: '/login',
-        query: { redirect: to.fullPath }
-      });
-    } else {
-      next();
-    }
-  }
-  next();
-});
+//   if (to.matched.some(record => record.meta.requiresAuth)) {
+//     if (!store.getters.isLoggedIn) {
+//       next({
+//         path: '/login'
+//         //query: to.fullPath
+//         //redirect: { name: 'login' }
+//       });
+//     } else {
+//       next();
+//     }
+//   }
+//   next();
+// });
 
 // eslint-disable-next-line no-unused-vars
 router.afterEach((to, from) => {

@@ -6,7 +6,6 @@ import CategoryService from '../services/CategoryService';
 import AuthorService from '../services/AuthorService';
 import createPersistedState from 'vuex-persistedstate';
 
-//import router from '../router/router.js';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -20,8 +19,7 @@ export default new Vuex.Store({
     authorPosts: [],
     authors: [],
     user: null,
-    token: null,
-    isLoggedIn: null,
+    isLoggedIn: false,
     search: null
   },
 
@@ -101,11 +99,12 @@ export default new Vuex.Store({
     },
 
     isLoggedIn({ commit }) {
-      //const status = this.getters.Login;
-      if (!this.getters.Login) {
+      const status = this.getters.Login;
+      if (!status) {
         commit('SET_NOT_LOGGED_IN');
-        return;
+        return false;
       }
+      return true;
     },
 
     Logout({ commit }) {
@@ -140,9 +139,9 @@ export default new Vuex.Store({
           })
           .catch(err => console.log(err.response));
       }
-    },
+    }
 
-    fetchSearch({ commit }, queryString) {}
+    //fetchSearch({ commit }, queryString) {}
   },
 
   mutations: {
@@ -183,7 +182,6 @@ export default new Vuex.Store({
     },
 
     SET_TOKEN(state, data) {
-      state.token = data.access_token;
       localStorage.setItem('token', data.access_token);
     },
 
@@ -201,7 +199,7 @@ export default new Vuex.Store({
 
     LOG_OUT(state) {
       state.isLoggedIn = false;
-      state.token = null;
+      //state.token = null;
       state.user = null;
       localStorage.removeItem('token');
       location.reload();
@@ -230,9 +228,9 @@ export default new Vuex.Store({
 
     Login: state => {
       const token = localStorage.getItem('token');
-      const stateToken = state.token;
       const user = state.user;
-      if (token && stateToken && user) {
+
+      if (token && user) {
         return true;
       } else {
         return false;
@@ -240,5 +238,3 @@ export default new Vuex.Store({
     }
   }
 });
-
-//export default store;

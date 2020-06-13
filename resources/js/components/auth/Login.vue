@@ -104,17 +104,15 @@ export default {
       if (this.$v.form.$invalid) {
         return;
       }
-      await this.$store
-        .dispatch('fetchToken', {
-          email: this.form.email,
-          password: this.form.password
-        })
-        .then(() => this.$store.dispatch('fetchUser'))
-        .then(() => this.$store.dispatch('isLoggedIn'))
-        .then(() => this.$router.push({ name: 'app-home' }))
-        .catch(err => {
-          this.status = err.response.status;
-        });
+      await this.$store.dispatch('fetchToken', {
+        email: this.form.email,
+        password: this.form.password
+      });
+      await this.$store.dispatch('fetchUser');
+      await this.$store.dispatch('isLoggedIn');
+      await this.$router.push({ name: 'app-home' }).catch(err => {
+        this.status = err.response.status;
+      });
     }
   }
 };

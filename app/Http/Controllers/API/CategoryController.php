@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\News;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -41,8 +42,12 @@ class CategoryController extends Controller
    */
   public function news(Category $category)
   {
-    $news = Category::with('news')->get(); //->with('author')->where('category_id', $category->id)->get();
-    dd($news);
+    $news_id = DB::table('category_news')->where('category_id', $category->id)->pluck('news_id')->first();
+    if (!$news_id) {
+      return response()->json(['fail' => 'No news for the category'], 404);
+    }
+
+    $news = News::with('categories')->where('id', $news_id)->get();
     return response()->json($news, 200);
   }
 }

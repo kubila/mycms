@@ -2,7 +2,7 @@
   <div class="inner-wrapper">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-9 my-4 mx-auto">
+        <div class="col-sm-10 my-4 mx-auto">
           <div class="content">
             <div class="content-inner">
               <!-- <div class="mt-2 ml-2"> -->
@@ -30,10 +30,11 @@
                 >
 
                 <strong class="lead">|</strong>
-
+                on
                 <strong>{{ post.published }}</strong>
 
                 <strong class="lead">|</strong>
+                in
                 <router-link
                   class="post-category-title"
                   :to="{
@@ -44,12 +45,6 @@
                 >
               </div>
 
-              <!-- <p v-if="post.tags.length > 0">
-                <span class="lead text-secondary font-italic">
-                  {{ post.tags.name }}
-                </span>
-              </p> -->
-
               <figure>
                 <img
                   :src="`/images/${post.image}`"
@@ -59,7 +54,7 @@
                 />
               </figure>
 
-              <p class="article pt-3 text-left ">{{ post.content }}</p>
+              <p class="article pt-3 text-left " v-html="post.content"></p>
 
               <p v-if="post.tags.length > 0" class="">
                 Tag(s):
@@ -68,6 +63,7 @@
                   v-for="tag in post.tags"
                 >
                   <router-link
+                    class="pl-1"
                     :to="{ name: 'get-tag', params: { name: tag.name } }"
                     >{{ tag.name }}</router-link
                   >
