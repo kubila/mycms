@@ -27,7 +27,7 @@ class CategoryController extends Controller
    * @param  \App\Models\Category  $category
    * @return \Illuminate\Http\Response
    */
-  public function show(Category $category)
+  public function posts(Category $category)
   {
     $posts = Post::with('category')->with('author')->where('category_id', $category->id)->get();
 

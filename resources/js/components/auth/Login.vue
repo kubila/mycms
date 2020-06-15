@@ -104,12 +104,7 @@ export default {
       if (this.$v.form.$invalid) {
         return;
       }
-      await this.$store.dispatch('fetchToken', {
-        email: this.form.email,
-        password: this.form.password
-      });
-      await this.$store.dispatch('fetchUser');
-      await this.$store.dispatch('isLoggedIn');
+      await this.$store.dispatch('fetchUser', this.form);
       await this.$router.push({ name: 'app-home' }).catch(err => {
         this.status = err.response.status;
       });

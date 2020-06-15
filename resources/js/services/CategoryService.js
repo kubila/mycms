@@ -5,7 +5,7 @@ async function getCategories() {
 }
 
 async function getCategoryPosts(adi) {
-  return await http.get('/api/categories/' + adi);
+  return await http.get('/api/categories/' + adi + '/posts');
 }
 
 async function getCategoryNews(adi) {

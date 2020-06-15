@@ -196,10 +196,10 @@ export default {
       };
 
       return await UserService.signUp(credentials)
-        .then(response => {
-          this.status = response.data;
-          localStorage.setItem('token', response.data.access_token);
-        })
+        // .then(response => {
+        //   this.status = response.data;
+        //   localStorage.setItem('token', response.data.access_token);
+        // })
         .then(() => this.$store.dispatch('fetchUser'))
         .then(() => this.$store.dispatch('isLoggedIn'))
         .then(() => this.$router.push({ name: 'app-home' }))

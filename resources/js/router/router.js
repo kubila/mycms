@@ -14,6 +14,7 @@ import Search from '../components/search/Search';
 import News from '../components/news/News';
 import GetNews from '../components/news/GetNews';
 import GetTag from '../components/tags/GetTag';
+import NotFound from '../components/helpers/NotFound';
 import nProgress from 'nprogress';
 import Edit from '../components/admin/EditModal';
 
@@ -153,26 +154,31 @@ const router = new VueRouter({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: '*',
+      name: 'not-found',
+      component: NotFound
     }
   ]
 });
 
-// router.beforeEach((to, from, next) => {
-//   nProgress.start();
+router.beforeEach((to, from, next) => {
+  nProgress.start();
 
-//   if (to.matched.some(record => record.meta.requiresAuth)) {
-//     if (!store.getters.isLoggedIn) {
-//       next({
-//         path: '/login'
-//         //query: to.fullPath
-//         //redirect: { name: 'login' }
-//       });
-//     } else {
-//       next();
-//     }
-//   }
-//   next();
-// });
+  // if (to.matched.some(record => record.meta.requiresAuth)) {
+  //   if (!store.getters.isLoggedIn) {
+  //     next({
+  //       path: '/login'
+  //       //query: to.fullPath
+  //       //redirect: { name: 'login' }
+  //     });
+  //   } else {
+  //     next();
+  //   }
+  // }
+  next();
+});
 
 // eslint-disable-next-line no-unused-vars
 router.afterEach((to, from) => {

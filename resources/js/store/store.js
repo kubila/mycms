@@ -23,7 +23,7 @@ export default new Vuex.Store({
     search: null
   },
 
-  //plugins: [createPersistedState()],
+  plugins: [createPersistedState()],
 
   actions: {
     fetchPosts({ commit }) {
@@ -81,17 +81,17 @@ export default new Vuex.Store({
         .catch(err => console.log(err.response));
     },
 
-    fetchToken({ commit }, credentials) {
-      return UserService.getToken(credentials)
-        .then(({ data }) => {
-          commit('SET_TOKEN', data);
-          return data;
-        })
-        .catch(error => error.response);
-    },
+    // fetchToken({ commit }, credentials) {
+    //   return UserService.getToken(credentials)
+    //     .then(({ data }) => {
+    //       commit('SET_TOKEN', data);
+    //       return data;
+    //     })
+    //     .catch(error => error.response);
+    // },
 
-    fetchUser({ commit }, token) {
-      return UserService.getUser(token).then(({ data }) => {
+    fetchUser({ commit }, credentials) {
+      return UserService.login(credentials).then(({ data }) => {
         commit('SET_USER', data);
         commit('SET_LOGGED_IN');
         return data;
@@ -181,10 +181,6 @@ export default new Vuex.Store({
       state.authorPosts = authorPosts;
     },
 
-    SET_TOKEN(state, data) {
-      localStorage.setItem('token', data.access_token);
-    },
-
     SET_USER(state, data) {
       state.user = data;
     },
@@ -199,9 +195,7 @@ export default new Vuex.Store({
 
     LOG_OUT(state) {
       state.isLoggedIn = false;
-      //state.token = null;
       state.user = null;
-      localStorage.removeItem('token');
       location.reload();
     }
   },
@@ -227,10 +221,10 @@ export default new Vuex.Store({
     },
 
     Login: state => {
-      const token = localStorage.getItem('token');
+      const loggedIn = state.isLoggedIn;
       const user = state.user;
 
-      if (token && user) {
+      if (loggedIn && !user === null) {
         return true;
       } else {
         return false;

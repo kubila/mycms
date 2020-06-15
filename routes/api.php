@@ -21,7 +21,7 @@ Route::namespace('API')->group(function () {
   Route::get('/posts', 'PostController@index');
   Route::get('/posts/{post}', 'PostController@show');
   Route::get('/categories', 'CategoryController@index');
-  Route::get('/categories/{category}', 'CategoryController@show'); // that one will be converted to a nested route, FIX ME!
+  Route::get('/categories/{category}/posts', 'CategoryController@posts');
   Route::get('/categories/{category}/news', 'CategoryController@news');
   Route::get('/authors', 'AuthorController@index');
   Route::get('/authors/{author}', 'AuthorController@show');
@@ -32,20 +32,12 @@ Route::namespace('API')->group(function () {
 
 Route::view('/path?', 'newhome');
 
-Route::fallback(function () {
-  return view('newhome');
+Route::namespace('Auth')->group(function () {
+  Route::post('/login', 'LoginController@login');
+  Route::post('/logout', 'LoginController@logout');
+  Route::post('/signup', 'LoginController@signup');
 });
 
-Route::group([
-
-  'middleware' => 'api',
-  'prefix' => 'auth',
-
-], function ($router) {
-
-  Route::post('login', 'AuthController@login');
-  Route::post('logout', 'AuthController@logout');
-  Route::post('signup', 'AuthController@signup');
-  Route::post('refresh', 'AuthController@refresh');
-  Route::post('me', 'AuthController@me');
+Route::fallback(function () {
+  return view('newhome');
 });
