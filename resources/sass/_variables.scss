@@ -4,8 +4,11 @@ $body-bg: #f8fafc;
 $smoke-bg: #f8fafc;
 
 // Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
+// $font-family-sans-serif: 'Nunito', sans-serif;
+$font-family-sans-serif: 'museo', 'Helvetica Neue', Helvetica, Arial, sans-serif,
+  sans-serif;
 $font-family-serif: 'Cambria', 'Georgia', Serif;
+$font-family-nunito: 'Nunito', sans-serif;
 $font-size-base: 1rem;
 $line-height-base: 1.6;
 $font-size-article: 1.25rem;

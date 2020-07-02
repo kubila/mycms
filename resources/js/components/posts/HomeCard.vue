@@ -21,9 +21,9 @@
           {{ card.category.name }}
         </router-link>
 
-        <span class="pl-1">
+        <!-- <span class="pl-1">
           <p class="m-0 card-date">on {{ card.published }}</p>
-        </span>
+        </span> -->
 
         <strong class="text-secondary pl-1">by</strong>
         <router-link

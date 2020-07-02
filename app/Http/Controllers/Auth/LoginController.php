@@ -49,7 +49,7 @@ class LoginController extends Controller
       if (Auth::attempt($user)) {
         return $this->respondToUser();
       } else {
-        return response()->json(['success' => 'User created but couldn\'t logged in. Please login']);
+        return response()->json(['error' => 'User created but couldn\'t logged in. Please login']);
       }
     } else {
       return response()->json(['error' => 'User cannot be created.']);

@@ -59,7 +59,7 @@
           <b-nav-item-dropdown right class="ml-1 mr-3" v-if="isLoggedIn">
             <!-- Using 'button-content' slot -->
             <template v-slot:button-content>
-              <b-icon-people-circle><em>User</em></b-icon-people-circle>
+              <b-icon-person-circle><em>User</em></b-icon-person-circle>
             </template>
             <b-dropdown-item href="#">{{ user.name }}</b-dropdown-item>
             <b-dropdown-item @click="logout" href="#">Sign Out</b-dropdown-item>
@@ -72,14 +72,14 @@
 
 <script>
 import { mapState, mapActions, mapGetters } from 'vuex';
-import { BIcon, BIconPeopleCircle, BIconPersonFill } from 'bootstrap-vue';
+import { BIcon, BIconPersonCircle, BIconPersonFill } from 'bootstrap-vue';
 import { required, email, minLength } from 'vuelidate/lib/validators';
 import Search from '../search/Search';
 
 export default {
   components: {
     BIcon,
-    BIconPeopleCircle,
+    BIconPersonCircle,
     BIconPersonFill,
     Search
   },
@@ -91,10 +91,10 @@ export default {
     };
   },
   async created() {
-    await this.$store.dispatch('fetchCategories');
+    await this.$store.dispatch('category/fetchCategories');
   },
   computed: {
-    ...mapState(['categories']),
+    ...mapState('category', ['categories']),
     ...mapState(['isLoggedIn']),
     //...mapGetters(['Login']),
     user() {

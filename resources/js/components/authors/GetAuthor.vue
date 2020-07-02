@@ -47,13 +47,13 @@ export default {
     async getAuthorPosts() {
       const authorName = this.$attrs.name;
       await this.$store
-        .dispatch('fetchAuthorPosts', authorName)
+        .dispatch('author/fetchAuthorPosts', authorName)
         .then((this.isLoading = false));
     },
     async getAuthor() {
       const authorName = this.$attrs.name;
       await this.$store
-        .dispatch('fetchAuthor', authorName)
+        .dispatch('author/fetchAuthor', authorName)
         .then((this.isAuthorLoading = false));
     }
   },
@@ -66,7 +66,7 @@ export default {
     Author
   },
   computed: {
-    ...mapState(['author', 'authorPosts']),
+    ...mapState('author', ['authorOne', 'authorPosts']),
     authorArticles() {
       return this.authorPosts;
     },
@@ -74,7 +74,7 @@ export default {
       return (this.count = this.authorPosts.length);
     },
     authorItself() {
-      return this.author;
+      return this.authorOne;
     }
   }
 };

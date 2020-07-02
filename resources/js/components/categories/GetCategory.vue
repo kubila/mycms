@@ -58,7 +58,7 @@ export default {
       const category = this.$attrs.name;
       //await this.$store.dispatch('fetchCategoryNews', category);
       await this.$store
-        .dispatch('fetchCategoryPosts', category)
+        .dispatch('category/fetchCategoryPosts', category)
 
         .then((this.isLoading = false));
       //.then((this.isNewsLoading = false));
@@ -66,7 +66,7 @@ export default {
     async getNews() {
       const category = this.$attrs.name;
       await this.$store
-        .dispatch('fetchCategoryNews', category)
+        .dispatch('category/fetchCategoryNews', category)
         .then((this.isNewsLoading = false));
     }
   },
@@ -79,7 +79,7 @@ export default {
     CategoryNews
   },
   computed: {
-    ...mapState(['categoryPosts', 'categoryNews']),
+    ...mapState('category', ['categoryPosts', 'categoryNews']),
     Posts() {
       return this.categoryPosts;
     },

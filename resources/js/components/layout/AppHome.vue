@@ -88,11 +88,11 @@ export default {
     News
   },
   async created() {
-    await this.$store.dispatch('fetchPosts');
+    await this.$store.dispatch('post/fetchPosts');
     this.isLoading = false;
   },
   computed: {
-    ...mapState(['posts']),
+    ...mapState('post', ['posts']),
     featured() {
       const fas = _.sampleSize(this.posts, 6);
       return fas;

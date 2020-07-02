@@ -23,7 +23,7 @@ body {
 }
 
 .article {
-  font-family: $font-family-serif;
+  font-family: 'museo-sans';
   font-size: $font-size-article;
   color: #222635;
   &-title {
@@ -55,17 +55,42 @@ body {
   }
   &-outer {
     margin-top: 1rem;
+
     margin-bottom: 1rem;
   }
+}
+
+.icon-big {
+  width: 20px;
+  height: 20px;
+}
+
+.tag {
+  color: darkgoldenrod;
+  text-decoration: none;
+}
+
+.bylineImage {
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 0.5rem 0 0;
+  width: 70px;
+  height: 70px;
+  // position: absolute;
+  // left: 0;
+  // top: 0;
 }
 
 .content {
   background: #fff;
   border: thin solid whitesmoke;
   margin-top: 1rem;
+
   filter: drop-shadow(0 0 0.1rem #8585a5);
   &-inner {
+    font-family: $font-family-nunito;
     margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
     margin-left: 3rem;
     margin-right: 17rem;
   }
@@ -73,6 +98,10 @@ body {
 
 .subhead h4 {
   color: #545f68;
+  font-size: 1.625rem;
+  font-weight: 300;
+  line-height: 1.875rem;
+  font-family: $font-family-sans-serif;
 }
 
 .card {
@@ -83,6 +112,7 @@ body {
     font-size: $font-size-base;
     margin: 0;
     text-decoration: none !important;
+    font-family: $font-family-nunito;
   }
   &-author-title {
     padding-top: 5px;
@@ -91,11 +121,13 @@ body {
     font-size: $font-size-base;
     margin: 0;
     text-decoration: none !important;
+    font-family: $font-family-nunito;
   }
   &-date {
     display: inline;
     font-style: italic;
     font-size: small;
+    font-family: $font-family-nunito;
   }
   &-date-title {
     font-size: $font-size-base;
@@ -108,6 +140,7 @@ body {
     margin: 0;
     line-height: normal;
     text-decoration: none !important;
+    font-family: $font-family-nunito;
   }
   &-main-text {
     font-size: $font-size-base;
@@ -115,6 +148,7 @@ body {
     margin: 0;
     line-height: normal;
     text-decoration: none !important;
+    font-family: $font-family-nunito;
   }
   &-hr {
     background-color: #10abcc;

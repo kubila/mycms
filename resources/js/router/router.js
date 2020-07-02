@@ -81,7 +81,7 @@ const router = new VueRouter({
       component: ReadPost,
       beforeEnter: (to, from, next) => {
         store
-          .dispatch('fetchPost', to.params.title)
+          .dispatch('post/fetchPost', to.params.title)
           .then(post => {
             to.params.post = post;
             next();
@@ -140,7 +140,7 @@ const router = new VueRouter({
           props: true,
           beforeEnter: (to, from, next) => {
             store
-              .dispatch('fetchPost', to.params.title)
+              .dispatch('post/fetchPost', to.params.title)
               .then(post => {
                 to.params.post = post;
                 next();
