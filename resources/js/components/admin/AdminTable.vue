@@ -38,7 +38,17 @@
         </td>
 
         <td class="text-left align-middle text-justify">
-          <button
+          <router-link
+            :to="{ name: 'editpost', params: { title: post.title } }"
+            class="btn btn-sm btn-secondary "
+            data-toggle="modal"
+            data-target="#myModal"
+            ><template>
+              <b-icon-pencil animation="fade"
+                ><em></em
+              ></b-icon-pencil> </template
+          ></router-link>
+          <!-- <button
             class="btn btn-sm btn-secondary "
             data-toggle="modal"
             data-target="#myModal"
@@ -46,7 +56,7 @@
             <template>
               <b-icon-pencil animation="fade"><em></em></b-icon-pencil>
             </template>
-          </button>
+          </button> -->
           <button class="btn btn-sm btn-danger">
             <b-icon icon="trash-fill" aria-hidden="true"></b-icon>
           </button>

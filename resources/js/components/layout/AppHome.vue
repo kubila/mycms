@@ -94,7 +94,10 @@ export default {
   computed: {
     ...mapState('post', ['posts']),
     featured() {
-      const fas = _.sampleSize(this.posts, 6);
+      const fas = _.chain(this.posts)
+        .sampleSize(6)
+        .orderBy(['id'], ['desc'])
+        .value();
       return fas;
     },
     cards() {

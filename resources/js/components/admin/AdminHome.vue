@@ -1,8 +1,8 @@
 <template>
   <div class="container-fluid inner-wrapper">
     <div class="row">
-      <admin-sidebar></admin-sidebar>
-      <admin-card></admin-card>
+      <admin-sidebar />
+      <admin-card />
       <router-view></router-view>
     </div>
   </div>

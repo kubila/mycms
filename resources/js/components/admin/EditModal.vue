@@ -26,6 +26,16 @@
                 </button>
               </div>
               <div class="modal-body">
+                <Editor v-model="value" editorStyle="height: 320px">
+                  <template slot="toolbar">
+                    <span class="ql-formats">
+                      <button class="ql-bold"></button>
+                      <button class="ql-italic"></button>
+                      <button class="ql-underline"></button>
+                    </span>
+                  </template>
+                </Editor>
+
                 <form action="">
                   <div class="form-group">
                     <label for="post_title" class="form-text">Post Title</label>
@@ -113,12 +123,22 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import Editor from 'primevue/editor';
+
+Vue.component('Editor', Editor);
+
 export default {
   props: {
     post: {
       type: Object,
       required: true
     }
+  },
+  data() {
+    return {
+      value: ''
+    };
   }
 };
 </script>

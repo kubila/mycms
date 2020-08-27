@@ -40,6 +40,9 @@
                     style="color: #8f8d8d;"
                   ></b-icon-person-fill> -->
                   By
+                  <span
+                    ><i class="pi pi-spin pi-spinner" style="fontSize: 2rem"></i
+                  ></span>
                   <router-link
                     class="post-author-title"
                     :to="{
@@ -116,6 +119,7 @@ import {
   BIconPaperclip,
   BIconEggFill
 } from 'bootstrap-vue';
+
 export default {
   components: {
     BIcon,

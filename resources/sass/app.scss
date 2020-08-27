@@ -92,7 +92,7 @@ body {
     margin-top: 0.5rem;
     margin-bottom: 1.5rem;
     margin-left: 3rem;
-    margin-right: 17rem;
+    margin-right: 10rem;
   }
 }
 
@@ -323,4 +323,32 @@ body {
       margin-right: 1rem;
     }
   }
+}
+
+.form-control:focus {
+  border-color: rgba(253, 0, 0, 0.459) !important;
+  box-shadow: rgba(253, 0, 0, 0.459) 0px 0px 0px 0.2rem !important;
+}
+
+.admin-sidebar {
+  //width: 200px;
+  height: 100vh;
+  //background-color: #241717;
+  //background-color: #130144;
+  //background-color: #390391;
+  // background-color: #290144;
+  background-color: #322348 !important;
+}
+.admin-list {
+}
+.admin-list:hover {
+  background-color: rgb(143, 133, 133);
+  transition: background-color 300ms ease-out;
+}
+.admin-link {
+  font-size: 1.1rem;
+  color: #f5f5f6;
+}
+.admin-link:hover {
+  color: #fff;
 }
