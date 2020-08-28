@@ -17,8 +17,16 @@
     </div>
   </div> -->
 
-  <div>
-    <b-button v-b-toggle.sidebar-no-header>Toggle Sidebar</b-button>
+  <div class="col-auto px-0">
+    <b-button
+      v-b-toggle.sidebar-no-header
+      style="border-radius: 0; background-color: #2176bd;"
+      ><b-icon
+        icon="arrow-right-square"
+        style="width: 30px; height: 30px;"
+        aria-hidden="true"
+      ></b-icon>
+    </b-button>
     <b-sidebar
       id="sidebar-no-header"
       aria-labelledby="sidebar-no-header-title"
@@ -50,7 +58,12 @@
 </template>
 
 <script>
-export default {};
+import { BIconArrowRightSquare } from 'bootstrap-vue';
+export default {
+  components: {
+    BIconArrowRightSquare
+  }
+};
 </script>
 
 <style lang="scss" scoped></style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-10">
+  <div class="col-auto">
     <div class="admin-card mt-2">
       <admin-table :posts="adminPosts" />
     </div>

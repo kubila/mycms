@@ -259,6 +259,9 @@ body {
   &-text {
     font-size: $font-size-form-text;
   }
+  &-modal {
+    font-size: $font-size-base;
+  }
   &-login {
     margin-top: 25vh !important;
   }
@@ -331,7 +334,6 @@ body {
 }
 
 .admin-sidebar {
-  //width: 200px;
   height: 100vh;
   //background-color: #241717;
   //background-color: #130144;

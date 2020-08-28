@@ -143,6 +143,7 @@ const router = new VueRouter({
               .dispatch('post/fetchPost', to.params.title)
               .then(post => {
                 to.params.post = post;
+                to.params.isOpen = true;
                 next();
               })
               .catch(error => {
