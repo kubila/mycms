@@ -11,9 +11,10 @@
             <!-- <div class="d-block text-center">
               <h3>{{ post.title }}</h3>
             </div> -->
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <!-- <div class="modal-header">
+            <form @submit.prevent="handleSubmit">
+              <div class="modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <!-- <div class="modal-header">
                   <h5 class="modal-title" id="exampleModalLongTitle">
                     Edit Post
                   </h5>
@@ -26,8 +27,7 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div> -->
-                <div class="modal-body">
-                  <form method="POST" @submit.prevent="handleSubmit">
+                  <div class="modal-body">
                     <div class="form-group">
                       <label for="post_title" class="form-modal"
                         >Post Title</label
@@ -37,8 +37,21 @@
                         name="title"
                         :value="post.title"
                         class="form-control form-control-md"
+                        ref="titleRef"
                       />
                     </div>
+                    <!-- <div class="form-group">
+                      <label for="post_title" class="form-modal"
+                        >Post Title</label
+                      >
+                      <input
+                        type="text"
+                        name="title"
+                        :value="post.title"
+                        class="form-control form-control-md"
+                        v-model="form.title"
+                      />
+                    </div> -->
 
                     <div class="form-group">
                       <label for="post_content" class="form-modal"
@@ -47,14 +60,8 @@
                       <Editor
                         v-model="post.content"
                         editorStyle="height: 420px"
+                        ref="contentRef"
                       >
-                        <template slot="toolbar">
-                          <span class="ql-formats">
-                            <button class="ql-bold"></button>
-                            <button class="ql-italic"></button>
-                            <button class="ql-underline"></button>
-                          </span>
-                        </template>
                       </Editor>
                     </div>
 
@@ -95,12 +102,14 @@
                       <label for="post_title" class="form-modal"
                         >Post Tags</label
                       >
-                      <span v-for="tag in post.tags" :key="tag.id">
+                      <span v-for="(tag, index) in post.tags" :key="tag.id">
                         <input
                           type="text"
-                          name="title"
+                          name="`title${index}`"
                           :value="tag.name"
-                          class="form-control form-control-md"
+                          ref="tagRefs"
+                          class="form-control
+                        form-control-md"
                         />
                       </span>
                     </div>
@@ -114,29 +123,25 @@
                         :src="`/images/${post.image}`"
                         class="img-fluid"
                         :alt="post.title"
+                        ref="imgRef"
                       />
                     </div>
-                  </form>
-                </div>
+                  </div>
 
-                <div class="modal-footer">
-                  <b-button
-                    variant="secondary"
-                    @click="$router.replace('/cms/admin')"
-                    >Close Me</b-button
-                  >
-                  <!-- <button
-                    @click="$router.replace('/cms/admin')"
-                    type="button"
-                    class="btn btn-primary"
-                  >
-                    Save changes
-                  </button> -->
-                  <b-button variant="primary" submit>Save changes</b-button>
+                  <div class="modal-footer">
+                    <b-button
+                      variant="secondary"
+                      @click="$router.replace('/cms/admin')"
+                      >Close Me</b-button
+                    >
+                    <button type="submit" class="btn btn-primary">
+                      Save changes
+                    </button>
+                    <!-- <b-button variant="primary" type="submit">Save changes</b-button> -->
+                  </div>
                 </div>
               </div>
-            </div>
-
+            </form>
             <!-- <b-button class="mt-3" block @click="$bvModal.hide('my-modal')"
               >Close Me</b-button
             > -->
@@ -181,7 +186,15 @@ export default {
       return true;
     },
     handleSubmit() {
-      console.log(this.form);
+      const postContent = {
+        title: this.$refs.titleRef.value,
+        content: this.$refs.contentRef.value,
+        tags: () => {
+          this.$refs.tagRefs.value.map(val => tags.fill(val));
+        },
+        image: this.$refs.imgRef.src
+      };
+      console.log(postContent);
     }
   }
 };

@@ -17,17 +17,19 @@
                   placeholder="Email"
                   @blur="$v.form.email.$touch()"
                 />
-                <template v-if="$v.form.email.$error">
-                  <span v-if="!$v.form.email.required" class="form-error"
-                    >Email is required</span
-                  >
-                  <span v-if="!$v.form.email.email" class="form-error"
-                    >This is not a valid email address</span
-                  >
-                  <span v-if="!$v.form.email.maxLength" class="form-error"
-                    >Email must be 255 or less characters length!</span
-                  >
-                </template>
+                <div class="mt-1">
+                  <template v-if="$v.form.email.$error">
+                    <span v-if="!$v.form.email.required" class="form-error"
+                      >Email is required</span
+                    >
+                    <span v-if="!$v.form.email.email" class="form-error"
+                      >This is not a valid email address</span
+                    >
+                    <span v-if="!$v.form.email.maxLength" class="form-error"
+                      >Email must be 255 or less characters length!</span
+                    >
+                  </template>
+                </div>
               </div>
 
               <div class="form-group">
@@ -39,23 +41,30 @@
                   placeholder="Password"
                   @blur="$v.form.password.$touch()"
                 />
-                <template v-if="$v.form.password.$error">
-                  <span v-if="!$v.form.password.required" class="form-error"
-                    >Password is required</span
-                  >
-                  <span v-if="!$v.form.password.minLength" class="form-error"
-                    >Password must be at least 6 characters length</span
-                  >
-                </template>
+                <div class="mt-1">
+                  <template v-if="$v.form.password.$error">
+                    <span v-if="!$v.form.password.required" class="form-error"
+                      >Password is required</span
+                    >
+                    <span v-if="!$v.form.password.minLength" class="form-error"
+                      >Password must be at least 6 characters length</span
+                    >
+                  </template>
+                </div>
               </div>
 
-              <p
-                v-if="status === 400 || status === 404 || status === 401"
-                class="form-error"
-              >
-                Login info is invalid
-              </p>
+              <div class="mt-1">
+                <p
+                  v-if="status === 400 || status === 404 || status === 401"
+                  class="form-error"
+                >
+                  Login info is invalid
+                </p>
 
+                <p v-if="status" class="form-error">
+                  {{ status }}
+                </p>
+              </div>
               <button type="submit" class="btn btn-dark btn-md">
                 Submit
               </button>
@@ -104,10 +113,15 @@ export default {
       if (this.$v.form.$invalid) {
         return;
       }
-      await this.$store.dispatch('fetchUser', this.form);
-      await this.$router.push({ name: 'app-home' }).catch(err => {
-        this.status = err.response.status;
-      });
+      await this.$store
+        .dispatch('fetchUser', this.form)
+        .then(() => {
+          this.$router.push({ name: 'app-home' });
+        })
+        .catch(err => {
+          this.status = err.response.data.message;
+          console.log(err.response.data);
+        });
     }
   }
 };

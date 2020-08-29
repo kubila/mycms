@@ -18,19 +18,21 @@
                   name="name"
                   class="form-control"
                 />
-                <span v-if="errors.name" class="form-error">
-                  <p class="form-error" v-for="error in errors.name">
-                    {{ error }}
-                  </p>
-                </span>
-                <template v-if="$v.form.name.$error">
-                  <span v-if="!$v.form.name.required" class="form-error"
-                    >Name is required</span
-                  >
-                  <span v-if="!$v.form.name.maxLength" class="form-error"
-                    >Name must be 255 or less characters length!</span
-                  >
-                </template>
+                <div class="mt-1">
+                  <span v-if="errors.name" class="form-error">
+                    <p class="form-error" v-for="error in errors.name">
+                      {{ error }}
+                    </p>
+                  </span>
+                  <template v-if="$v.form.name.$error">
+                    <span v-if="!$v.form.name.required" class="form-error"
+                      >Name is required</span
+                    >
+                    <span v-if="!$v.form.name.maxLength" class="form-error"
+                      >Name must be 255 or less characters length!</span
+                    >
+                  </template>
+                </div>
               </div>
 
               <div class="form-group">
@@ -45,22 +47,26 @@
                   name="email"
                   class="form-control"
                 />
-                <span v-if="errors.email" class="form-error">
-                  <p class="form-error" v-for="error in errors.email">
-                    {{ error }}
-                  </p>
-                </span>
-                <template v-if="$v.form.email.$error">
-                  <span v-if="!$v.form.email.required" class="form-error"
-                    >Email is required</span
-                  >
-                  <span v-else-if="!$v.form.email.email" class="form-error"
-                    >This is not a valid email address</span
-                  >
-                  <span v-else-if="!$v.form.email.maxLength" class="form-error"
-                    >Email must be 255 or less characters length!</span
-                  >
-                </template>
+                <div class="mt-1">
+                  <span v-if="errors.email" class="form-error">
+                    <p class="form-error" v-for="error in errors.email">
+                      {{ error }}
+                    </p>
+                  </span>
+                  <template v-if="$v.form.email.$error">
+                    <span v-if="!$v.form.email.required" class="form-error"
+                      >Email is required</span
+                    >
+                    <span v-else-if="!$v.form.email.email" class="form-error"
+                      >This is not a valid email address</span
+                    >
+                    <span
+                      v-else-if="!$v.form.email.maxLength"
+                      class="form-error"
+                      >Email must be 255 or less characters length!</span
+                    >
+                  </template>
+                </div>
               </div>
 
               <div class="form-group">
@@ -75,19 +81,21 @@
                   name="password"
                   class="form-control"
                 />
-                <span v-if="errors.password" class="form-error">
-                  <p class="form-error" v-for="error in errors.password">
-                    {{ error }}
-                  </p>
-                </span>
-                <template v-if="$v.form.password.$error">
-                  <span v-if="!$v.form.password.required" class="form-error"
-                    >Password is required</span
-                  >
-                  <span v-if="!$v.form.password.minLength" class="form-error"
-                    >Password must be at least 6 characters length</span
-                  >
-                </template>
+                <div class="mt-1">
+                  <span v-if="errors.password" class="form-error">
+                    <p class="form-error" v-for="error in errors.password">
+                      {{ error }}
+                    </p>
+                  </span>
+                  <template v-if="$v.form.password.$error">
+                    <span v-if="!$v.form.password.required" class="form-error"
+                      >Password is required</span
+                    >
+                    <span v-if="!$v.form.password.minLength" class="form-error"
+                      >Password must be at least 6 characters length</span
+                    >
+                  </template>
+                </div>
               </div>
 
               <div class="form-group">
@@ -102,24 +110,26 @@
                   name="password_confirm"
                   class="form-control"
                 />
-                <span v-if="errors.password" class="form-error">
-                  <p class="form-error" v-for="error in errors.password">
-                    {{ error }}
-                  </p>
-                </span>
-                <template v-if="$v.form.password_confirm.$error">
-                  <span
-                    v-if="!$v.form.password_confirm.required"
-                    class="form-error"
-                    >Password confirmation is required</span
-                  >
-                  <span
-                    v-if="!$v.form.password_confirm.minLength"
-                    class="form-error"
-                    >Password confirmation must be at least 6 characters
-                    length</span
-                  >
-                </template>
+                <div class="mt-1">
+                  <span v-if="errors.password" class="form-error">
+                    <p class="form-error" v-for="error in errors.password">
+                      {{ error }}
+                    </p>
+                  </span>
+                  <template v-if="$v.form.password_confirm.$error">
+                    <span
+                      v-if="!$v.form.password_confirm.required"
+                      class="form-error"
+                      >Password confirmation is required</span
+                    >
+                    <span
+                      v-if="!$v.form.password_confirm.minLength"
+                      class="form-error"
+                      >Password confirmation must be at least 6 characters
+                      length</span
+                    >
+                  </template>
+                </div>
               </div>
 
               <p v-if="status" class="form-success">
