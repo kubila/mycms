@@ -87,6 +87,7 @@
               </figure>
 
               <p class="article pt-3 text-left " v-html="post.content"></p>
+
               <hr />
               <p v-if="post.tags.length > 0" class="pl-2 d-inline-block">
                 <b-icon-tag-fill

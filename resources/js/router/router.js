@@ -17,6 +17,7 @@ import GetTag from '../components/tags/GetTag';
 import NotFound from '../components/helpers/NotFound';
 import nProgress from 'nprogress';
 import Edit from '../components/admin/EditModal';
+import NewEdit from '../components/admin/NewEdit';
 
 const router = new VueRouter({
   mode: 'history',
@@ -136,7 +137,7 @@ const router = new VueRouter({
         {
           path: '/edit/post/:title',
           name: 'editpost',
-          component: Edit,
+          component: NewEdit,
           props: true,
           beforeEnter: (to, from, next) => {
             store

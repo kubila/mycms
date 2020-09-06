@@ -14,11 +14,17 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::apiResource('tags', 'Admin\TagsController');
     });
 
-    Route::namespace ('Auth')->group(function () {
-        Route::post('/login', 'LoginController@login');
-        Route::post('/logout', 'LoginController@logout');
-        Route::post('/signup', 'LoginController@signup');
-    });
+    // Route::namespace ('Auth')->group(function () {
+    //     Route::post('/login', 'LoginController@login');
+    //     Route::post('/logout', 'LoginController@logout');
+    //     Route::post('/signup', 'LoginController@signup');
+    // });
+});
+
+Route::namespace ('Auth')->group(function () {
+    Route::post('/login', 'LoginController@login');
+    Route::post('/logout', 'LoginController@logout');
+    Route::post('/signup', 'LoginController@signup');
 });
 
 Route::namespace ('API')->group(function () {

@@ -65,13 +65,18 @@
     <!-- container -->
   </div>
   <!-- inner wrapper -->
-  <div v-else class="inner-wrapper">Loading...</div>
+  <div v-else style="p-grid p-align-center p-justify-center">
+    <ProgressSpinner />
+  </div>
 </template>
 
 <script>
+import Vue from 'vue';
 import HomeCard from '../posts/HomeCard';
 import HomePost from '../posts/HomePost';
 import News from '../news/News';
+import ProgressSpinner from 'primevue/progressspinner';
+Vue.use('ProgressSpinner', ProgressSpinner);
 
 import { mapState } from 'vuex';
 import _ from 'lodash';
@@ -85,7 +90,8 @@ export default {
   components: {
     HomePost,
     HomeCard,
-    News
+    News,
+    ProgressSpinner
   },
   async created() {
     await this.$store.dispatch('post/fetchPosts');
