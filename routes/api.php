@@ -15,11 +15,11 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     // Route::namespace ('Auth')->group(function () {
-    //     Route::post('/login', 'LoginController@login');
     //     Route::post('/logout', 'LoginController@logout');
-    //     Route::post('/signup', 'LoginController@signup');
     // });
 });
+
+// Route::group(['namespace' => 'Auth', 'middleware' => ['auth:sanctum']]);
 
 Route::namespace ('Auth')->group(function () {
     Route::post('/login', 'LoginController@login');
