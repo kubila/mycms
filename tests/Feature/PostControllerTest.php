@@ -16,7 +16,7 @@ class PostControllerTest extends TestCase
     public function testIndex()
     {
         $response = $this->get('/posts');
-        $data = DB::table('posts')->pluck('id')->get();
+        $data = DB::table('posts')->pluck('id')->all();
         $response->assertStatus(200)
             ->assertJson($data);
     }
