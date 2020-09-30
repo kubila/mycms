@@ -58,7 +58,9 @@ class LoginController extends Controller
     }
 
     /**
-     * Get the authenticated user.
+     * Logout the authenticated user.
+     *
+     * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Response
      */

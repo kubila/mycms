@@ -65,8 +65,13 @@
     <!-- container -->
   </div>
   <!-- inner wrapper -->
-  <div v-else style="p-grid p-align-center p-justify-center">
-    <ProgressSpinner />
+  <!-- <div v-else class="p-grid p-align-center p-justify-center"> -->
+  <div v-else style="display:flex; justify-content:center; margin-top: 30vh;">
+    <!-- <ProgressSpinner fill="#EEEEEE" animationDuration=".8s" /> -->
+    <ProgressSpinner
+      style="width:140px; height: 140px;"
+      animationDuration="1s"
+    />
   </div>
 </template>
 
