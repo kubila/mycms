@@ -51,20 +51,6 @@
                 ></b-icon-pencil> </template
             ></router-link>
 
-            <!-- <b-button size="sm" v-b-modal="myModal" @click="sendPost(post)">
-              Saluta {{ post.id }}
-            </b-button> -->
-
-            <!-- <button
-              class="btn btn-sm btn-secondary "
-              data-toggle="modal"
-              data-target="#myModal"
-              @click="sendPost(post)"
-            >
-              <template>
-                <b-icon-pencil animation="fade"><em></em></b-icon-pencil>
-              </template>
-            </button> -->
             <button class="btn btn-sm btn-danger">
               <b-icon icon="trash-fill" aria-hidden="true"></b-icon>
             </button>
@@ -92,15 +78,7 @@ export default {
     }
   },
   data() {
-    return {
-      value: '',
-      selectedPost: ''
-    };
-  },
-  methods: {
-    sendPost(post) {
-      this.selectedPost = post;
-    }
+    return {};
   }
 };
 </script>

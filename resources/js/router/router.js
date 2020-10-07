@@ -18,6 +18,7 @@ import NotFound from '../components/helpers/NotFound';
 import nProgress from 'nprogress';
 import Edit from '../components/admin/EditModal';
 import NewEdit from '../components/admin/NewEdit';
+import Categories from '../components/categories/Categories';
 
 const router = new VueRouter({
   mode: 'history',
@@ -151,6 +152,11 @@ const router = new VueRouter({
                 console.log(error.response);
               });
           }
+        },
+        {
+          path: '/categories',
+          name: 'categories',
+          component: Categories
         }
       ],
       meta: {
