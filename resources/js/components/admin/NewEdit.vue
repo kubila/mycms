@@ -131,7 +131,7 @@
                   <div class="modal-footer">
                     <b-button
                       variant="secondary"
-                      @click="$router.replace('/cms/admin')"
+                      @click="$router.replace('/cms/posts')"
                       >Close Me</b-button
                     >
                     <button type="submit" class="btn btn-primary">

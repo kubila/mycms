@@ -22,6 +22,7 @@
               <!-- <router-link :to="{ name: 'posts' }" class="nav-item"
                 >Posts</router-link
               > -->
+              <b-nav-item active :to="{ name: 'posts' }">Posts</b-nav-item>
               <b-nav-item active :to="{ name: 'categories' }"
                 >Categories</b-nav-item
               >

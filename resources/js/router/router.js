@@ -19,6 +19,7 @@ import nProgress from 'nprogress';
 import Edit from '../components/admin/EditModal';
 import NewEdit from '../components/admin/NewEdit';
 import Categories from '../components/categories/Categories';
+import Posts from '../components/posts/Posts';
 
 const router = new VueRouter({
   mode: 'history',
@@ -157,6 +158,11 @@ const router = new VueRouter({
           path: '/categories',
           name: 'categories',
           component: Categories
+        },
+        {
+          path: '/posts',
+          name: 'posts',
+          component: Posts
         }
       ],
       meta: {
