@@ -2,7 +2,7 @@
   <div class="container-fluid inner-wrapper">
     <div class="row">
       <admin-sidebar />
-      <admin-card />
+      <!-- <admin-card /> -->
       <router-view></router-view>
     </div>
   </div>
@@ -15,7 +15,6 @@ import AdminSidebar from './AdminSidebar';
 export default {
   //computed: mapState(['posts'])
   components: {
-    AdminCard,
     AdminSidebar
   }
 };
