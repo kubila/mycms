@@ -122,6 +122,7 @@ import {
   BIconPaperclip,
   BIconEggFill
 } from 'bootstrap-vue';
+
 import '@toast-ui/editor/dist/toastui-editor-viewer.css';
 import { Viewer } from '@toast-ui/vue-editor';
 import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight';

@@ -63,12 +63,19 @@
                 <label for="post_content" class="form-modal"
                   >Post Content</label
                 >
-                <Editor
+                <!-- <Editor
                   v-model="post.content"
                   editorStyle="height: 420px"
                   ref="contentRef"
                 >
-                </Editor>
+                </Editor> -->
+                <editor
+                  :initialValue="post.content"
+                  height="500px"
+                  initialEditType="wysiwyg"
+                  previewStyle="vertical"
+                  ref="toastuiEditor"
+                />
               </div>
 
               <div class="form-group">
@@ -116,12 +123,17 @@
 </template>
 
 <script>
-import Vue from 'vue';
-import Editor from 'primevue/editor';
+import 'codemirror/lib/codemirror.css';
+import '@toast-ui/editor/dist/toastui-editor.css';
 
-Vue.component('Editor', Editor);
+import { Editor } from '@toast-ui/vue-editor';
+import 'highlight.js/styles/github.css';
+import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight';
 
 export default {
+  components: {
+    editor: Editor
+  },
   props: {
     post: {
       type: Object,
@@ -139,6 +151,9 @@ export default {
         image: null
       }
     };
+    options: {
+      plugins: [codeSyntaxHighlight];
+    }
   },
   mounted() {
     this.isOpened();
@@ -151,7 +166,8 @@ export default {
     handleSubmit() {
       const postContent = {
         title: this.$refs.titleRef.value,
-        content: this.$refs.contentRef.value,
+        // content: this.$refs.contentRef.value,
+        content: this.$refs.toastuiEditor.invoke('getHtml'),
         tags: () => {
           this.$refs.tagRefs.value.map(val => this.form.tags.fill(val));
         },
