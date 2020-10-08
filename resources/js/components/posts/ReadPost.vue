@@ -86,7 +86,9 @@
                 />
               </figure>
 
-              <p class="article pt-3 text-left " v-html="post.content"></p>
+              <viewer :initialValue="post.content" />
+
+              <!-- <p class="article pt-3 text-left " v-html="post.content"></p> -->
 
               <hr />
               <p v-if="post.tags.length > 0" class="pl-2 d-inline-block">
@@ -120,6 +122,10 @@ import {
   BIconPaperclip,
   BIconEggFill
 } from 'bootstrap-vue';
+import '@toast-ui/editor/dist/toastui-editor-viewer.css';
+import { Viewer } from '@toast-ui/vue-editor';
+import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight';
+import hljs from 'highlight.js/lib/highlight';
 
 export default {
   components: {
@@ -128,7 +134,8 @@ export default {
     BIconPersonFill,
     BIconGripHorizontal,
     BIconPaperclip,
-    BIconEggFill
+    BIconEggFill,
+    viewer: Viewer
   },
   props: {
     post: {

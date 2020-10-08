@@ -15,9 +15,8 @@
   },
   "dependencies": {
     "@braid/vue-formulate": "^2.4.3",
-    "@toast-ui/editor": "^2.4.0",
     "@toast-ui/editor-plugin-code-syntax-highlight": "^1.0.0",
-    "@toast-ui/vue-editor": "^2.1.2",
+    "@toast-ui/vue-editor": "^2.4.0",
     "@vue/cli-plugin-babel": "^4.3.1",
     "@vue/cli-plugin-eslint": "^4.3.1",
     "@vue/cli-plugin-router": "^4.3.1",

@@ -20,19 +20,20 @@ import Edit from '../components/admin/EditModal';
 import NewEdit from '../components/admin/NewEdit';
 import Categories from '../components/categories/Categories';
 import Posts from '../components/posts/Posts';
+import Authors from '../components/authors/Authors';
 
 const router = new VueRouter({
   mode: 'history',
   base: '/',
   bash: false,
   routes: [
+    // {
+    //   path: '/',
+    //   name: 'home',
+    //   redirect: { name: 'app-home' }
+    // },
     {
       path: '/',
-      name: 'home',
-      redirect: { name: 'app-home' }
-    },
-    {
-      path: '/cms',
       component: AppHome,
       name: 'app-home',
       meta: {
@@ -132,28 +133,10 @@ const router = new VueRouter({
       }
     },
     {
-      path: '/cms/admin',
+      path: '/admin',
       name: 'admin',
       component: AdminHome,
       children: [
-        {
-          path: '/edit/post/:title',
-          name: 'editpost',
-          component: NewEdit,
-          props: true,
-          beforeEnter: (to, from, next) => {
-            store
-              .dispatch('post/fetchPost', to.params.title)
-              .then(post => {
-                to.params.post = post;
-                to.params.isOpen = true;
-                next();
-              })
-              .catch(error => {
-                console.log(error.response);
-              });
-          }
-        },
         {
           path: '/categories',
           name: 'categories',
@@ -162,13 +145,39 @@ const router = new VueRouter({
         {
           path: '/posts',
           name: 'posts',
-          component: Posts
+          component: Posts,
+          children: [
+            {
+              path: '/edit/post/:title',
+              name: 'editpost',
+              component: NewEdit,
+              props: true,
+              beforeEnter: (to, from, next) => {
+                store
+                  .dispatch('post/fetchPost', to.params.title)
+                  .then(post => {
+                    to.params.post = post;
+                    to.params.isOpen = true;
+                    next();
+                  })
+                  .catch(error => {
+                    console.log(error.response);
+                  });
+              }
+            }
+          ]
+        },
+        {
+          path: '/authors',
+          name: 'authors',
+          component: Authors
         }
       ],
       meta: {
         requiresAuth: true
       }
     },
+
     {
       path: '*',
       name: 'not-found',

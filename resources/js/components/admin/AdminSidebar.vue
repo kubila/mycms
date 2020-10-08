@@ -1,11 +1,11 @@
 <template>
-  <div class="col-auto px-0">
+  <div class="col-auto px-0 mt-5">
     <b-button
       v-b-toggle.sidebar-no-header
       style="border-radius: 0; background-color: #2176bd;"
       ><b-icon
-        icon="arrow-right-square"
-        style="width: 30px; height: 30px; background-color: #ffffff;"
+        icon="arrow-down-right-square-fill"
+        style="width: 30px; height: 30px;"
         aria-hidden="true"
       ></b-icon>
     </b-button>
@@ -26,9 +26,7 @@
               <b-nav-item active :to="{ name: 'categories' }"
                 >Categories</b-nav-item
               >
-              <b-nav-item active @click="hide">Active</b-nav-item>
-              <b-nav-item href="#link-1" @click="hide">Link</b-nav-item>
-              <b-nav-item href="#link-2" @click="hide">Another Link</b-nav-item>
+              <b-nav-item active :to="{ name: 'authors' }">Authors</b-nav-item>
             </b-nav>
           </nav>
           <b-button variant="primary" block @click="hide">Close </b-button>
@@ -39,10 +37,10 @@
 </template>
 
 <script>
-import { BIconArrowRightSquare } from 'bootstrap-vue';
+import { BIconArrowDownRightSquareFill } from 'bootstrap-vue';
 export default {
   components: {
-    BIconArrowRightSquare
+    BIconArrowDownRightSquareFill
   },
   data() {
     return {};
