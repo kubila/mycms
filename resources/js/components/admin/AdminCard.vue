@@ -1,7 +1,27 @@
 <template>
   <div class="col-auto">
     <div class="admin-card mt-2">
-      <admin-table :posts="adminPosts" />
+      <!-- <admin-table
+        :items="adminPosts"
+        :per-page="perPage"
+        :current-page="currentPage"
+        :totalRows="adminPostPaginator"
+      /> -->
+      <b-table
+        id="my-table"
+        :items="adminPosts"
+        :per-page="perPage"
+        :current-page="currentPage"
+        small
+      ></b-table>
+    </div>
+    <div class="overflow-auto">
+      <b-pagination
+        v-model="currentPage"
+        :total-rows="adminPostPaginator"
+        :per-page="perPage"
+        aria-controls="my-table"
+      ></b-pagination>
     </div>
   </div>
 </template>
@@ -15,6 +35,12 @@ export default {
   components: {
     AdminTable
   },
+  data() {
+    return {
+      perPage: 2,
+      currentPage: 1
+    };
+  },
   created() {
     this.$store.dispatch('post/fetchPosts');
   },
@@ -23,6 +49,9 @@ export default {
     adminPosts() {
       const orderedPosts = _.orderBy(this.posts, ['id'], 'desc');
       return orderedPosts;
+    },
+    adminPostPaginator() {
+      return this.posts.length;
     }
   }
 };

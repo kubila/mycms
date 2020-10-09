@@ -1,15 +1,13 @@
 <template>
   <div>
-    <table class="table table-sm table-bordered bg-light">
+    <!-- <table class="table table-sm table-bordered bg-light">
       <thead class="thead-light">
         <th class="text-center text-justify">Image</th>
         <th class="text-center text-justify">Title</th>
         <th class="text-center text-justify">Content</th>
         <th class="text-center text-justify">Author</th>
         <th class="text-center text-justify">Category</th>
-        <!-- <th class="text-center text-justify">Comments</th> -->
-        <!-- <th class="text-center text-justify">Edit</th>
-      <th class="text-center text-justify">Delete</th> -->
+
         <th class="text-center text-justify">Actions</th>
       </thead>
       <tbody>
@@ -57,7 +55,22 @@
           </td>
         </tr>
       </tbody>
-    </table>
+    </table> -->
+    <b-table
+      id="my-table"
+      :items="items"
+      :per-page="perPage"
+      :current-page="currentPage"
+      small
+    ></b-table>
+    <div class="overflow-auto">
+      <b-pagination
+        v-model="currentPage"
+        :total-rows="totalRows"
+        :per-page="perPage"
+        aria-controls="my-table"
+      ></b-pagination>
+    </div>
   </div>
 </template>
 
@@ -72,13 +85,38 @@ export default {
     EditModal
   },
   props: {
-    posts: {
+    // items: {
+    //   type: Array,
+    //   required: true
+    // },
+    items: {
+      type: Array,
+      required: true
+    },
+    perPage: {
+      type: [String, Number],
+      required: true
+    },
+    currentPage: {
+      type: [String, Number],
+      required: true
+    },
+    totalRows: {
       type: Array,
       required: true
     }
+    // fields: {
+    //   type: Array,
+    //   required: true
+    // }
   },
   data() {
-    return {};
+    return {
+      fields: [
+        { key: 'items.content', label: 'Content' },
+        { key: 'items.category.name', label: 'Category' }
+      ]
+    };
   }
 };
 </script>
