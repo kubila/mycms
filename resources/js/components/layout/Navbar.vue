@@ -67,15 +67,19 @@
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
+    <MegaMenu :model="menuCats" orientation="horizontal" />
   </div>
 </template>
 
 <script>
+import Vue from 'vue';
 import { mapState, mapActions, mapGetters } from 'vuex';
 import { BIcon, BIconPersonCircle, BIconPersonFill } from 'bootstrap-vue';
 import { required, email, minLength } from 'vuelidate/lib/validators';
 import Search from '../search/Search';
 
+import MegaMenu from 'primevue/megamenu';
+Vue.component('MegaMenu', MegaMenu);
 export default {
   components: {
     BIcon,
@@ -99,6 +103,13 @@ export default {
     //...mapGetters(['Login']),
     user() {
       return this.$store.state.user;
+    },
+    menuCats() {
+      const cats = Object.assign({}, this.categories);
+      return cats.length;
+      // cats.map(cat => {
+      //   cat.to = '/' + cat.name;
+      // });
     }
   },
   methods: {

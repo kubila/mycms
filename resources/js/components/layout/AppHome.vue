@@ -14,7 +14,39 @@
       </div>
     </div>
     <!-- container -->
+    <!-- <Sidebar :visible.sync="visibleLeft" :modal="false" :dismissable="true">
+      <div class="p-sidebar-active">
+        <div class="p-3 mt-5 overflow-scroll">
+          <nav class="mb-3 ">
+            <b-nav vertical>
+              <b-nav-item active :to="{ name: 'posts' }">Posts</b-nav-item>
+              <b-nav-item active :to="{ name: 'categories' }"
+                >Categories</b-nav-item
+              >
+              <b-nav-item active :to="{ name: 'authors' }">Authors</b-nav-item>
+              <b-nav-item
+                v-for="category in categories"
+                :key="category.id"
+                :to="{ name: 'getcategory', params: { name: category.name } }"
+              >
+                {{ category.name }}
+              </b-nav-item>
+            </b-nav>
+          </nav>
+          <b-navbar-nav>
+            <b-nav-item
+              v-for="category in categories"
+              :key="category.id"
+              :to="{ name: 'getcategory', params: { name: category.name } }"
+            >
+              {{ category.name }}
+            </b-nav-item>
+          </b-navbar-nav>
+        </div>
+      </div>
+    </Sidebar>
 
+    <Button icon="pi pi-arrow-right" @click="visibleLeft = true" /> -->
     <div class="container">
       <div class="row mt-3">
         <home-card v-for="card in featured" :card="card" :key="card.id" />

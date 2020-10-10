@@ -20,7 +20,9 @@ import MainHome from './components/MainHome.vue';
 import 'primevue/resources/themes/saga-purple/theme.css';
 import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
+import Sidebar from 'primevue/sidebar';
 
+Vue.component('Sidebar', Sidebar);
 //Vue.component('MainHome', require('./MainHome.vue').default);
 Vue.config.productionTip = false;
 
