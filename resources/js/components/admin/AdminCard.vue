@@ -1,35 +1,5 @@
 <template>
   <div class="col-auto">
-    <!--<div class="mt-2">
-       <admin-table
-        :items="adminPosts"
-        :per-page="perPage"
-        :current-page="currentPage"
-        :totalRows="adminPostPaginator"
-      /> -->
-    <!-- <b-table
-        id="my-table"
-        :items="adminPosts"
-        :per-page="perPage"
-        :current-page="currentPage"
-        small
-      ></b-table>
-    </div>
-    <div class="overflow-auto">
-      <b-pagination
-        v-model="currentPage"
-        :total-rows="adminPostPaginator"
-        :per-page="perPage"
-        aria-controls="my-table"
-      ></b-pagination>
-    </div> -->
-
-    <!-- <Paginator
-      v-model:first="currentPage"
-      :rows="perPage"
-      :totalRecords="adminPostPaginator"
-      :rowsPerPageOptions="[10, 20, 30]"
-    ></Paginator> -->
     <Toolbar class="p-mb-4">
       <template slot="left">
         <Button label="New" icon="pi pi-plus" class="p-button-success p-mr-2" />
@@ -82,46 +52,119 @@
           <Button
             icon="pi pi-pencil"
             class="p-button-rounded p-button-success p-mr-2"
-            @click="editProduct(slotProps.data)"
+            @click="editPost(slotProps.data)"
           />
           <Button
             icon="pi pi-trash"
             class="p-button-rounded p-button-warning"
-            @click="confirmDeleteProduct(slotProps.data)"
+            @click="confirmDeletePost(slotProps.data)"
           />
         </template>
       </Column>
     </DataTable>
+    <Dialog
+      :visible.sync="editPostDialog"
+      :style="{ width: '450px' }"
+      header="Edit"
+      :modal="true"
+    >
+      <!-- <div class="confirmation-content">
+        <i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem" />
+        <span v-if="post"
+          >Are you sure you want to edit <b>{{ post }}</b
+          >?</span
+        >
+
+      </div> -->
+      <template #header>
+        <h3>{{ post.title }}</h3>
+      </template>
+      <editor
+        :initialValue="post.content"
+        height="500px"
+        initialEditType="wysiwyg"
+        previewStyle="vertical"
+        ref="toastuiEditor"
+      />
+      <template #footer>
+        <Button
+          label="No"
+          icon="pi pi-times"
+          class="p-button-text"
+          @click="editPostDialog = false"
+        />
+        <Button
+          label="Yes"
+          icon="pi pi-check"
+          class="p-button-text"
+          @click="deletePost"
+        />
+      </template>
+    </Dialog>
+    <Dialog
+      :visible.sync="deletePostDialog"
+      :style="{ width: '450px' }"
+      header="Confirm"
+      :modal="true"
+    >
+      <div class="confirmation-content">
+        <i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem" />
+        <span v-if="post.title"
+          >Are you sure you want to delete <b>{{ post.title }}</b
+          >?</span
+        >
+      </div>
+      <template #footer>
+        <Button
+          label="No"
+          icon="pi pi-times"
+          class="p-button-text"
+          @click="deletePostDialog = false"
+        />
+        <Button
+          label="Yes"
+          icon="pi pi-check"
+          class="p-button-text"
+          @click="deletePost"
+        />
+      </template>
+    </Dialog>
   </div>
 </template>
 
 <script>
 import Vue from 'vue';
+import _ from 'lodash';
 import { mapState } from 'vuex';
-import Paginator from 'primevue/paginator';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import Button from 'primevue/button';
 import Toolbar from 'primevue/toolbar';
 
-import _ from 'lodash';
+import 'codemirror/lib/codemirror.css';
+import '@toast-ui/editor/dist/toastui-editor.css';
+import { Editor } from '@toast-ui/vue-editor';
+import 'highlight.js/styles/github.css';
+import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight';
 
-Vue.component('Paginator', Paginator);
 Vue.component('Column', Column);
 Vue.component('DataTable', DataTable);
 Vue.component('Button', Button);
 Vue.component('Toolbar', Toolbar);
 
 export default {
+  components: {
+    editor: Editor
+  },
   data() {
     return {
       perPage: 2,
       currentPage: 1,
-      fields: [
-        { key: 'content', label: 'Content' },
-        { key: 'category.name', label: 'Category' }
-      ],
-      items: [{ id: '', content: '', category: '' }]
+      deletePostDialog: false,
+      editPostDialog: false,
+      title: {},
+      id: {},
+      post: {}
     };
   },
   created() {
@@ -138,12 +181,19 @@ export default {
     }
   },
   methods: {
-    editProduct(data) {
-      return console.log('edit');
+    editPost(post) {
+      this.post = { ...post };
+      console.log('edit', post);
+      this.editPostDialog = true;
+      return;
     },
-    confirmDeleteProduct(data) {
-      return console.log('delete');
-    }
+    confirmDeletePost(post) {
+      this.post = post;
+      console.log('delete', post);
+      this.deletePostDialog = true;
+      return;
+    },
+    deletePost() {}
   }
 };
 </script>

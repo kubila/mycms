@@ -21,8 +21,12 @@ import 'primevue/resources/themes/saga-purple/theme.css';
 import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
 import Sidebar from 'primevue/sidebar';
+import Dialog from 'primevue/dialog';
+import Paginator from 'primevue/paginator';
 
 Vue.component('Sidebar', Sidebar);
+Vue.component('Dialog', Dialog);
+Vue.component('Paginator', Paginator);
 //Vue.component('MainHome', require('./MainHome.vue').default);
 Vue.config.productionTip = false;
 
