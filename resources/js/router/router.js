@@ -16,7 +16,6 @@ import GetNews from '../components/news/GetNews';
 import GetTag from '../components/tags/GetTag';
 import NotFound from '../components/helpers/NotFound';
 import nProgress from 'nprogress';
-import Edit from '../components/admin/EditModal';
 import NewEdit from '../components/admin/NewEdit';
 import Categories from '../components/categories/Categories';
 import Posts from '../components/posts/Posts';

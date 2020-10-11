@@ -86,7 +86,7 @@
                 />
               </figure>
 
-              <viewer :initialValue="post.content" />
+              <viewer :initialValue="post.content" :options="options" />
 
               <!-- <p class="article pt-3 text-left " v-html="post.content"></p> -->
 
@@ -123,10 +123,21 @@ import {
   BIconEggFill
 } from 'bootstrap-vue';
 
+import 'codemirror/lib/codemirror.css';
 import '@toast-ui/editor/dist/toastui-editor-viewer.css';
 import { Viewer } from '@toast-ui/vue-editor';
-import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight';
+import 'highlight.js/styles/github.css';
+import codeSyntaxHightlight from '@toast-ui/editor-plugin-code-syntax-highlight';
 import hljs from 'highlight.js/lib/highlight';
+import javascript from 'highlight.js/lib/languages/javascript';
+import php from 'highlight.js/lib/languages/php';
+import csharp from 'highlight.js/lib/languages/cs';
+import python from 'highlight.js/lib/languages/python';
+
+hljs.registerLanguage('javascript', javascript);
+hljs.registerLanguage('php', php);
+hljs.registerLanguage('csharp', csharp);
+hljs.registerLanguage('python', python);
 
 export default {
   components: {
@@ -137,6 +148,13 @@ export default {
     BIconPaperclip,
     BIconEggFill,
     viewer: Viewer
+  },
+  data() {
+    return {
+      options: {
+        plugins: [[codeSyntaxHightlight, { hljs }]]
+      }
+    };
   },
   props: {
     post: {

@@ -2,12 +2,7 @@
   <div class="col-auto">
     <Toolbar class="p-mb-4">
       <template slot="left">
-        <Button label="New" icon="pi pi-plus" class="p-button-success p-mr-2" />
-        <Button
-          label="Delete"
-          icon="pi pi-trash"
-          class="p-button-danger p-ml-2"
-        />
+        <Button label="New" icon="pi pi-plus" class="p-button-success p-mr-1" />
       </template>
     </Toolbar>
     <DataTable
@@ -62,12 +57,7 @@
         </template>
       </Column>
     </DataTable>
-    <Dialog
-      :visible.sync="editPostDialog"
-      :style="{ width: '450px' }"
-      header="Edit"
-      :modal="true"
-    >
+    <Dialog :visible.sync="editPostDialog" header="Edit" :modal="true">
       <!-- <div class="confirmation-content">
         <i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem" />
         <span v-if="post"
@@ -81,6 +71,7 @@
       </template>
       <editor
         :initialValue="post.content"
+        :options="options"
         height="500px"
         initialEditType="wysiwyg"
         previewStyle="vertical"
@@ -101,12 +92,7 @@
         />
       </template>
     </Dialog>
-    <Dialog
-      :visible.sync="deletePostDialog"
-      :style="{ width: '450px' }"
-      header="Confirm"
-      :modal="true"
-    >
+    <Dialog :visible.sync="deletePostDialog" header="Confirm" :modal="true">
       <div class="confirmation-content">
         <i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem" />
         <span v-if="post.title"
@@ -145,7 +131,17 @@ import 'codemirror/lib/codemirror.css';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/vue-editor';
 import 'highlight.js/styles/github.css';
-import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight';
+import codeSyntaxHightlight from '@toast-ui/editor-plugin-code-syntax-highlight';
+import hljs from 'highlight.js/lib/highlight';
+import javascript from 'highlight.js/lib/languages/javascript';
+import php from 'highlight.js/lib/languages/php';
+import csharp from 'highlight.js/lib/languages/cs';
+import python from 'highlight.js/lib/languages/python';
+
+hljs.registerLanguage('javascript', javascript);
+hljs.registerLanguage('php', php);
+hljs.registerLanguage('csharp', csharp);
+hljs.registerLanguage('python', python);
 
 Vue.component('Column', Column);
 Vue.component('DataTable', DataTable);
@@ -158,13 +154,14 @@ export default {
   },
   data() {
     return {
-      perPage: 2,
-      currentPage: 1,
       deletePostDialog: false,
       editPostDialog: false,
       title: {},
       id: {},
-      post: {}
+      post: {},
+      options: {
+        plugins: [[codeSyntaxHightlight, { hljs }]]
+      }
     };
   },
   created() {
@@ -183,13 +180,11 @@ export default {
   methods: {
     editPost(post) {
       this.post = { ...post };
-      console.log('edit', post);
       this.editPostDialog = true;
       return;
     },
     confirmDeletePost(post) {
       this.post = post;
-      console.log('delete', post);
       this.deletePostDialog = true;
       return;
     },
