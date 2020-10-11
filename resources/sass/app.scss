@@ -185,12 +185,12 @@ body {
   outline: 2px solid rgb(255, 255, 255);
   //background-color: ghostwhite;
   //filter: drop-shadow(0 0 0.1rem #8585a5);
-
+  //filter: drop-shadow(0 0 0.1rem #2b1c42);
   &:hover {
     cursor: pointer;
     transform: scale(1.03);
     outline: 5px solid rgb(255, 255, 255);
-    filter: none;
+    //filter: none;
   }
   p {
     // color: #727171;
