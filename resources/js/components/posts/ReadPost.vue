@@ -79,7 +79,7 @@
 
               <figure>
                 <img
-                  :src="`/images/${post.image}`"
+                  :src="`/storage/${post.image}`"
                   :alt="`${post.title}`"
                   class="img-fluid"
                   :title="`${post.title}`"

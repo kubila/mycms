@@ -4,7 +4,7 @@
       <div>
         <router-link :to="{ name: 'read', params: { title: card.title } }">
           <img
-            :src="`/images/${card.image}`"
+            :src="`/storage/${card.image}`"
             alt="Just a pic"
             class="img-fluid"
           />

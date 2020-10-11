@@ -7,7 +7,7 @@
         <div class="px-0">
           <router-link :to="{ name: 'read', params: { title: post.title } }">
             <img
-              :src="`/images/${post.image}`"
+              :src="`/storage/${post.image}`"
               class="img-fluid"
               :alt="`${post.image}`"
               width="273"
