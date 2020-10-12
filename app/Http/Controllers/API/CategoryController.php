@@ -18,9 +18,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $cats = Category::all();
+
         return response(CategoryCollection::collection(Category::all()));
-        //return response()->json($cats, 200);
+
     }
 
     /**

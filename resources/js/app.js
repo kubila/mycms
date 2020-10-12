@@ -23,7 +23,9 @@ import 'primeicons/primeicons.css';
 import Sidebar from 'primevue/sidebar';
 import Dialog from 'primevue/dialog';
 import Paginator from 'primevue/paginator';
+import Card from 'primevue/card';
 
+Vue.component('Card', Card);
 Vue.component('Sidebar', Sidebar);
 Vue.component('Dialog', Dialog);
 Vue.component('Paginator', Paginator);

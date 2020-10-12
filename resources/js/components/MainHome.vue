@@ -22,16 +22,29 @@
                 {{ category.name }}
               </b-nav-item>
             </b-nav>
+
+            <b-nav vertical style="margin-top: 5rem;">
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https://github.com/kubila"
+                  target="_blank"
+                >
+                  <i class="pi pi-github" style="fontSize: 2rem"></i>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https://www.linkedin.com/in/yasin-sunguray/"
+                  target="_blank"
+                >
+                  <i class="pi pi-twitter" style="fontSize: 2rem"></i>
+                </a>
+              </li>
+            </b-nav>
           </nav>
-          <!-- <b-navbar-nav>
-            <b-nav-item
-              v-for="category in categories"
-              :key="category.id"
-              :to="{ name: 'getcategory', params: { name: category.name } }"
-            >
-              {{ category.name }}
-            </b-nav-item>
-          </b-navbar-nav> -->
         </div>
       </div>
     </Sidebar>

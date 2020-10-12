@@ -46,8 +46,21 @@
                 {{ post.title }}</router-link
               >
             </h5>
-            <p>
-              By
+
+            <pre class="d-inline text-secondary pl-1 text-1">by</pre>
+            <h5>
+              <router-link
+                    :to="{
+                      name: 'getauthor',
+                      params: { name: post.author.name }
+                    }"
+                    class="card-author-title"
+                    ><strong>{{ post.author.name }}</strong>
+                  </router-link></span
+                >
+            </h5>
+            <!-- <p>
+               <pre class="d-inline text-secondary pl-1 text-1">by</pre>
               <span>
                 <span>
                   <router-link
@@ -60,9 +73,9 @@
                   </router-link></span
                 >
               </span>
-              on
-              <span>{{ post.published }}</span>
-            </p>
+              <pre class="d-inline">published on</pre> {{ post.published }}
+
+            </p> -->
           </div>
         </div>
       </div>

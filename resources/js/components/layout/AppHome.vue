@@ -55,8 +55,9 @@
           <aside class="col-lg-5 px-3">
             <div class="sidebar">
               <h5 class="lead d-flex justify-content-center pt-2">
-                <News />
+                News Corner
               </h5>
+              <News />
             </div>
           </aside>
         </div>
@@ -107,7 +108,7 @@ export default {
 
     featured() {
       const fas = _.chain(this.posts)
-        .sampleSize(9)
+        .sampleSize(6)
         .orderBy(['id'], ['desc'])
         .value();
       return fas;
