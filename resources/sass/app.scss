@@ -148,7 +148,7 @@ body {
     font-size: $font-size-base;
     color: #575757;
     margin: 0;
-    line-height: normal;
+    line-height: 0px;
     text-decoration: none !important;
     font-family: $font-family-nunito;
   }
@@ -185,17 +185,19 @@ body {
   outline: 2px solid rgb(255, 255, 255);
   //background-color: ghostwhite;
   //filter: drop-shadow(0 0 0.1rem #8585a5);
-  //filter: drop-shadow(0 0 0.1rem #2b1c42);
+
+  //filter: drop-shadow(0 0 0.1rem #8585a5);
   &:hover {
     cursor: pointer;
     transform: scale(1.03);
     outline: 5px solid rgb(255, 255, 255);
     //filter: none;
+    filter: drop-shadow(0.2rem 0.2rem 0.6rem #8585a5);
   }
   p {
     // color: #727171;
     color: #3a3a3a;
-    font-weight: 600;
+    font-weight: 500;
   }
 }
 
@@ -213,22 +215,34 @@ body {
 .poster {
   margin-top: 10px;
   margin-bottom: 30px;
-  outline: 1px solid #f5f5f6;
+  margin-left: 0.4rem;
+  border: 3px solid #fff;
+  border-radius: 1rem;
   //background-color: #fff;
   transition: transform 0.1s ease-in-out;
-  // filter: drop-shadow(0 0 0.2rem rgb(131, 139, 248));
-  filter: drop-shadow(0 0 0.1rem rgb(188, 192, 243));
+
+  //filter: drop-shadow(0 0 0.2rem #322348);
+  //filter: drop-shadow(0 0 0.1rem rgb(188, 192, 243));
+  //filter: drop-shadow(0.5rem 0.5rem 1rem #8585a5);
   &:hover {
     cursor: pointer;
-    transform: scale(1.01);
-    outline: 3px solid #fff;
-    filter: none;
+    transform: scale(1.02);
+    border: 3px solid #fff;
+    filter: drop-shadow(0.2rem 0.2rem 0.5rem #8585a5);
+    // border: 1px solid #322348;
+    // border-radius: 1rem;
+    //filter: drop-shadow(0 0 0.7rem #322348);
   }
   img {
     min-height: 105px;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
   }
 }
 
+.sutun-dokuz {
+  margin-left: 10px;
+}
 .sidebar {
   background-color: rgb(255, 255, 255);
   height: 100%;

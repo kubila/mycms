@@ -67,5 +67,50 @@ class DatabaseSeeder extends Seeder
             'post_id' => Post::all()->pluck('id')->random(),
             'tags_id' => Tags::all()->pluck('id')->random(),
         ]);
+        DB::table('category_news')->insert([
+            'category_id' => Category::all()->pluck('id')->random(),
+            'news_id' => News::all()->pluck('id')->random(),
+        ]);
+        DB::table('category_news')->insert([
+            'category_id' => Category::all()->pluck('id')->random(),
+            'news_id' => News::all()->pluck('id')->random(),
+        ]);
+        DB::table('category_news')->insert([
+            'category_id' => Category::all()->pluck('id')->random(),
+            'news_id' => News::all()->pluck('id')->random(),
+        ]);
+        DB::table('category_news')->insert([
+            'category_id' => Category::all()->pluck('id')->random(),
+            'news_id' => News::all()->pluck('id')->random(),
+        ]);
+        DB::table('category_news')->insert([
+            'category_id' => Category::all()->pluck('id')->random(),
+            'news_id' => News::all()->pluck('id')->random(),
+        ]);
+        DB::table('category_news')->insert([
+            'category_id' => Category::all()->pluck('id')->random(),
+            'news_id' => News::all()->pluck('id')->random(),
+        ]);
+        DB::table('category_news')->insert([
+            'category_id' => Category::all()->pluck('id')->random(),
+            'news_id' => News::all()->pluck('id')->random(),
+        ]);
+        DB::table('category_news')->insert([
+            'category_id' => Category::all()->pluck('id')->random(),
+            'news_id' => News::all()->pluck('id')->random(),
+        ]);
+        DB::table('category_news')->insert([
+            'category_id' => Category::all()->pluck('id')->random(),
+            'news_id' => News::all()->pluck('id')->random(),
+        ]);
+        DB::table('category_news')->insert([
+            'category_id' => Category::all()->pluck('id')->random(),
+            'news_id' => News::all()->pluck('id')->random(),
+        ]);
+        DB::table('category_news')->insert([
+            'category_id' => Category::all()->pluck('id')->random(),
+            'news_id' => News::all()->pluck('id')->random(),
+        ]);
+
     }
 }

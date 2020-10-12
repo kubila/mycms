@@ -18,7 +18,7 @@ $factory->define(Post::class, function (Faker $faker) {
         'author_id' => function () {
             return Author::all()->random();
         },
-        'title' => $faker->words(3, true),
+        'title' => $faker->words(6, true),
         'image' => $faker->randomElement($file), //$faker->image('images', 2048, 1360, 'cats', true, true, 'faker'),
         'content' => $faker->paragraphs(10, true),
         'description' => $faker->sentence(2, true),

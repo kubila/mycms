@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-4 my-2 sutun">
+  <div class="col-md-4 my-2">
     <div class="main-post">
       <div>
         <router-link :to="{ name: 'read', params: { title: card.title } }">

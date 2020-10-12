@@ -1,6 +1,6 @@
 <template>
   <div v-if="!isLoading" class="inner-wrapper">
-    <div class="container-fluid">
+    <!-- <div class="container-fluid">
       <div class="row main">
         <div class="col main-image img-fluid">
           <div class="main-top text-center">
@@ -12,41 +12,9 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- container -->
-    <!-- <Sidebar :visible.sync="visibleLeft" :modal="false" :dismissable="true">
-      <div class="p-sidebar-active">
-        <div class="p-3 mt-5 overflow-scroll">
-          <nav class="mb-3 ">
-            <b-nav vertical>
-              <b-nav-item active :to="{ name: 'posts' }">Posts</b-nav-item>
-              <b-nav-item active :to="{ name: 'categories' }"
-                >Categories</b-nav-item
-              >
-              <b-nav-item active :to="{ name: 'authors' }">Authors</b-nav-item>
-              <b-nav-item
-                v-for="category in categories"
-                :key="category.id"
-                :to="{ name: 'getcategory', params: { name: category.name } }"
-              >
-                {{ category.name }}
-              </b-nav-item>
-            </b-nav>
-          </nav>
-          <b-navbar-nav>
-            <b-nav-item
-              v-for="category in categories"
-              :key="category.id"
-              :to="{ name: 'getcategory', params: { name: category.name } }"
-            >
-              {{ category.name }}
-            </b-nav-item>
-          </b-navbar-nav>
-        </div>
-      </div>
-    </Sidebar>
 
-    <Button icon="pi pi-arrow-right" @click="visibleLeft = true" /> -->
     <div class="container">
       <div class="row mt-3">
         <home-card v-for="card in featured" :card="card" :key="card.id" />
@@ -80,11 +48,11 @@
     <div class="container-fluid">
       <main role="main mt-3">
         <div class="row mb-2">
-          <div class="col-lg-8">
+          <div class="col-lg-7">
             <home-post v-for="post in cards" :key="post.id" :post="post" />
           </div>
           <!-- News Corner -->
-          <aside class="col-lg-4 px-3">
+          <aside class="col-lg-5 px-3">
             <div class="sidebar">
               <h5 class="lead d-flex justify-content-center pt-2">
                 <News />
@@ -136,15 +104,16 @@ export default {
   },
   computed: {
     ...mapState('post', ['posts']),
+
     featured() {
       const fas = _.chain(this.posts)
-        .sampleSize(6)
+        .sampleSize(9)
         .orderBy(['id'], ['desc'])
         .value();
       return fas;
     },
     cards() {
-      const card = _.sampleSize(this.posts, 5);
+      const card = _.sampleSize(this.posts, 10);
       return card;
     }
   }

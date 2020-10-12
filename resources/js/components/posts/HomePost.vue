@@ -16,7 +16,7 @@
           </router-link>
         </div>
       </div>
-      <div class="col-sm-9 my-auto sutun-dokuz ">
+      <div class="col-sm-9 my-auto">
         <div class="sutun-dokuz pl-0">
           <div class="">
             <!-- card-body -->
