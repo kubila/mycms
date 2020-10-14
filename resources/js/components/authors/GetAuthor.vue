@@ -9,7 +9,7 @@
               Posts found:
               <p class="text-success d-inline-block">{{ authorCount }}</p>
             </div>
-            <author-posts
+            <home-post
               v-for="post in authorArticles"
               :key="post.id"
               :post="post"
@@ -32,8 +32,8 @@
 </template>
 
 <script>
-import AuthorPosts from './AuthorPosts';
 import Author from './Author';
+import HomePost from '../posts/HomePost';
 import { mapState } from 'vuex';
 export default {
   data() {
@@ -62,8 +62,8 @@ export default {
     this.getAuthor();
   },
   components: {
-    AuthorPosts,
-    Author
+    Author,
+    HomePost
   },
   computed: {
     ...mapState('author', ['authorOne', 'authorPosts']),

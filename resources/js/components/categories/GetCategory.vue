@@ -9,7 +9,8 @@
               Posts found:
               <p class="text-success d-inline-block">{{ calculateCount }}</p>
             </div>
-            <category-posts v-for="post in Posts" :key="post.id" :post="post" />
+
+            <home-post v-for="post in Posts" :key="post.id" :post="post" />
             <div v-if="!calculateCount" class="card-main-title">
               Couldn't find any post for the category:
               <p class="text-danger d-inline-block">{{ calculateCount }}</p>
@@ -40,8 +41,8 @@
 </template>
 
 <script>
-import CategoryPosts from './CategoryPosts';
 import CategoryNews from './CategoryNews';
+import HomePost from '../posts/HomePost';
 import { mapState } from 'vuex';
 export default {
   data() {
@@ -75,8 +76,8 @@ export default {
     this.getNews();
   },
   components: {
-    CategoryPosts,
-    CategoryNews
+    CategoryNews,
+    HomePost
   },
   computed: {
     ...mapState('category', ['categoryPosts', 'categoryNews']),

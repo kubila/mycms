@@ -19,9 +19,8 @@
           </b-nav-item>
         </b-navbar-nav>
 
-        <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <b-nav-form class="mr-2" @submit.prevent="search">
+          <b-nav-form class="mr-5" @submit.prevent="search">
             <b-form-input
               size="sm"
               class="mr-sm-2"
@@ -33,37 +32,6 @@
               >Search</b-button
             >
           </b-nav-form>
-          <!-- <Search :searchstring="searchstring" /> -->
-
-          <div class="mr-2" v-if="!isLoggedIn">
-            <span class="navbar-text">
-              <router-link :to="{ name: 'login' }" class="text-light"
-                >Login</router-link
-              >
-            </span>
-          </div>
-          <span class="navbar-text mr-4" v-if="!isLoggedIn">
-            <div>
-              <router-link :to="{ name: 'register' }" class="text-light"
-                >Register</router-link
-              >
-            </div>
-          </span>
-
-          <span class="navbar-text ml-1 mr-2" v-if="isLoggedIn">
-            <router-link :to="{ name: 'admin' }" class="text-light"
-              >Admin</router-link
-            >
-          </span>
-
-          <b-nav-item-dropdown right class="ml-1 mr-3" v-if="isLoggedIn">
-            <!-- Using 'button-content' slot -->
-            <template v-slot:button-content>
-              <b-icon-person-circle><em>User</em></b-icon-person-circle>
-            </template>
-            <b-dropdown-item href="#">{{ user.name }}</b-dropdown-item>
-            <b-dropdown-item @click="logout" href="#">Sign Out</b-dropdown-item>
-          </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -71,7 +39,6 @@
 </template>
 
 <script>
-import Vue from 'vue';
 import { mapState, mapActions, mapGetters } from 'vuex';
 import { BIcon, BIconPersonCircle, BIconPersonFill } from 'bootstrap-vue';
 import { required, email, minLength } from 'vuelidate/lib/validators';

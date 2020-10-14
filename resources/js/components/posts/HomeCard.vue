@@ -8,6 +8,7 @@
       </template>
 
       <template slot="title">
+        <pre class="d-inline text-secondary pl-1 date-sizes">in</pre>
         <router-link
           :to="{
             name: 'getcategory',
@@ -17,21 +18,25 @@
         >
           {{ card.category.name }}
         </router-link>
-
+        <!-- <span>
+          <pre class="date-sizes pl-1 d-inline">on</pre>
+          <p class="date-sizes text-black-50 d-inline">{{ card.published }}</p>
+        </span> -->
+        <em>
+          <pre class="d-inline text-secondary pl-1 date-sizes">by</pre>
+          <router-link
+            :to="{
+              name: 'getauthor',
+              params: { name: card.author.name }
+            }"
+            class="card-author-title"
+          >
+            {{ card.author.name }}
+          </router-link>
+        </em>
         <!-- <span class="pl-1">
           <p class="m-0 card-date">on {{ card.published }}</p>
         </span> -->
-
-        <pre class="d-inline text-secondary pl-1 text-1">by</pre>
-        <router-link
-          :to="{
-            name: 'getauthor',
-            params: { name: card.author.name }
-          }"
-          class="card-author-title pl-1"
-        >
-          {{ card.author.name }}
-        </router-link>
       </template>
       <template slot="title">
         <h5 class="mt-1">
@@ -43,9 +48,8 @@
           </router-link>
         </h5>
       </template>
-      <template slot="subtitle">
-        <p><pre class="d-inline">published on</pre> {{ card.published }}</p>
-      </template>
+      <template slot="subtitle"> </template>
+
       <template slot="content">
         <p class="m-1" v-if="card.content.length > 120">
           <router-link
@@ -55,84 +59,25 @@
             {{ card.content.slice(0, 120) + '...' }}
           </router-link>
         </p>
-        <hr class="card-hr" />
       </template>
-      <!--
       <template slot="footer">
-         <Button icon="pi pi-check" label="Save" />
-        <Button
-          icon="pi pi-times"
-          label="Cancel"
-          class="p-button-secondary"
-          style="margin-left: .5em"
-        />
-
-      </template>-->
-    </Card>
-    <!-- <div class="main-post">
-      <div>
-        <router-link :to="{ name: 'read', params: { title: card.title } }">
-          <img
-            :src="`/storage/${card.image}`"
-            alt="Just a pic"
-            class="img-fluid"
-          />
-        </router-link>
-      </div>
-      <div class="mx-3 mt-2">
-        <router-link
-          :to="{
-            name: 'getcategory',
-            params: { name: card.category.name }
-          }"
-          class="card-category-title"
-        >
-          {{ card.category.name }}
-        </router-link>
-
-        <span class="pl-1">
-          <p class="m-0 card-date">on {{ card.published }}</p>
-        </span>
-
-        <strong class="text-secondary pl-1">by</strong>
-        <router-link
-          :to="{
-            name: 'getauthor',
-            params: { name: card.author.name }
-          }"
-          class="card-author-title pl-1"
-        >
-          {{ card.author.name }}
-        </router-link>
-
-        <h5 class="mt-1">
-          <router-link
-            :to="{ name: 'read', params: { title: card.title } }"
-            class="card-main-title"
-          >
-            {{ card.title }}
-          </router-link>
-        </h5>
-
-        <p class="m-1" v-if="card.content.length > 120">
-          <router-link
-            :to="{ name: 'read', params: { title: card.title } }"
-            class="card-main-text"
-          >
-            {{ card.content.slice(0, 120) + '...' }}
-          </router-link>
-        </p>
-        <p class="m-1" v-else>
-          <router-link
-            :to="{ name: 'read', params: { title: card.title } }"
-            class="card-main-text"
-          >
-            {{ card.content }}
-          </router-link>
-        </p>
-      </div>
+        <!-- <div>
+          <em>
+            <pre class="d-inline text-secondary pl-1 date-sizes">by</pre>
+            <router-link
+              :to="{
+                name: 'getauthor',
+                params: { name: card.author.name }
+              }"
+              class="card-author-title"
+            >
+              {{ card.author.name }}
+            </router-link>
+          </em>
+        </div> -->
+      </template>
       <hr class="card-hr" />
-    </div> -->
+    </Card>
   </div>
 </template>
 

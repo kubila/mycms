@@ -31,6 +31,8 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
 
             return $this->respondToUser();
+        } else {
+            return response()->json(['error' => 'User not found.']);
         }
         return response()->json(['error' => 'No match for the email.']);
     }

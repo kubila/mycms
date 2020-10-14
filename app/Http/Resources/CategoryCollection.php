@@ -19,6 +19,9 @@ class CategoryCollection extends JsonResource
             'id' => $this->id,
             'created' => $this->created,
             'name' => $this->name,
+            'count' => $this->posts->count(),
+            // 'news' => $this->news,
+            // 'posts' => $this->posts,
         ];
     }
 }

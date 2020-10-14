@@ -3,7 +3,7 @@
     <!-- card -->
 
     <div class="row mx-0">
-      <div class="col-sm-3 px-0">
+      <div class="col-sm-3 px-0 my-auto">
         <div class="px-0">
           <router-link :to="{ name: 'read', params: { title: post.title } }">
             <img
@@ -47,19 +47,25 @@
               >
             </h5>
 
-            <pre class="d-inline text-secondary pl-1 text-1">by</pre>
             <h5>
-              <router-link
-                    :to="{
-                      name: 'getauthor',
-                      params: { name: post.author.name }
-                    }"
-                    class="card-author-title"
-                    ><strong>{{ post.author.name }}</strong>
-                  </router-link></span
-                >
+              <em>
+                <!-- <pre class="d-inline text-secondary pl-1 date-sizes">by</pre> -->
+
+                <router-link
+                  :to="{
+                    name: 'getauthor',
+                    params: { name: post.author.name }
+                  }"
+                  class="card-author-title"
+                  ><strong>{{ post.author.name }}</strong>
+                </router-link></em
+              >
+              <pre class="d-inline date-sizes pl-1">published on </pre>
+              <span class="date-sizes text-black-50">{{ post.published }}</span>
             </h5>
-            <!-- <p>
+
+            <p>
+              <!--
                <pre class="d-inline text-secondary pl-1 text-1">by</pre>
               <span>
                 <span>
@@ -72,10 +78,8 @@
                     ><strong>{{ post.author.name }}</strong>
                   </router-link></span
                 >
-              </span>
-              <pre class="d-inline">published on</pre> {{ post.published }}
-
-            </p> -->
+              </span> -->
+            </p>
           </div>
         </div>
       </div>

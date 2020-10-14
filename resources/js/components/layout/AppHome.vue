@@ -1,6 +1,6 @@
 <template>
-  <div v-if="!isLoading" class="inner-wrapper">
-    <!-- <div class="container-fluid">
+  <div class="inner-wrapper">
+    <div class="container-fluid">
       <div class="row main">
         <div class="col main-image img-fluid">
           <div class="main-top text-center">
@@ -12,12 +12,17 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
     <!-- container -->
-
-    <div class="container">
+    <div class="container" v-if="!isLoading">
       <div class="row mt-3">
         <home-card v-for="card in featured" :card="card" :key="card.id" />
+        <Paginator
+          v-model:first="first"
+          :rows="rows"
+          :totalRecords="featured.length"
+        >
+        </Paginator>
       </div>
     </div>
     <!-- <div class="container-fluid">
@@ -45,7 +50,7 @@
         </div>
       </div>
     </div> -->
-    <div class="container-fluid">
+    <div class="container-fluid" v-if="!isLoading">
       <main role="main mt-3">
         <div class="row mb-2">
           <div class="col-lg-7">
@@ -63,17 +68,20 @@
         </div>
       </main>
     </div>
+
+    <div
+      v-else-if="isLoading"
+      style="display:flex; justify-content:center; margin-top: 30vh;"
+    >
+      <ProgressSpinner
+        style="width:140px; height: 140px;"
+        animationDuration="1s"
+      />
+    </div>
     <!-- container -->
   </div>
   <!-- inner wrapper -->
-  <!-- <div v-else class="p-grid p-align-center p-justify-center"> -->
-  <div v-else style="display:flex; justify-content:center; margin-top: 30vh;">
-    <!-- <ProgressSpinner fill="#EEEEEE" animationDuration=".8s" /> -->
-    <ProgressSpinner
-      style="width:140px; height: 140px;"
-      animationDuration="1s"
-    />
-  </div>
+  <!-- <div v-else style="display:flex; justify-content:center; margin-top: 30vh;"> -->
 </template>
 
 <script>
@@ -81,8 +89,6 @@ import Vue from 'vue';
 import HomeCard from '../posts/HomeCard';
 import HomePost from '../posts/HomePost';
 import News from '../news/News';
-import ProgressSpinner from 'primevue/progressspinner';
-Vue.use('ProgressSpinner', ProgressSpinner);
 
 import { mapState } from 'vuex';
 import _ from 'lodash';
@@ -90,14 +96,15 @@ import _ from 'lodash';
 export default {
   data() {
     return {
-      isLoading: true
+      isLoading: true,
+      first: 0,
+      rows: 2
     };
   },
   components: {
     HomePost,
     HomeCard,
-    News,
-    ProgressSpinner
+    News
   },
   async created() {
     await this.$store.dispatch('post/fetchPosts');
@@ -105,7 +112,6 @@ export default {
   },
   computed: {
     ...mapState('post', ['posts']),
-
     featured() {
       const fas = _.chain(this.posts)
         .sampleSize(6)

@@ -105,7 +105,9 @@ body {
   line-height: 1.875rem;
   font-family: $font-family-sans-serif;
 }
-
+.date-sizes {
+  font-size: $font-size-dates;
+}
 .card {
   &-category-title {
     padding-top: 5px;
@@ -199,6 +201,7 @@ body {
     // color: #727171;
     color: #3a3a3a;
     font-weight: 500;
+    margin-bottom: 0.2rem;
   }
 }
 
@@ -206,6 +209,9 @@ body {
   padding-bottom: 0 !important;
   padding-top: 0 !important;
 }
+// .p-card-body {
+//   padding-top: 0.5rem !important;
+// }
 
 .navy {
   background-color: #322348 !important;
@@ -217,24 +223,36 @@ body {
 .menu {
   background-color: rgb(122, 88, 177) !important;
 }
-
+.sitting-button {
+  right: 0 !important;
+  position: fixed !important;
+  z-index: 10002 !important;
+  top: calc(25vh);
+}
+#mylinks {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
 .poster {
   margin-top: 10px;
   margin-bottom: 30px;
   margin-left: 0.4rem;
-  border: 3px solid #fff;
+  border: 3px solid #dcd3f3;
   border-radius: 1rem;
   //background-color: #fff;
-  //transition: transform 0.1s ease-in-out;
+  transition: transform 0.1s ease-in-out;
 
   //filter: drop-shadow(0 0 0.2rem #322348);
   //filter: drop-shadow(0 0 0.1rem rgb(188, 192, 243));
   //filter: drop-shadow(0.5rem 0.5rem 1rem #8585a5);
   &:hover {
     cursor: pointer;
-    //transform: scale(1.02);
+    transform: scale(1.02);
     border: 3px solid #fff;
-    filter: drop-shadow(0.2rem 0.2rem 0.5rem #8585a5);
+    //filter: drop-shadow(0.3rem 0.3rem 0.6rem #8585a5);
     // border: 1px solid #322348;
     // border-radius: 1rem;
     //filter: drop-shadow(0 0 0.7rem #322348);

@@ -27,11 +27,15 @@ export default new Vuex.Store({
 
   actions: {
     fetchUser({ commit }, credentials) {
-      return UserService.login(credentials).then(({ data }) => {
-        commit('SET_USER', data);
-        commit('SET_LOGGED_IN');
-        return data;
-      });
+      return UserService.login(credentials)
+        .then(({ data }) => {
+          commit('SET_USER', data);
+          commit('SET_LOGGED_IN');
+          return data;
+        })
+        .catch(error => {
+          console.log(error.response);
+        });
     },
 
     isLoggedIn({ commit }) {
