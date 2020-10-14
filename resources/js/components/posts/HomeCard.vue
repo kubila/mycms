@@ -18,10 +18,7 @@
         >
           {{ card.category.name }}
         </router-link>
-        <!-- <span>
-          <pre class="date-sizes pl-1 d-inline">on</pre>
-          <p class="date-sizes text-black-50 d-inline">{{ card.published }}</p>
-        </span> -->
+
         <em>
           <pre class="d-inline text-secondary pl-1 date-sizes">by</pre>
           <router-link
@@ -34,9 +31,6 @@
             {{ card.author.name }}
           </router-link>
         </em>
-        <!-- <span class="pl-1">
-          <p class="m-0 card-date">on {{ card.published }}</p>
-        </span> -->
       </template>
       <template slot="title">
         <h5 class="mt-1">
@@ -60,22 +54,7 @@
           </router-link>
         </p>
       </template>
-      <template slot="footer">
-        <!-- <div>
-          <em>
-            <pre class="d-inline text-secondary pl-1 date-sizes">by</pre>
-            <router-link
-              :to="{
-                name: 'getauthor',
-                params: { name: card.author.name }
-              }"
-              class="card-author-title"
-            >
-              {{ card.author.name }}
-            </router-link>
-          </em>
-        </div> -->
-      </template>
+      <template slot="footer"> </template>
       <hr class="card-hr" />
     </Card>
   </div>

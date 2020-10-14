@@ -1,7 +1,5 @@
 <template>
   <div class="poster">
-    <!-- card -->
-
     <div class="row mx-0">
       <div class="col-sm-3 px-0 my-auto">
         <div class="px-0">
@@ -19,10 +17,7 @@
       <div class="col-sm-9 my-auto">
         <div class="sutun-dokuz pl-0">
           <div class="">
-            <!-- card-body -->
-
             <h5>
-              <!-- card-title -->
               <router-link
                 :to="{
                   name: 'getcategory',
@@ -35,7 +30,6 @@
             </h5>
 
             <h5>
-              <!-- card-title -->
               <router-link
                 :to="{
                   name: 'read',
@@ -49,8 +43,6 @@
 
             <h5>
               <em>
-                <!-- <pre class="d-inline text-secondary pl-1 date-sizes">by</pre> -->
-
                 <router-link
                   :to="{
                     name: 'getauthor',
@@ -64,22 +56,7 @@
               <span class="date-sizes text-black-50">{{ post.published }}</span>
             </h5>
 
-            <p>
-              <!--
-               <pre class="d-inline text-secondary pl-1 text-1">by</pre>
-              <span>
-                <span>
-                  <router-link
-                    :to="{
-                      name: 'getauthor',
-                      params: { name: post.author.name }
-                    }"
-                    class="card-author-title"
-                    ><strong>{{ post.author.name }}</strong>
-                  </router-link></span
-                >
-              </span> -->
-            </p>
+            <p></p>
           </div>
         </div>
       </div>

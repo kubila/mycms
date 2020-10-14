@@ -14,8 +14,9 @@ Vue.use(Vuelidate);
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.use(VueFormulate);
-import MainHome from './components/MainHome.vue';
+import MainHome from './components/MainHome';
 
+import 'primeflex/primeflex.css';
 import 'primevue/resources/themes/saga-purple/theme.css';
 import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
@@ -24,7 +25,9 @@ import Dialog from 'primevue/dialog';
 import Paginator from 'primevue/paginator';
 import Card from 'primevue/card';
 import ProgressSpinner from 'primevue/progressspinner';
+import DataView from 'primevue/dataview';
 
+Vue.component('DataView', DataView);
 Vue.component('ProgressSpinner', ProgressSpinner);
 Vue.component('Card', Card);
 Vue.component('Sidebar', Sidebar);

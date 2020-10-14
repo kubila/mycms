@@ -8,7 +8,7 @@
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav>
+        <!-- <b-navbar-nav>
           <b-nav-item
             v-for="category in categories"
             :category="category"
@@ -17,7 +17,7 @@
           >
             {{ category.name }}
           </b-nav-item>
-        </b-navbar-nav>
+        </b-navbar-nav> -->
 
         <b-navbar-nav class="ml-auto">
           <b-nav-form class="mr-5" @submit.prevent="search">
@@ -39,11 +39,10 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters } from 'vuex';
+import { mapState } from 'vuex';
 import { BIcon, BIconPersonCircle, BIconPersonFill } from 'bootstrap-vue';
-import { required, email, minLength } from 'vuelidate/lib/validators';
+import { required, minLength } from 'vuelidate/lib/validators';
 import Search from '../search/Search';
-import cloneDeep from 'lodash/cloneDeep';
 
 export default {
   components: {
@@ -59,11 +58,7 @@ export default {
       }
     };
   },
-  async created() {
-    await this.$store.dispatch('category/fetchCategories');
-  },
   computed: {
-    ...mapState('category', ['categories']),
     ...mapState(['isLoggedIn']),
     //...mapGetters(['Login']),
     user() {
@@ -71,9 +66,6 @@ export default {
     }
   },
   methods: {
-    async logout() {
-      await this.$store.dispatch('Logout');
-    },
     async search() {
       const searchString = this.form.search;
       // this.$router.push({
