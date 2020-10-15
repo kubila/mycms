@@ -25,7 +25,7 @@
               <b-nav vertical style="margin-right: 3rem;">
                 <h4>Categories</h4>
                 <b-nav-item
-                  class="card-main-title"
+                  class=""
                   v-for="category in categories"
                   :key="category.id"
                   :to="{ name: 'getcategory', params: { name: category.name } }"

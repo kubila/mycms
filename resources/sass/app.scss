@@ -185,7 +185,8 @@ body {
 
 .main-post {
   //transition: transform 0.2s ease-out;
-  outline: 2px solid rgb(255, 255, 255);
+  //outline: 2px solid rgb(255, 255, 255);
+  outline: 1px solid rgb(218, 218, 218);
   //background-color: ghostwhite;
   //filter: drop-shadow(0 0 0.1rem #8585a5);
 
@@ -236,15 +237,16 @@ body {
   justify-content: center;
   margin-bottom: 1rem;
 }
-.p-dataview-grid {
+.p-dataview-content {
   background-color: #f5f5f6 !important;
 }
 .poster {
-  margin-top: 10px;
-  margin-bottom: 30px;
-  margin-left: 0.4rem;
-  border: 3px solid #dcd3f3;
-  border-radius: 1rem;
+  // margin-top: 10px;
+  // margin-bottom: 30px;
+  // margin-left: 0.4rem;
+  //border: 3px solid #dcd3f3;
+  //border-radius: 1rem;
+  outline: 1px solid rgb(218, 218, 218);
   //background-color: #fff;
   transition: transform 0.1s ease-in-out;
 
@@ -254,16 +256,17 @@ body {
   &:hover {
     cursor: pointer;
     transform: scale(1.02);
-    border: 3px solid #fff;
-    //filter: drop-shadow(0.3rem 0.3rem 0.6rem #8585a5);
+    outline: 3px solid rgb(218, 218, 218);
+    //border: 3px solid #fff;
+    filter: drop-shadow(0.3rem 0.3rem 0.6rem #8585a5);
     // border: 1px solid #322348;
     // border-radius: 1rem;
     //filter: drop-shadow(0 0 0.7rem #322348);
   }
   img {
     min-height: 105px;
-    border-top-left-radius: 1rem;
-    border-bottom-left-radius: 1rem;
+    //border-top-left-radius: 1rem;
+    //border-bottom-left-radius: 1rem;
   }
 }
 
@@ -327,20 +330,20 @@ body {
 // poster mobile sucks, fix it somehow
 @media screen and (max-width: 991px) {
   .poster {
-    transition: none;
+    //transition: none;
     &:hover {
-      transform: none;
-      background-color: transparent;
+      //transform: none;
+      //background-color: transparent;
     }
   }
 
   .main-post {
-    transition: none;
+    //transition: none;
     //outline: 6px solid rgb(255, 255, 255);
     &:hover {
-      transform: none;
-      background-color: transparent;
-      filter: none;
+      //transform: none;
+      //background-color: transparent;
+      //filter: none;
     }
   }
 }

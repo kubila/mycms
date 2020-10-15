@@ -1,13 +1,13 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import PostService from '../services/PostService';
+
 import UserService from '../services/UserService';
-import CategoryService from '../services/CategoryService';
-import AuthorService from '../services/AuthorService';
+
 import createPersistedState from 'vuex-persistedstate';
 import * as post from './modules/post';
 import * as category from './modules/category';
 import * as author from './modules/author';
+import * as news from './modules/news';
 
 Vue.use(Vuex);
 
@@ -21,7 +21,8 @@ export default new Vuex.Store({
   modules: {
     category,
     post,
-    author
+    author,
+    news
   },
   //plugins: [createPersistedState()],
 

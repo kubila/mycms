@@ -8,11 +8,10 @@ import router from './router/router.js';
 import store from './store/store.js';
 import 'nprogress/nprogress.css';
 import Vuelidate from 'vuelidate';
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+import { BootstrapVue } from 'bootstrap-vue';
 import VueFormulate from '@braid/vue-formulate';
 Vue.use(Vuelidate);
 Vue.use(BootstrapVue);
-Vue.use(IconsPlugin);
 Vue.use(VueFormulate);
 import MainHome from './components/MainHome';
 

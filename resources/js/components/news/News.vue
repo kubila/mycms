@@ -1,25 +1,39 @@
 <template>
-  <div>
-    <Card style="margin-bottom: 1em; margin-left: 10px; margin-right:10px;">
-      <template slot="title">
-        Simple Card
-      </template>
-      <template slot="content">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
+  <div class="p-ml-1">
+    <DataView
+      :value="value"
+      layout="list"
+      :paginator="true"
+      :rows="4"
+      paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} posts"
+    >
+      >
+      <template #list="slotProps">
+        <Card>
+          <template slot="title"> </template>
+          <template slot="content">
+            Simple Card Lorem ipsum dolor sit amet, consectetur adipisicing
+            elit. Inventore
+            <p>
+              <!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
           sed consequuntur error repudiandae numquam deserunt quisquam repellat
           libero asperiores earum nam nobis, culpa ratione quam perferendis
-          esse, cupiditate neque quas!
-        </p>
+          esse, cupiditate neque quas! -->
+            </p>
+          </template>
+        </Card>
       </template>
-    </Card>
+    </DataView>
   </div>
 </template>
 
 <script>
 export default {
   data() {
-    return {};
+    return {
+      value: ''
+    };
   },
   props: {
     news: {

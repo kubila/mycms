@@ -1,6 +1,6 @@
 <template>
-  <div class="col-sm-4 my-3">
-    <Card class="main-post">
+  <div class="p-col-12 p-sm-6 p-md-6 p-lg-4 p-py-lg-1">
+    <Card class="main-post p-my-2 p-m-sm-2 p-my-md-2 p-mx-md-2">
       <template slot="header">
         <router-link :to="{ name: 'read', params: { title: card.title } }">
           <img alt="user header" :src="`/storage/${card.image}`" />
@@ -8,7 +8,7 @@
       </template>
 
       <template slot="title">
-        <pre class="d-inline text-secondary pl-1 date-sizes">in</pre>
+        <!-- <pre class="d-inline text-secondary pl-1 date-sizes">in</pre> -->
         <router-link
           :to="{
             name: 'getcategory',
