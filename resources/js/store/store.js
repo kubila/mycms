@@ -7,7 +7,7 @@ import createPersistedState from 'vuex-persistedstate';
 import * as post from './modules/post';
 import * as category from './modules/category';
 import * as author from './modules/author';
-import * as news from './modules/news';
+import * as newsUp from './modules/newsUp';
 
 Vue.use(Vuex);
 
@@ -22,7 +22,7 @@ export default new Vuex.Store({
     category,
     post,
     author,
-    news
+    newsUp
   },
   //plugins: [createPersistedState()],
 

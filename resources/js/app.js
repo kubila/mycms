@@ -25,6 +25,8 @@ import Paginator from 'primevue/paginator';
 import Card from 'primevue/card';
 import ProgressSpinner from 'primevue/progressspinner';
 import DataView from 'primevue/dataview';
+import { BSkeletonImg } from 'bootstrap-vue';
+Vue.component('b-skeleton-img', BSkeletonImg);
 
 Vue.component('DataView', DataView);
 Vue.component('ProgressSpinner', ProgressSpinner);

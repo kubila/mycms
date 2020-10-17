@@ -1,151 +1,123 @@
 <template>
-  <!-- <div class="poster">
-    <div class="row mx-0">
-      <div class="col-sm-3 px-0 my-auto">
-        <div class="px-0">
-          <router-link :to="{ name: 'read', params: { title: post.title } }">
-            <img
-              :src="`/storage/${post.image}`"
-              class="img-fluid"
-              :alt="`${post.image}`"
-              width="273"
-              height="172"
-            />
-          </router-link>
-        </div>
-      </div>
-      <div class="col-sm-9 my-auto">
-        <div class="sutun-dokuz pl-0">
-          <div class="">
+  <div v-if="!isLatestPostsLoading">
+    <DataView
+      :value="cards"
+      layout="list"
+      :paginator="true"
+      :rows="5"
+      paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} posts"
+    >
+      >
 
+      <template #list="slotProps">
+        <div class="p-col-12 p-my-2 ">
+          <div class="poster p-card">
+            <div class="p-grid p-nogutter">
+              <div class="p-col-3 p-px-0 p-my-auto">
+                <div class="p-px-0">
+                  <router-link
+                    :to="{
+                      name: 'read',
+                      params: { title: slotProps.data.title }
+                    }"
+                  >
+                    <img
+                      :src="`/storage/${slotProps.data.image}`"
+                      class="img-fluid"
+                      :alt="`${slotProps.data.image}`"
+                      width="273"
+                      height="172"
+                    />
+                  </router-link>
+                </div>
+              </div>
+              <div class="p-col-9 p-my-auto">
+                <div class="p-pl-0 p-ml-3">
+                  <div class="">
+                    <h5>
+                      <router-link
+                        :to="{
+                          name: 'getcategory',
+                          params: { name: slotProps.data.category.name }
+                        }"
+                        class="card-category-title"
+                      >
+                        {{ slotProps.data.category.name }}</router-link
+                      >
+                    </h5>
 
-            <h5>
+                    <h5>
+                      <router-link
+                        :to="{
+                          name: 'read',
+                          params: { title: slotProps.data.title }
+                        }"
+                        class="card-main-title"
+                      >
+                        {{ slotProps.data.title }}</router-link
+                      >
+                    </h5>
 
-              <router-link
-                :to="{
-                  name: 'getcategory',
-                  params: { name: post.category.name }
-                }"
-                class="card-category-title"
-              >
-                {{ post.category.name }}</router-link
-              >
-            </h5>
+                    <h5>
+                      <em>
+                        <router-link
+                          :to="{
+                            name: 'getauthor',
+                            params: { name: slotProps.data.author.name }
+                          }"
+                          class="card-author-title"
+                          ><strong>{{ slotProps.data.author.name }}</strong>
+                        </router-link></em
+                      >
+                      <pre class="d-inline date-sizes p-pl-1">
+published on </pre
+                      >
+                      <span class="date-sizes text-black-50">{{
+                        slotProps.data.published
+                      }}</span>
+                    </h5>
 
-            <h5>
-
-              <router-link
-                :to="{
-                  name: 'read',
-                  params: { title: post.title }
-                }"
-                class="card-main-title"
-              >
-                {{ post.title }}</router-link
-              >
-            </h5>
-
-            <h5>
-              <em>
-
-
-                <router-link
-                  :to="{
-                    name: 'getauthor',
-                    params: { name: post.author.name }
-                  }"
-                  class="card-author-title"
-                  ><strong>{{ post.author.name }}</strong>
-                </router-link></em
-              >
-              <pre class="d-inline date-sizes pl-1">published on </pre>
-              <span class="date-sizes text-black-50">{{ post.published }}</span>
-            </h5>
-
-            <p>
-
-            </p>
+                    <p></p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-
-  </div> -->
-  <div class="p-grid p-nogutter">
-    <DataView :value="post" layout="grid" :paginator="true" :rows="4">
+      </template>
+    </DataView>
+  </div>
+  <div v-else-if="isLatestPostsLoading" class="p-col-12 p-mx-auto">
+    <!-- <ProgressSpinner
+      style="width:140px; height: 140px;"
+      animationDuration="1s"
+    /> -->
+    <DataView :value="fakePosts" layout="grid" :rows="6">
+      >
       <template #grid="slotProps">
-        <div class="p-col-4 p-md-6 p-lg-3 my-3">
-          <Card class="main-post">
-            <template slot="header">
-              <router-link
-                :to="{
-                  name: 'read',
-                  params: { title: slotProps.data.title }
-                }"
-              >
-                <img
-                  alt="user header"
-                  :src="`/storage/${slotProps.data.image}`"
-                />
-              </router-link>
-            </template>
-
-            <template slot="title">
-              <pre class="d-inline text-secondary pl-1 date-sizes">in</pre>
-              <router-link
-                :to="{
-                  name: 'getcategory',
-                  params: { name: slotProps.data.category.name }
-                }"
-                class="card-category-title"
-              >
-                {{ slotProps.data.category.name }}
-              </router-link>
-
-              <em>
-                <pre class="d-inline text-secondary pl-1 date-sizes">by</pre>
-                <router-link
-                  :to="{
-                    name: 'getauthor',
-                    params: { name: slotProps.data.author.name }
-                  }"
-                  class="card-author-title"
-                >
-                  {{ slotProps.data.author.name }}
-                </router-link>
-              </em>
-            </template>
-            <template slot="title">
-              <h5 class="mt-1">
-                <router-link
-                  :to="{
-                    name: 'read',
-                    params: { title: slotProps.data.title }
-                  }"
-                  class="card-main-title"
-                >
-                  {{ slotProps.data.title }}
-                </router-link>
-              </h5>
-            </template>
-            <template slot="subtitle"> </template>
-
-            <template slot="content">
-              <p class="m-1" v-if="slotProps.data.content.length > 120">
-                <router-link
-                  :to="{
-                    name: 'read',
-                    params: { title: slotProps.data.title }
-                  }"
-                  class="card-main-text"
-                >
-                  {{ slotProps.data.content.slice(0, 120) + '...' }}
-                </router-link>
-              </p>
-            </template>
-            <template slot="footer"> </template>
-            <hr class="card-hr" />
-          </Card>
+        <div class="p-col-12 p-my-2 ">
+          <div class="poster p-card">
+            <div class="p-grid p-nogutter">
+              <div class="p-col-3 p-px-0 p-my-auto">
+                <div class="p-px-0">
+                  <b-skeleton-img
+                    card-img="left"
+                    width="225px"
+                  ></b-skeleton-img>
+                </div>
+              </div>
+              <div class="p-col-9 p-my-auto">
+                <div class="p-pl-0 p-ml-3">
+                  <div class="">
+                    <b-skeleton animation="wave" width="60%"></b-skeleton>
+                    <b-skeleton animation="wave" width="90%"></b-skeleton>
+                    <b-skeleton animation="wave" width="70%"></b-skeleton>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </template>
     </DataView>
@@ -153,12 +125,24 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+import _ from 'lodash';
 export default {
-  inheritAttrs: false,
-  props: {
-    post: {
-      type: Object,
-      required: true
+  data() {
+    return {
+      isLatestPostsLoading: true,
+      fakePosts: [{}, {}, {}, {}, {}, {}]
+    };
+  },
+  async created() {
+    await this.$store.dispatch('post/fetchPosts');
+    this.isLatestPostsLoading = false;
+  },
+  computed: {
+    ...mapState('post', ['posts']),
+    cards() {
+      const card = _.sampleSize(this.posts, 50);
+      return card;
     }
   }
 };

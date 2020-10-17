@@ -1,44 +1,63 @@
 <template>
-  <div class="p-ml-1">
-    <DataView
-      :value="value"
-      layout="list"
-      :paginator="true"
-      :rows="4"
-      paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} posts"
-    >
+  <div>
+    <div class="p-mx-2" v-if="!isNewsLoading">
+      <DataView
+        :value="allNews"
+        layout="list"
+        :paginator="true"
+        :rows="5"
+        paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} news"
       >
-      <template #list="slotProps">
-        <Card>
-          <template slot="title"> </template>
-          <template slot="content">
-            Simple Card Lorem ipsum dolor sit amet, consectetur adipisicing
-            elit. Inventore
-            <p>
-              <!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
-          sed consequuntur error repudiandae numquam deserunt quisquam repellat
-          libero asperiores earum nam nobis, culpa ratione quam perferendis
-          esse, cupiditate neque quas! -->
-            </p>
-          </template>
-        </Card>
-      </template>
-    </DataView>
+        >
+        <template #list="slotProps">
+          <Card class="p-my-1">
+            <template slot="title">
+              {{ slotProps.data.title }}
+            </template>
+            <template slot="content">
+              {{ slotProps.data.content.substr(0, 200) + '...' }}
+              <p></p>
+            </template>
+          </Card>
+        </template>
+      </DataView>
+    </div>
+    <div
+      v-else-if="isNewsLoading"
+      style="display:flex; justify-content:center;"
+      class="p-breadcrumb"
+    >
+      <ProgressSpinner
+        style="width:140px; height: 140px;"
+        animationDuration="1s"
+      />
+    </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   data() {
     return {
-      value: ''
+      isNewsLoading: true
     };
   },
-  props: {
-    news: {
-      type: Array,
-      required: true
+  methods: {
+    async newsGetter() {
+      await this.$store.dispatch('newsUp/fetchNews');
+    }
+  },
+  created() {
+    this.newsGetter();
+    this.isNewsLoading = false;
+  },
+  computed: {
+    ...mapState('newsUp', ['news']),
+    allNews() {
+      return this.news;
     }
   }
 };
