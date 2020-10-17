@@ -89,10 +89,6 @@ published on </pre
     </DataView>
   </div>
   <div v-else-if="isLatestPostsLoading" class="p-col-12 p-mx-auto">
-    <!-- <ProgressSpinner
-      style="width:140px; height: 140px;"
-      animationDuration="1s"
-    /> -->
     <DataView :value="fakePosts" layout="grid" :rows="6">
       >
       <template #grid="slotProps">
