@@ -4,21 +4,24 @@ export const namespaced = true;
 
 export const state = {
   postOne: {},
-  posts: []
+  posts: [],
+  pinned: []
 };
 
 export const mutations = {
   SET_POSTS(state, posts) {
     state.posts = posts;
   },
-
+  SET_PINNED_POSTS(state, pinned) {
+    state.pinned = pinned;
+  },
   SET_POST(state, postOne) {
     state.postOne = postOne;
   }
 };
 
 export const actions = {
-  fetchPosts({ commit, getters }) {
+  fetchPosts({ commit, getters, dispatch }) {
     const posts = getters.allPosts;
     if (posts) return posts;
 
@@ -26,10 +29,23 @@ export const actions = {
       .then(response => {
         commit('SET_POSTS', response.data);
       })
-      .catch(error => error.response);
+      .catch(error => {
+        dispatch('notification/add', error.response, { root: true });
+      });
   },
 
-  fetchPost({ commit, getters }, adi) {
+  fetchPinnedPosts({ commit, dispatch, getters }) {
+    return PostService.getPinnedPosts()
+      .then(response => {
+        commit('SET_PINNED_POSTS', response.data);
+        return response.data;
+      })
+      .catch(error => {
+        dispatch('notification/add', error.response, { root: true });
+      });
+  },
+
+  fetchPost({ commit, getters, dispatch }, adi) {
     const post = getters.getPostByName(adi);
     if (post) {
       commit('SET_POST', post);
@@ -40,7 +56,9 @@ export const actions = {
           commit('SET_POST', response.data);
           return response.data;
         })
-        .catch(error => error.response);
+        .catch(error => {
+          dispatch('notification/add', error.response, { root: true });
+        });
     }
   }
 };
@@ -52,9 +70,5 @@ export const getters = {
 
   getPostsByAuthorName: (state, author) => {
     return state.posts.filter(post => post.author.name === author.name);
-  },
-
-  allPosts: state => {
-    return state.posts.length;
   }
 };

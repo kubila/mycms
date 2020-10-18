@@ -127,7 +127,7 @@ export default {
   data() {
     return {
       isLatestPostsLoading: true,
-      fakePosts: [{}, {}, {}, {}, {}, {}]
+      fakePosts: [{}, {}, {}, {}, {}]
     };
   },
   async created() {
@@ -137,8 +137,8 @@ export default {
   computed: {
     ...mapState('post', ['posts']),
     cards() {
-      const card = _.sampleSize(this.posts, 50);
-      return card;
+      //const card = _.sampleSize(this.posts, 50);
+      return this.posts;
     }
   }
 };

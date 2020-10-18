@@ -31,6 +31,7 @@ Route::namespace ('API')->group(function () {
 
     Route::get('/posts', 'PostController@index');
     Route::get('/posts/{post}', 'PostController@show');
+    ROute::get('/pinned', 'PostController@pinnedOnes');
     Route::get('/categories', 'CategoryController@index');
     Route::get('/categories/{category}/posts', 'CategoryController@posts');
     Route::get('/categories/{category}/news', 'CategoryController@news');

@@ -15,8 +15,9 @@ class PostController extends Controller
     public function index()
     {
 
-        $posts = Post::with('category')->with('author')->with('tags')->get();
+        $posts = Post::with('category')->with('author')->with('tags')->get()->chunk(20)->collapse();
         return response()->json($posts, 200);
+
     }
 
     /**

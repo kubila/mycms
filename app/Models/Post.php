@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Tags;
 use Carbon\Carbon;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
@@ -15,7 +16,7 @@ class Post extends Model
         static::creating(function ($post) {
             $date = Carbon::now()->format('Y-m-d');
             $post->published = $date;
-            $post->updated = $date;
+            //$post->updated = $date;
             return true;
         });
 
@@ -26,12 +27,18 @@ class Post extends Model
         });
     }
 
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
+    }
+
     protected $fillable = [
-        'title', 'image', 'content', 'description', 'published', 'updated', 'category_id', 'author_id', 'is_published',
+        'title', 'image', 'content', 'description', 'published', 'updated', 'category_id', 'author_id', 'is_published', 'is_pinned',
     ];
 
     protected $attributes = [
-        'is_published' => false,
+        'is_published' => true,
+
     ];
 
     public function getRouteKeyName()

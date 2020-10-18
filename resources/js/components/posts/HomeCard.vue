@@ -93,7 +93,11 @@
         <div class="p-col-12 p-sm-6 p-md-6 p-lg-6 p-xl-4 p-py-lg-1 p-py-3">
           <Card class="p-my-2 p-m-sm-2 p-my-md-2 p-mx-md-2">
             <template slot="header">
-              <b-skeleton-img card-img="top" aspect="3:1"></b-skeleton-img>
+              <b-skeleton-img
+                card-img="top"
+                height="200px"
+                aspect="3:1"
+              ></b-skeleton-img>
             </template>
             <template slot="title">
               <b-skeleton animation="wave" width="70%"></b-skeleton>
@@ -102,6 +106,7 @@
               <b-skeleton animation="wave" width="90%"></b-skeleton>
             </template>
             <template slot="content">
+              <b-skeleton animation="wave" width="95%"></b-skeleton>
               <b-skeleton animation="wave" width="95%"></b-skeleton>
               <b-skeleton animation="wave" width="95%"></b-skeleton>
               <b-skeleton animation="wave" width="95%"></b-skeleton>
@@ -131,7 +136,7 @@ export default {
     ...mapState('post', ['posts']),
     featured() {
       const fas = _.chain(this.posts)
-        .sampleSize(12)
+        //.sampleSize(12)
         .orderBy(['id'], ['desc'])
         .value();
       return fas;

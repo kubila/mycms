@@ -20,10 +20,11 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('image');
             $table->text('content');
-            $table->string('description');
+            $table->text('description');
             $table->date('published');
-            $table->date('updated');
-            $table->boolean('is_published')->default(1);
+            $table->date('updated')->nullable();
+            $table->boolean('is_published')->default(true);
+            $table->boolean('is_pinned')->default(false);
             $table->timestamps();
             $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('set null');
             $table->foreign('author_id')->references('id')->on('authors')->onUpdate('cascade')->onDelete('set null');

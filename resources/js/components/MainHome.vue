@@ -56,10 +56,12 @@
                   >
                 </span>
 
-                <b-nav-item-dropdown right class="ml-1 mr-3" v-if="getUser">
-                  <template v-slot:button-content>
-                    <b-icon-person-circle><em>User</em></b-icon-person-circle>
-                  </template>
+                <b-nav-item-dropdown
+                  right
+                  class="ml-1 mr-3"
+                  v-if="getUser"
+                  :text="`${user.name}`"
+                >
                   <b-dropdown-item href="#">{{ user.name }}</b-dropdown-item>
                   <b-dropdown-item @click="logout" href="#"
                     >Sign Out</b-dropdown-item

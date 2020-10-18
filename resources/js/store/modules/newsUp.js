@@ -4,8 +4,7 @@ export const namespaced = true;
 
 export const state = {
   news: [],
-  specificNews: {},
-  categoryNews: []
+  specificNews: {}
 };
 
 export const mutations = {

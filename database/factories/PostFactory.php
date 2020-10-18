@@ -20,8 +20,9 @@ $factory->define(Post::class, function (Faker $faker) {
         },
         'title' => $faker->words(6, true),
         'image' => $faker->randomElement($file), //$faker->image('images', 2048, 1360, 'cats', true, true, 'faker'),
-        'content' => $faker->paragraphs(10, true),
-        'description' => $faker->sentence(2, true),
+        'content' => $faker->paragraphs(50, true),
+        'description' => $faker->paragraphs(2, true),
+        'is_pinned' => $faker->boolean(10),
 
     ];
 });
