@@ -15,7 +15,7 @@ class PostController extends Controller
     public function index()
     {
 
-        $posts = Post::with('category')->with('author')->with('tags')->get()->chunk(20)->collapse();
+        $posts = Post::byPublished()->with('category')->with('author')->with('tags')->get()->chunk(20)->collapse();
         return response()->json($posts, 200);
 
     }
@@ -28,7 +28,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        $poster = Post::with('category')->with('author')->with('tags')->where('title', $post->title)->first();
+        $poster = Post::byPublished()->with('category')->with('author')->with('tags')->where('title', $post->title)->first();
         return response()->json($poster, 200);
     }
 
@@ -39,7 +39,7 @@ class PostController extends Controller
      */
     public function pinnedOnes()
     {
-        $posts = Post::with('category')->with('author')->with('tags')->where('is_pinned', '=', 1)->get();
+        $posts = Post::byPublished()->byPinned()->with('category')->with('author')->with('tags')->get();
         return response()->json($posts, 200);
     }
 }
