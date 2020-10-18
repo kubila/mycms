@@ -31,4 +31,15 @@ class PostController extends Controller
         $poster = Post::with('category')->with('author')->with('tags')->where('title', $post->title)->first();
         return response()->json($poster, 200);
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function pinnedOnes()
+    {
+        $posts = Post::with('category')->with('author')->with('tags')->where('is_pinned', '=', 1)->get();
+        return response()->json($posts, 200);
+    }
 }

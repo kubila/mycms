@@ -129,13 +129,13 @@ export default {
     };
   },
   async created() {
-    await this.$store.dispatch('post/fetchPosts');
+    await this.$store.dispatch('post/fetchPinnedPosts');
     this.isPinnedPostsLoading = false;
   },
   computed: {
-    ...mapState('post', ['posts']),
+    ...mapState('post', ['pinned']),
     featured() {
-      const fas = _.chain(this.posts)
+      const fas = _.chain(this.pinned)
         //.sampleSize(12)
         .orderBy(['id'], ['desc'])
         .value();
