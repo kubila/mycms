@@ -6,31 +6,31 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateNewsTable extends Migration
 {
-  /**
-   * Run the migrations.
-   *
-   * @return void
-   */
-  public function up()
-  {
-    Schema::create('news', function (Blueprint $table) {
-      $table->bigIncrements('id');
-      $table->string('title');
-      $table->string('url');
-      $table->text('content');
-      $table->date('created');
-      $table->boolean('is_published');
-      $table->timestamps();
-    });
-  }
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('news', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('title')->index();
+            $table->string('url');
+            $table->text('content');
+            $table->date('created');
+            $table->boolean('is_published');
+            $table->timestamps();
+        });
+    }
 
-  /**
-   * Reverse the migrations.
-   *
-   * @return void
-   */
-  public function down()
-  {
-    Schema::dropIfExists('news');
-  }
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('news');
+    }
 }

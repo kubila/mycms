@@ -5,12 +5,16 @@ export const namespaced = true;
 export const state = {
   postOne: {},
   posts: [],
-  pinned: []
+  pinned: [],
+  homePosts: []
 };
 
 export const mutations = {
   SET_POSTS(state, posts) {
     state.posts = posts;
+  },
+  SET_HOME_POSTS(state, homePosts) {
+    state.homePosts = homePosts;
   },
   SET_PINNED_POSTS(state, pinned) {
     state.pinned = pinned;
@@ -42,6 +46,16 @@ export const actions = {
       })
       .catch(error => {
         dispatch('notification/add', error.response, { root: true });
+      });
+  },
+
+  fetchHomePosts({ commit, dispatch }) {
+    return PostService.getHomePosts()
+      .then(response => {
+        commit('SET_HOME_POSTS', response.data);
+      })
+      .catch(err => {
+        dispatch('notification/add', err.response, { root: true });
       });
   },
 

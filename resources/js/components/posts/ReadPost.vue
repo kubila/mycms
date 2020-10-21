@@ -17,7 +17,7 @@
               </div>
             </div>
             <div class="content-inner">
-              <div class="post-outer">
+              <div class="p-mt-4 p-mb-5">
                 <p class="pl-1 d-inline-block">
                   <em>
                     <pre class="d-inline date-sizes">by</pre>
@@ -58,16 +58,18 @@ updated on</pre
                     {{ post.updated }}
                   </p>
                 </span>
-              </div>
 
-              <figure>
+                 <figure>
                 <img
                   :src="`/storage/${post.image}`"
                   :alt="`${post.title}`"
-                  class="img-fluid"
+                  class="img-fluid p-mx-2 p-mt-4"
                   :title="`${post.title}`"
                 />
               </figure>
+              </div>
+
+
 
               <viewer :initialValue="post.content" :options="options" />
 

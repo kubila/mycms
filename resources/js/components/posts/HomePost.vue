@@ -1,7 +1,7 @@
 <template>
   <div v-if="!isLatestPostsLoading">
     <DataView
-      :value="cards"
+      :value="homePosts"
       layout="list"
       :paginator="true"
       :rows="5"
@@ -131,15 +131,11 @@ export default {
     };
   },
   async created() {
-    await this.$store.dispatch('post/fetchPosts');
+    await this.$store.dispatch('post/fetchHomePosts');
     this.isLatestPostsLoading = false;
   },
   computed: {
-    ...mapState('post', ['posts']),
-    cards() {
-      //const card = _.sampleSize(this.posts, 50);
-      return this.posts;
-    }
+    ...mapState('post', ['homePosts'])
   }
 };
 </script>

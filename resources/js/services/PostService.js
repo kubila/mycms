@@ -8,6 +8,10 @@ async function getPinnedPosts() {
   return await http.get('/api/pinned');
 }
 
+async function getHomePosts() {
+  return await http.get('/api/homeposts');
+}
+
 async function getPost(adi) {
   return await http.get('/api/posts/' + adi);
 }
@@ -15,5 +19,6 @@ async function getPost(adi) {
 export default {
   getPost,
   getPinnedPosts,
+  getHomePosts,
   getPosts
 };
