@@ -4,12 +4,15 @@
 
     <Sidebar
       :visible.sync="visibleLeft"
+      style="overflow: auto;"
       :modal="false"
       :dismissable="true"
+      class="p-sidebar-sm"
       position="right"
+      ariaCloseLabel="Close"
     >
       <div class="p-sidebar-active mt-5">
-        <div class="pl-1 pr-4 pt-5 pb-3 overflow-scroll">
+        <div class="pl-1 pr-4 pt-5 pb-3">
           <div v-if="!isCategoriesLoading">
             <nav class="mb-3 ">
               <b-nav vertical v-if="getUser">
