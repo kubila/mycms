@@ -67,7 +67,7 @@
             <template slot="subtitle"> </template>
 
             <template slot="content">
-              <p class="m-1" v-if="slotProps.data.content.length > 120">
+              <p class="m-1" v-if="slotProps.data.content.length > 100">
                 <router-link
                   :to="{
                     name: 'read',
@@ -75,7 +75,18 @@
                   }"
                   class="card-main-text"
                 >
-                  {{ slotProps.data.content.slice(0, 120) + '...' }}
+                  {{ slotProps.data.content.substr(0, 100) + '...' }}
+                </router-link>
+              </p>
+              <p class="m-1" v-else>
+                <router-link
+                  :to="{
+                    name: 'read',
+                    params: { title: slotProps.data.title }
+                  }"
+                  class="card-main-text"
+                >
+                  {{ slotProps.data.content }}
                 </router-link>
               </p>
             </template>

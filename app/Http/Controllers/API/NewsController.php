@@ -27,6 +27,7 @@ class NewsController extends Controller
      */
     public function show(News $news)
     {
-        //
+
+        return response(NewsCollection::make(News::all()->where('id', $news->id)->first()));
     }
 }

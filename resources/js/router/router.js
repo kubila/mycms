@@ -118,6 +118,15 @@ const router = new VueRouter({
       name: 'get-news',
       props: true,
       component: GetNews,
+      beforeEnter: (to, from, next) => {
+        store
+          .dispatch('newsUp/fetchSpecificNews', to.params.title)
+          .then(nws => {
+            to.params.news = nws;
+            next();
+          })
+          .catch(error => console.log(error.response));
+      },
       meta: {
         guest: true
       }

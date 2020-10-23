@@ -45,7 +45,7 @@
                   >
                 </p>
 
-                <!-- <strong class="pl-1 text-black-50">||</strong> -->
+
                 <span>
                   <pre class="d-inline pl-1 date-sizes">published on</pre>
                   <p v-if="post.published" class="d-inline-block text-black-50">

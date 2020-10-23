@@ -92,7 +92,7 @@ published on </pre
     <DataView :value="fakePosts" layout="grid" :rows="6">
       >
       <template #grid="slotProps">
-        <div class="p-col-12 p-my-2 ">
+        <div class="p-col-12 p-my-2">
           <div class="poster p-card">
             <div class="p-grid p-nogutter">
               <div class="p-col-3 p-px-0 p-my-auto">

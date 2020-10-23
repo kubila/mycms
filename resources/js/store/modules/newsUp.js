@@ -27,6 +27,15 @@ export const actions = {
         return response.data;
       })
       .catch(err => console.log(err.response));
+  },
+
+  fetchSpecificNews({ commit }, title) {
+    return NewsService.getSpecificNews(title)
+      .then(response => {
+        commit('SET_SPECIFIC_NEWS', response.data);
+        return response.data;
+      })
+      .catch(err => console.log(err.response));
   }
 };
 
