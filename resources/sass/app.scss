@@ -154,6 +154,11 @@ body {
     height: 2px;
     margin-bottom: 0;
   }
+  &-news-title {
+    font-size: $font-size-base-text;
+    color: #0b7bd6;
+    text-decoration: none !important;
+  }
 }
 
 .main-image {

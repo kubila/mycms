@@ -53,6 +53,7 @@ export const actions = {
     return PostService.getHomePosts()
       .then(response => {
         commit('SET_HOME_POSTS', response.data);
+        return response.data;
       })
       .catch(err => {
         dispatch('notification/add', err.response, { root: true });

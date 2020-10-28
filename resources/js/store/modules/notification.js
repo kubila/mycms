@@ -9,6 +9,7 @@ export const state = {
 export const actions = {
   add({ commit }, notification) {
     commit('PUSH', notification);
+    //return notification;
   },
   delete({ commit }, notificationToRemove) {
     commit('DELETE', notificationToRemove);
@@ -18,7 +19,9 @@ export const actions = {
 export const mutations = {
   PUSH(state, notification) {
     state.notifications.push({
-      ...notification,
+      data: notification.data,
+      status: notification.status,
+      statusText: notification.statusText,
       id: nextId++
     });
   },

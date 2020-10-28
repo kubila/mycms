@@ -13,7 +13,7 @@ class News extends Model
     {
         parent::boot();
         static::creating(function ($news) {
-            $date = Carbon::now()->format('d-m-Y');
+            $date = Carbon::now()->format('Y-m-d');
             $news->created = $date;
             return true;
         });

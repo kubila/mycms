@@ -14,7 +14,7 @@
         <Card class="p-my-1">
           <template slot="title">
             <router-link
-              class="card-main-title"
+              class="card-news-title"
               :to="{
                 name: 'get-news',
                 params: { title: slotProps.data.title }
@@ -24,8 +24,17 @@
             </router-link>
           </template>
           <template slot="content">
-            {{ slotProps.data.content.substr(0, 200) + '...' }}
-            <p></p>
+            <p>
+              <router-link
+                class="card-main-text"
+                :to="{
+                  name: 'get-news',
+                  params: { title: slotProps.data.title }
+                }"
+              >
+                {{ slotProps.data.content.substr(0, 200) + '...' }}
+              </router-link>
+            </p>
           </template>
         </Card>
       </template>

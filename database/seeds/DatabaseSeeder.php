@@ -18,11 +18,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
-        factory(Tags::class, 30)->create();
-        factory(News::class, 600)->create();
-        factory(Category::class, 30)->create();
-        factory(Author::class, 30)->create();
-        factory(Post::class, 1000)->create();
+        factory(Tags::class, 100)->create();
+        factory(News::class, 300)->create();
+        factory(Category::class, 20)->create();
+        factory(Author::class, 20)->create();
+        factory(Post::class, 600)->create();
         DB::table('post_tags')->insert([
             'post_id' => Post::all()->pluck('id')->random(),
             'tags_id' => Tags::all()->pluck('id')->random(),
