@@ -10,7 +10,7 @@ async function login(credentials) {
 }
 
 async function signUp(credentials) {
-  return await http.post('/api/signup', credentials);
+  return await http.post('/api/register', credentials);
 }
 
 export default {

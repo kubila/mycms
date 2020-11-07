@@ -25,7 +25,7 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::namespace ('Auth')->group(function () {
     Route::post('/login', 'LoginController@login');
     Route::post('/logout', 'LoginController@logout');
-    Route::post('/signup', 'LoginController@signup');
+    Route::post('/register', 'LoginController@signup');
 });
 
 Route::namespace ('API')->group(function () {
@@ -35,8 +35,8 @@ Route::namespace ('API')->group(function () {
     Route::get('/pinned', 'PostController@PinnedOnes');
     Route::get('/homeposts', 'PostController@HomePosts');
     Route::get('/categories', 'CategoryController@index');
-    Route::get('/categories/{category}/posts', 'CategoryController@posts');
-    Route::get('/categories/{category}/news', 'CategoryController@news');
+    Route::get('/categories/{category}/posts', 'CategoryController@posts')->where('category', '[^.]+')->where('name', '[^.]+');
+    Route::get('/categories/{category}/news', 'CategoryController@news')->where('category', '[^.]+')->where('name', '[^.]+');
     Route::get('/authors', 'AuthorController@index');
     Route::get('/authors/{author}', 'AuthorController@show');
     Route::get('/authors/{author}/posts', 'AuthorController@posts');
