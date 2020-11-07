@@ -9,6 +9,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    /**
+     * Prepare a date for array / JSON serialization.
+     *
+     * @param  \DateTimeInterface  $date
+     * @return string
+     */
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
+    }
 
     protected static function boot()
     {
@@ -35,11 +45,6 @@ class Post extends Model
     public function scopeByPinned($query)
     {
         return $query->where('is_pinned', '=', 1);
-    }
-
-    protected function serializeDate(DateTimeInterface $date)
-    {
-        return $date->format('Y-m-d H:i:s');
     }
 
     protected $fillable = [
