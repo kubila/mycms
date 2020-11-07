@@ -1,6 +1,13 @@
 <template>
+  <!-- <div v-for="nfs in notifications">
+    <b-toast id="my-toast" :title="nfs.statusText" static no-auto-hide>
+      {{ nfs.status, nfs.data }}
+    </b-toast>
+  </div> -->
   <div>
-    <Toast position="top-right" />
+    <b-button @click="toast('b-toaster-top-right', true)" class="mb-2"
+      >Toast</b-button
+    >
   </div>
 </template>
 
@@ -8,20 +15,25 @@
 import { mapState } from 'vuex';
 export default {
   data() {
-    return {};
+    return {
+      counter: 2
+    };
   },
   computed: {
     ...mapState('notification', ['notifications'])
   },
-  mounted() {
-    this.$toast.add({
-      severity: 'success',
-      summary: 'Success Message',
-      detail: 'Order submitted',
-      life: 3000
-    });
-  },
-  methods: {}
+  mounted() {},
+  methods: {
+    toast(toaster, append = false) {
+      this.counter++;
+      this.$bvToast.toast(`Toast ${this.counter} body content`, {
+        title: this.notifications.statusText,
+        toaster: toaster,
+        solid: true,
+        appendToast: append
+      });
+    }
+  }
 };
 </script>
 

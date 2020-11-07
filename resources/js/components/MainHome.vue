@@ -107,7 +107,7 @@
         </div>
       </div>
     </Sidebar>
-
+    <notifications />
     <Button
       icon="pi pi-angle-double-left"
       @click="switchSidebar"
@@ -124,6 +124,7 @@ import Navbar from './layout/Navbar';
 import AppHome from './layout/AppHome';
 import Footer from './layout/Footer';
 import AdminHome from './admin/AdminHome';
+import Notifications from './notifications/Notifications';
 import { mapState } from 'vuex';
 
 export default {
@@ -131,7 +132,8 @@ export default {
     Navbar,
     AppHome,
     Footer,
-    AdminHome
+    AdminHome,
+    Notifications
   },
   data() {
     return {

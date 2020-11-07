@@ -21,8 +21,6 @@ import 'primevue/resources/themes/saga-purple/theme.css';
 import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
 
-import ToastService from 'primevue/toastservice';
-import Toast from 'primevue/toast';
 import Sidebar from 'primevue/sidebar';
 import Dialog from 'primevue/dialog';
 import Card from 'primevue/card';
@@ -30,7 +28,6 @@ import ProgressSpinner from 'primevue/progressspinner';
 import DataView from 'primevue/dataview';
 import { BSkeletonImg } from 'bootstrap-vue';
 
-Vue.use(ToastService);
 Vue.component('b-skeleton-img', BSkeletonImg);
 
 Vue.component('DataView', DataView);
@@ -38,7 +35,6 @@ Vue.component('ProgressSpinner', ProgressSpinner);
 Vue.component('Card', Card);
 Vue.component('Sidebar', Sidebar);
 Vue.component('Dialog', Dialog);
-Vue.component('Toast', Toast);
 
 Vue.component('Notifications', Notifications);
 //Vue.component('MainHome', require('./MainHome.vue').default);

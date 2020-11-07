@@ -32,9 +32,9 @@ class LoginController extends Controller
 
             return $this->respondToUser();
         } else {
-            return response()->json(['error' => 'User not found.']);
+            return response()->json(['error' => 'User not found.'], 404);
         }
-        return response()->json(['error' => 'No match for the email.']);
+        return response()->json(['error' => 'No match for the email.'], 403);
     }
 
     /**
