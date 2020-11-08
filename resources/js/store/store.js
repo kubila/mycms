@@ -52,9 +52,7 @@ export default new Vuex.Store({
 
     Logout({ commit }) {
       return UserService.logOut()
-        .then(() => {
-          commit('LOG_OUT');
-        })
+        .then(commit('SET_LOG_OUT'))
         .catch(error => {
           console.log(error.response);
         });
@@ -80,7 +78,7 @@ export default new Vuex.Store({
       state.isLoggedIn = false;
     },
 
-    LOG_OUT(state) {
+    SET_LOG_OUT(state) {
       state.isLoggedIn = false;
       state.user = null;
       location.reload();

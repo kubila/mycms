@@ -52,10 +52,10 @@ class LoginController extends Controller
             if (Auth::attempt($user)) {
                 return $this->respondToUser();
             } else {
-                return response()->json(['error' => 'User created but couldn\'t logged in. Please login']);
+                return response()->json(['error' => 'User created but couldn\'t logged in. Please login'], 404);
             }
         } else {
-            return response()->json(['error' => 'User cannot be created.']);
+            return response()->json(['error' => 'User cannot be created.'], 400);
         }
     }
 
@@ -68,8 +68,8 @@ class LoginController extends Controller
      */
     protected function logout()
     {
-        $this->guard()->logout();
-        return response()->json(['success' => 'Successfully logged out.']);
+        Auth::logout();
+        return response()->json(['success' => 'Successfully logged out.'], 301);
     }
 
     /**
@@ -79,17 +79,17 @@ class LoginController extends Controller
      */
     protected function respondToUser()
     {
-        $user = $this->guard()->user()->only('name', 'email', 'created');
+        $user = Auth::user()->only('name', 'email', 'created');
         return response()->json($user, 200);
     }
 
-    /**
-     * Get the authentication guard.
-     *
-     * @return \Illuminate\Support\Facades\Auth
-     */
-    public function guard()
-    {
-        return Auth::guard();
-    }
+    // /**
+    //  * Get the authentication guard.
+    //  *
+    //  * @return \Illuminate\Support\Facades\Auth
+    //  */
+    // public function guard()
+    // {
+    //     return Auth::guard();
+    // }
 }

@@ -35,8 +35,8 @@ Route::namespace ('API')->group(function () {
     Route::get('/pinned', 'PostController@PinnedOnes');
     Route::get('/homeposts', 'PostController@HomePosts');
     Route::get('/categories', 'CategoryController@index');
-    Route::get('/categories/{category}/posts', 'CategoryController@posts')->where('category', '[^.]+')->where('name', '[^.]+');
-    Route::get('/categories/{category}/news', 'CategoryController@news')->where('category', '[^.]+')->where('name', '[^.]+');
+    Route::get('/categories/{category}/posts', 'CategoryController@posts');
+    Route::get('/categories/{category}/news', 'CategoryController@news');
     Route::get('/authors', 'AuthorController@index');
     Route::get('/authors/{author}', 'AuthorController@show');
     Route::get('/authors/{author}/posts', 'AuthorController@posts');
