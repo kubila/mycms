@@ -11,24 +11,13 @@
       position="right"
       ariaCloseLabel="Close"
     >
-      <div class="p-sidebar-active mt-5">
-        <div class="pl-1 pr-4 pt-5 pb-3">
+      <div class="p-sidebar-active">
+        <div class="p-pl-1 p-pr-5 p-pb-3">
           <div v-if="!isCategoriesLoading">
-            <nav class="mb-3 ">
-              <b-nav vertical v-if="getUser">
-                <b-nav-item active :to="{ name: 'posts' }">Posts</b-nav-item>
-                <b-nav-item active :to="{ name: 'categories' }"
-                  >Categories</b-nav-item
-                >
-                <b-nav-item active :to="{ name: 'authors' }"
-                  >Authors</b-nav-item
-                >
-              </b-nav>
-
-              <b-nav vertical style="margin-right: 3rem;">
-                <h4>Categories</h4>
+            <nav class="p-mb-3">
+              <b-nav vertical class="p-mr-3 p-mt-3">
+                <h4 class="p-pb-2">Categories</h4>
                 <b-nav-item
-                  class=""
                   v-for="category in categories"
                   :key="category.id"
                   :to="{ name: 'getcategory', params: { name: category.name } }"
@@ -37,42 +26,8 @@
                   <pre class="d-inline">({{ category.count }})</pre>
                 </b-nav-item>
               </b-nav>
-              <b-navbar-nav class="ml-auto mt-5">
-                <div class="mr-2" v-if="!getUser">
-                  <span class="navbar-text">
-                    <router-link :to="{ name: 'login' }" class="text-dark"
-                      >Login</router-link
-                    >
-                  </span>
-                </div>
-                <span class="navbar-text mr-4" v-if="!getUser">
-                  <div>
-                    <router-link :to="{ name: 'register' }" class="text-dark"
-                      >Register</router-link
-                    >
-                  </div>
-                </span>
 
-                <span class="navbar-text ml-1 mr-2" v-if="getUser">
-                  <router-link :to="{ name: 'admin' }" class="text-dark"
-                    >Admin</router-link
-                  >
-                </span>
-
-                <b-nav-item-dropdown
-                  right
-                  class="ml-1 mr-3"
-                  v-if="getUser"
-                  :text="`${user.name}`"
-                >
-                  <b-dropdown-item href="#">{{ user.name }}</b-dropdown-item>
-                  <b-dropdown-item @click="logout" href="#"
-                    >Sign Out</b-dropdown-item
-                  >
-                </b-nav-item-dropdown>
-              </b-navbar-nav>
-
-              <b-nav id="mylinks">
+              <b-nav id="mylinks" class="p-mt-6">
                 <li class="nav-item">
                   <a
                     class="nav-link"
@@ -83,7 +38,7 @@
                   </a>
                 </li>
 
-                <li class="nav-item ml-2">
+                <li class="nav-item p-ml-2">
                   <a
                     class="nav-link"
                     href="https://www.linkedin.com/in/yasin-sunguray/"
@@ -95,10 +50,7 @@
               </b-nav>
             </nav>
           </div>
-          <div
-            v-else-if="isCategoriesLoading"
-            style="display:flex; justify-content:center; margin-top: 30vh;"
-          >
+          <div v-else-if="isCategoriesLoading" class="spinner">
             <ProgressSpinner
               style="width:140px; height: 140px;"
               animationDuration="1s"
@@ -107,7 +59,7 @@
         </div>
       </div>
     </Sidebar>
-    <notifications />
+    <!-- <notifications /> -->
     <Button
       icon="pi pi-angle-double-left"
       @click="switchSidebar"

@@ -214,8 +214,13 @@ body {
 //   padding-top: 0.5rem !important;
 // }
 
-.navy {
+// .navy {
+//   background-color: #322348 !important;
+// }
+.p-menubar {
   background-color: #322348 !important;
+  border: none !important;
+  border-radius: 0 !important;
 }
 .navbar-nav .nav-link {
   font-size: $font-size-base;
@@ -235,6 +240,11 @@ body {
   display: flex;
   justify-content: center;
   margin-bottom: 1rem;
+}
+.spinner {
+  display: flex;
+  justify-content: center;
+  margin-top: 30vh;
 }
 .p-dataview-content {
   background-color: #f5f5f6 !important;
