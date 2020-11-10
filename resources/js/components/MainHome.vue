@@ -98,19 +98,11 @@ export default {
     this.isCategoriesLoading = false;
   },
   computed: {
-    ...mapState('category', ['categories']),
-    ...mapState(['user']),
-    ...mapState(['isLoggedIn']),
-    getUser() {
-      return this.user;
-    }
+    ...mapState('category', ['categories'])
   },
   methods: {
     switchSidebar() {
       return (this.visibleLeft = !this.visibleLeft);
-    },
-    async logout() {
-      await this.$store.dispatch('Logout');
     }
   }
 };

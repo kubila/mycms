@@ -1,107 +1,149 @@
 <template>
-  <!-- <div>
-    <b-navbar toggleable="lg" type="dark" class="navy">
-      <b-navbar-brand :to="{ name: 'app-home' }" class="navbar-brand text-light"
-        >Blog Home</b-navbar-brand
-      >
-
-      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-      <b-collapse id="nav-collapse" is-nav> -->
-  <!-- <b-navbar-nav>
-          <b-nav-item
-            v-for="category in categories"
-            :category="category"
-            :key="category.id"
-            :to="{ name: 'getcategory', params: { name: category.name } }"
-          >
-            {{ category.name }}
-          </b-nav-item>
-        </b-navbar-nav> -->
-
-  <!-- <b-navbar-nav class="ml-auto">
-          <b-nav-form class="mr-5" @submit.prevent="search">
-            <b-form-input
-              size="sm"
-              class="mr-sm-2"
-              placeholder="Search"
-              name="search"
-              v-model="form.search"
-            ></b-form-input>
-            <b-button size="sm" class="my-2 my-sm-0" type="submit"
-              >Search</b-button
-            >
-          </b-nav-form>
-        </b-navbar-nav> -->
-  <!-- </b-collapse>
-    </b-navbar>
-  </div> -->
-  <Menubar>
+  <!-- <Menubar>
     <template #start>
       <b-navbar-brand :to="{ name: 'app-home' }" class="navbar-brand text-light"
         >Blog Home</b-navbar-brand
       >
     </template>
+
     <template #end>
-      <b-nav vertical v-if="getUser" class="p-mt-3">
-        <b-nav-item active :to="{ name: 'posts' }"
-          ><b class="text-dark">Posts</b></b-nav-item
-        >
-        <b-nav-item active :to="{ name: 'categories' }"
-          ><b class="text-dark">Categories</b></b-nav-item
-        >
-        <b-nav-item active :to="{ name: 'authors' }"
-          ><b class="text-dark">Authors</b></b-nav-item
-        >
-      </b-nav>
+      <div class="p-grid p-nogutter">
+        <div class="p-col-12">
+          <div class="el-hiza">
+            <div class="p-mr-3">
+              <InputText placeholder="Search" type="text" />
+            </div>
 
-      <!-- <b-navbar-nav class="ml-auto p-mt-3 p-mb-6"> -->
-      <div class="mr-2" v-if="!getUser">
-        <span class="navbar-text">
-          <router-link :to="{ name: 'login' }" class="text-dark"
-            ><b>Login</b></router-link
-          >
-        </span>
-      </div>
-      <div>
-        <span class="navbar-text mr-4" v-if="!getUser">
-          <router-link :to="{ name: 'register' }" class="text-dark"
-            ><b>Register</b></router-link
-          >
-        </span>
-      </div>
-      <!-- <span class="navbar-text ml-1 mr-2" v-if="getUser">
-                  <router-link :to="{ name: 'admin' }" class="text-dark"
-                    >Admin</router-link
+            <div v-if="getUser" class="p-mx-1 el-hiza">
+              <ul>
+                <li class="menu-links">
+                  <router-link :to="{ name: 'posts' }" class="p-mr-1"
+                    ><b class="text-light">Posts</b></router-link
                   >
-                </span> -->
-      <!--
-                <b-nav-item-dropdown
-                  left
-                  class="ml-1 mr-3"
-                  variant="primary"
-                  v-if="getUser"
+                </li>
+                <li class="menu-links">
+                  <router-link :to="{ name: 'categories' }" class="p-mr-1"
+                    ><b class="text-light">Categories</b></router-link
+                  >
+                </li>
+                <li class="menu-links">
+                  <router-link :to="{ name: 'authors' }" class="p-mr-1"
+                    ><b class="text-light">Authors</b></router-link
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <div class="p-mr-2" v-if="!getUser">
+              <span class="navbar-text">
+                <router-link :to="{ name: 'login' }" class="text-light"
+                  ><b>Login</b></router-link
                 >
-                  <template #button-content>
-                    <i class="pi pi-user" style="fontSize: 1.5rem"></i
-                    ><span class="p-pl-2">{{ user.name }}</span>
-                  </template>
+              </span>
+            </div>
+            <div class="p-mr-3">
+              <span class="navbar-text mr-4" v-if="!getUser">
+                <router-link :to="{ name: 'register' }" class="text-light"
+                  ><b>Register</b></router-link
+                >
+              </span>
+            </div>
 
-                  <b-dropdown-item @click="logout" href="#"
-                    >Sign Out</b-dropdown-item
-                  >
-                </b-nav-item-dropdown> -->
-      <!-- </b-navbar-nav> -->
-      <InputText placeholder="Search" type="text" />
-      <Button
-        v-if="getUser"
-        label="logout"
-        icon="pi pi-power-off"
-        :style="{ 'margin-left': '0 .5em' }"
-        @click="logout"
-      />
+            <Button
+              v-if="getUser"
+              label="logout"
+              icon="pi pi-power-off"
+              :style="{ 'margin-left': '0 .5em' }"
+              @click="logout"
+            />
+          </div>
+        </div>
+      </div>
     </template>
-  </Menubar>
+  </Menubar> -->
+  <div>
+    <!-- <b-nav-form class="mr-5" @submit.prevent="search">
+          <b-form-input
+            size="sm"
+            class="mr-sm-2"
+            placeholder="Search"
+            name="search"
+            v-model="form.search"
+          ></b-form-input>
+
+        </b-nav-form> -->
+
+    <b-navbar toggleable="lg" type="dark" variant="info" class="navy">
+      <!-- <b-navbar-brand :to="{ name: 'app-home' }" class="navbar-brand text-light"
+        >Blog Home</b-navbar-brand
+      > -->
+      <Button
+        icon="pi pi-home"
+        label="BlogHome"
+        class="p-button-lg p-button-rounded p-button-outlined"
+        @click="goToHome"
+      />
+
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+      <b-collapse id="nav-collapse" is-nav>
+        <!-- Right aligned navigation items -->
+        <b-navbar-nav class="ml-auto">
+          <b-nav-form class="p-mr-4">
+            <b-form-input
+              size="md"
+              class="mr-sm-2"
+              placeholder="Search"
+              v-model="form.search"
+            ></b-form-input>
+            <!-- <b-button size="sm" class="my-2 my-sm-0" type="submit"
+              >Search</b-button
+            > -->
+          </b-nav-form>
+
+          <div class="p-mr-2" v-if="!getUser">
+            <!-- <span class="navbar-text">
+              <router-link :to="{ name: 'login' }" class="text-light"
+                >Login</router-link
+              >
+            </span> -->
+            <Button
+              icon="pi pi-sign-in"
+              label="Login"
+              class="p-button-outlined p-button-info"
+              @click="goToLogin"
+            />
+          </div>
+          <div class="p-mr-3" v-if="!getUser">
+            <!-- <span class="navbar-text mr-4" >
+              <router-link :to="{ name: 'register' }" class="text-light"
+                >Register</router-link
+              >
+            </span> -->
+            <Button
+              icon="pi pi-user-plus"
+              label="Register"
+              class="p-button-outlined p-button-secondary"
+              @click="goToRegister"
+            />
+          </div>
+          <b-nav v-if="getUser">
+            <b-nav-item active :to="{ name: 'posts' }">Posts</b-nav-item>
+            <b-nav-item active :to="{ name: 'categories' }"
+              >Categories</b-nav-item
+            >
+            <b-nav-item active :to="{ name: 'authors' }">Authors</b-nav-item>
+          </b-nav>
+          <Button
+            v-if="getUser"
+            label="Logout"
+            icon="pi pi-sign-out"
+            :style="{ 'margin-left': '0 .8em' }"
+            @click="logout"
+          />
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
+  </div>
 </template>
 
 <script>
@@ -132,6 +174,15 @@ export default {
     }
   },
   methods: {
+    goToHome() {
+      this.$router.push({ name: 'app-home' });
+    },
+    goToLogin() {
+      this.$router.push({ name: 'login' });
+    },
+    goToRegister() {
+      this.$router.push({ name: 'register' });
+    },
     async search() {
       const searchString = this.form.search;
       // this.$router.push({

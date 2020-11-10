@@ -214,14 +214,10 @@ body {
 //   padding-top: 0.5rem !important;
 // }
 
-// .navy {
-//   background-color: #322348 !important;
-// }
-.p-menubar {
+.navy {
   background-color: #322348 !important;
-  border: none !important;
-  border-radius: 0 !important;
 }
+
 .navbar-nav .nav-link {
   font-size: $font-size-base;
 }
@@ -229,6 +225,7 @@ body {
 .menu {
   background-color: rgb(122, 88, 177) !important;
 }
+
 .sitting-button {
   right: 0 !important;
   position: fixed !important;
@@ -302,7 +299,8 @@ body {
 .footer {
   position: absolute;
   width: 100%;
-  background-color: #322348;
+  //background-color: #322348;
+  background-color: #301934;
 
   height: 15rem;
   bottom: 0;
