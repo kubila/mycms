@@ -23,9 +23,9 @@ Route::middleware('auth:sanctum')->group(function () {
 // Route::group(['namespace' => 'Auth', 'middleware' => ['auth:sanctum']]);
 
 Route::namespace ('Auth')->group(function () {
-    Route::post('/login', 'LoginController@login');
-    Route::post('/logout', 'LoginController@logout');
-    Route::post('/register', 'LoginController@signup');
+    Route::post('/login', 'AuthController@login');
+    Route::post('/logout', 'AuthController@logout');
+    Route::post('/register', 'AuthController@signup');
 });
 
 Route::namespace ('API')->group(function () {
