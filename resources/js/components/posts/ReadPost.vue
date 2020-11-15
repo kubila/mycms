@@ -105,7 +105,7 @@ import {
   BIconPersonFill,
   BIconGripHorizontal,
   BIconPaperclip,
-  BIconEggFill
+  BIconEggFill,
 } from 'bootstrap-vue';
 
 import 'codemirror/lib/codemirror.css';
@@ -125,6 +125,7 @@ hljs.registerLanguage('csharp', csharp);
 hljs.registerLanguage('python', python);
 
 export default {
+  name: 'Readpost',
   components: {
     BIcon,
     BIconTagFill,
@@ -132,21 +133,21 @@ export default {
     BIconGripHorizontal,
     BIconPaperclip,
     BIconEggFill,
-    viewer: Viewer
+    viewer: Viewer,
   },
   data() {
     return {
       options: {
-        plugins: [[codeSyntaxHightlight, { hljs }]]
-      }
+        plugins: [[codeSyntaxHightlight, { hljs }]],
+      },
     };
   },
   props: {
     post: {
       type: Object,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 };
 </script>
 

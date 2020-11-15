@@ -1,8 +1,10 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import store from '../store/store.js';
+import VueMeta from 'vue-meta';
 
 Vue.use(VueRouter);
+Vue.use(VueMeta);
 import AppHome from '../components/layout/AppHome';
 import ReadPost from '../components/posts/ReadPost';
 import GetCategory from '../components/categories/GetCategory';

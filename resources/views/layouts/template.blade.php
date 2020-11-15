@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- CSRF Token -->
     {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
 
@@ -19,7 +18,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"> --}}
+
 </head>
 <body id="body-back">
     <div id="app">

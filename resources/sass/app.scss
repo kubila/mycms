@@ -334,6 +334,10 @@ body {
   }
 }
 
+#home-button {
+  padding-left: 0.625rem !important;
+}
+
 // poster mobile sucks, fix it somehow
 @media screen and (max-width: 991px) {
   .poster {

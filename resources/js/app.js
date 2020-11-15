@@ -26,7 +26,6 @@ import Dialog from 'primevue/dialog';
 import Card from 'primevue/card';
 import ProgressSpinner from 'primevue/progressspinner';
 import DataView from 'primevue/dataview';
-import Menubar from 'primevue/menubar';
 import InputText from 'primevue/inputtext';
 import { BSkeletonImg } from 'bootstrap-vue';
 
@@ -37,7 +36,6 @@ Vue.component('ProgressSpinner', ProgressSpinner);
 Vue.component('Card', Card);
 Vue.component('Sidebar', Sidebar);
 Vue.component('Dialog', Dialog);
-Vue.component('Menubar', Menubar);
 Vue.component('InputText', InputText);
 
 Vue.component('Notifications', Notifications);

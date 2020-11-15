@@ -64,11 +64,13 @@ export const actions = {
     const post = getters.getPostByName(adi);
     if (post) {
       commit('SET_POST', post);
+      //document.title = post.title;
       return post;
     } else {
       return PostService.getPost(adi)
         .then(response => {
           commit('SET_POST', response.data);
+          //document.title = response.data.title;
           return response.data;
         })
         .catch(error => {

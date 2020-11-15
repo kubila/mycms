@@ -4,7 +4,7 @@
 
     <Sidebar
       :visible.sync="visibleLeft"
-      style="overflow: auto;"
+      style="overflow: auto"
       :modal="false"
       :dismissable="true"
       class="p-sidebar-sm"
@@ -34,7 +34,7 @@
                     href="https://github.com/kubila"
                     target="_blank"
                   >
-                    <i class="pi pi-github" style="fontSize: 2rem"></i>
+                    <i class="pi pi-github" style="fontsize: 2rem"></i>
                   </a>
                 </li>
 
@@ -44,7 +44,7 @@
                     href="https://www.linkedin.com/in/yasin-sunguray/"
                     target="_blank"
                   >
-                    <i class="pi pi-twitter" style="fontSize: 2rem"></i>
+                    <i class="pi pi-twitter" style="fontsize: 2rem"></i>
                   </a>
                 </li>
               </b-nav>
@@ -52,7 +52,7 @@
           </div>
           <div v-else-if="isCategoriesLoading" class="spinner">
             <ProgressSpinner
-              style="width:140px; height: 140px;"
+              style="width: 140px; height: 140px"
               animationDuration="1s"
             />
           </div>
@@ -80,31 +80,33 @@ import Notifications from './notifications/Notifications';
 import { mapState } from 'vuex';
 
 export default {
+  name: 'Mainhome',
+
   components: {
     Navbar,
     AppHome,
     Footer,
     AdminHome,
-    Notifications
+    Notifications,
   },
   data() {
     return {
       visibleLeft: false,
-      isCategoriesLoading: true
+      isCategoriesLoading: true,
     };
   },
-  async created() {
-    await this.$store.dispatch('category/fetchCategories');
-    this.isCategoriesLoading = false;
+  created() {
+    this.$store.dispatch('category/fetchCategories');
+    return (this.isCategoriesLoading = false);
   },
   computed: {
-    ...mapState('category', ['categories'])
+    ...mapState('category', ['categories']),
   },
   methods: {
     switchSidebar() {
       return (this.visibleLeft = !this.visibleLeft);
-    }
-  }
+    },
+  },
 };
 </script>
 

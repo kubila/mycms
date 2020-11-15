@@ -53,14 +53,15 @@ import { mapState } from 'vuex';
 import _ from 'lodash';
 
 export default {
+  name: 'Apphome',
   data() {
     return {};
   },
   components: {
     HomeCard,
     HomePost,
-    News
-  }
+    News,
+  },
 };
 </script>
 <style></style>

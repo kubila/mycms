@@ -1,86 +1,14 @@
 <template>
-  <!-- <Menubar>
-    <template #start>
-      <b-navbar-brand :to="{ name: 'app-home' }" class="navbar-brand text-light"
-        >Blog Home</b-navbar-brand
-      >
-    </template>
-
-    <template #end>
-      <div class="p-grid p-nogutter">
-        <div class="p-col-12">
-          <div class="el-hiza">
-            <div class="p-mr-3">
-              <InputText placeholder="Search" type="text" />
-            </div>
-
-            <div v-if="getUser" class="p-mx-1 el-hiza">
-              <ul>
-                <li class="menu-links">
-                  <router-link :to="{ name: 'posts' }" class="p-mr-1"
-                    ><b class="text-light">Posts</b></router-link
-                  >
-                </li>
-                <li class="menu-links">
-                  <router-link :to="{ name: 'categories' }" class="p-mr-1"
-                    ><b class="text-light">Categories</b></router-link
-                  >
-                </li>
-                <li class="menu-links">
-                  <router-link :to="{ name: 'authors' }" class="p-mr-1"
-                    ><b class="text-light">Authors</b></router-link
-                  >
-                </li>
-              </ul>
-            </div>
-
-            <div class="p-mr-2" v-if="!getUser">
-              <span class="navbar-text">
-                <router-link :to="{ name: 'login' }" class="text-light"
-                  ><b>Login</b></router-link
-                >
-              </span>
-            </div>
-            <div class="p-mr-3">
-              <span class="navbar-text mr-4" v-if="!getUser">
-                <router-link :to="{ name: 'register' }" class="text-light"
-                  ><b>Register</b></router-link
-                >
-              </span>
-            </div>
-
-            <Button
-              v-if="getUser"
-              label="logout"
-              icon="pi pi-power-off"
-              :style="{ 'margin-left': '0 .5em' }"
-              @click="logout"
-            />
-          </div>
-        </div>
-      </div>
-    </template>
-  </Menubar> -->
   <div>
-    <!-- <b-nav-form class="mr-5" @submit.prevent="search">
-          <b-form-input
-            size="sm"
-            class="mr-sm-2"
-            placeholder="Search"
-            name="search"
-            v-model="form.search"
-          ></b-form-input>
-
-        </b-nav-form> -->
-
     <b-navbar toggleable="lg" type="dark" variant="info" class="navy">
       <!-- <b-navbar-brand :to="{ name: 'app-home' }" class="navbar-brand text-light"
         >Blog Home</b-navbar-brand
       > -->
       <Button
+        id="home-button"
         icon="pi pi-home"
         label="BlogHome"
-        class="p-button-lg p-button-rounded p-button-outlined"
+        class="p-button-lg p-button-rounded p-button-text"
         @click="goToHome"
       />
 
