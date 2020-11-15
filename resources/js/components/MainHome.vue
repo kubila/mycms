@@ -81,7 +81,19 @@ import { mapState } from 'vuex';
 
 export default {
   name: 'Mainhome',
-
+  metaInfo() {
+    return {
+      title: 'Blog Home Page',
+      meta: [
+        {
+          vmid: 'description',
+          name: 'description',
+          content:
+            'Open Source, Laravel, .NET Core, Javascript, React, Vue, SQL, Full Stack',
+        },
+      ],
+    };
+  },
   components: {
     Navbar,
     AppHome,

@@ -74,12 +74,25 @@
 
 <script>
 export default {
+  name: 'Getnews',
+  metaInfo() {
+    return {
+      title: this.news.title,
+      meta: [
+        {
+          vmid: 'description',
+          name: 'description',
+          content: this.news.title,
+        },
+      ],
+    };
+  },
   props: {
     news: {
       type: Object,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 };
 </script>
 

@@ -46,12 +46,25 @@ import CategoryNews from './CategoryNews';
 import HomePost from '../posts/HomePost';
 import { mapState } from 'vuex';
 export default {
+  name: 'Getcategory',
+  metaInfo() {
+    return {
+      title: 'Category' + ' - ' + this.$attrs.name,
+      meta: [
+        {
+          vmid: 'description',
+          name: 'description',
+          content: 'Category ' + ' - ' + this.$attrs.name,
+        },
+      ],
+    };
+  },
   data() {
     return {
       isLoading: true,
       isNewsLoading: true,
       count: 0,
-      newsCount: 0
+      newsCount: 0,
     };
   },
   methods: {
@@ -70,7 +83,7 @@ export default {
       await this.$store
         .dispatch('category/fetchCategoryNews', category)
         .then((this.isNewsLoading = false));
-    }
+    },
   },
   created() {
     this.getPosts();
@@ -78,7 +91,7 @@ export default {
   },
   components: {
     CategoryNews,
-    HomePost
+    HomePost,
   },
   computed: {
     ...mapState('category', ['categoryPosts', 'categoryNews']),
@@ -93,8 +106,8 @@ export default {
     },
     calculateNews() {
       return (this.newsCount = this.categoryNews.length);
-    }
-  }
+    },
+  },
 };
 </script>
 

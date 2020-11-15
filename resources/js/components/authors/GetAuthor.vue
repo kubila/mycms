@@ -20,7 +20,7 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-3 mt-3" style="display:grid; align-content:center;">
+        <div class="col-sm-3 mt-3" style="display: grid; align-content: center">
           <div v-if="isAuthorLoading">Author is loading...</div>
           <div v-else-if="!isAuthorLoading">
             <Author :authorFound="authorItself" />
@@ -36,11 +36,24 @@ import Author from './Author';
 import HomePost from '../posts/HomePost';
 import { mapState } from 'vuex';
 export default {
+  name: 'Getauthor',
+  metaInfo() {
+    return {
+      title: 'Author' + ' - ' + this.$attrs.name,
+      meta: [
+        {
+          vmid: 'description',
+          name: 'description',
+          content: this.authorOne.description,
+        },
+      ],
+    };
+  },
   data() {
     return {
       isLoading: true,
       isAuthorLoading: true,
-      count: 0
+      count: 0,
     };
   },
   methods: {
@@ -55,7 +68,7 @@ export default {
       await this.$store
         .dispatch('author/fetchAuthor', authorName)
         .then((this.isAuthorLoading = false));
-    }
+    },
   },
   created() {
     this.getAuthorPosts();
@@ -63,7 +76,7 @@ export default {
   },
   components: {
     Author,
-    HomePost
+    HomePost,
   },
   computed: {
     ...mapState('author', ['authorOne', 'authorPosts']),
@@ -75,8 +88,8 @@ export default {
     },
     authorItself() {
       return this.authorOne;
-    }
-  }
+    },
+  },
 };
 </script>
 

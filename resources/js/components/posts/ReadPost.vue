@@ -126,6 +126,18 @@ hljs.registerLanguage('python', python);
 
 export default {
   name: 'Readpost',
+  metaInfo() {
+    return {
+      title: this.post.title,
+      meta: [
+        {
+          vmid: 'description',
+          name: 'description',
+          content: this.post.description,
+        },
+      ],
+    };
+  },
   components: {
     BIcon,
     BIconTagFill,
