@@ -17,18 +17,11 @@ return [
 
     'paths' => [
         'api/*',
-        'login',
-        'logout',
-        'sanctum/csrf-cookie',
     ],
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => [
-        'http://localhost:3000',
-        'mycms.test',
-        'kubila.dev',
-    ],
+    'allowed_origins' => ['*'],
 
     'allowed_origins_patterns' => [],
 

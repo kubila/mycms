@@ -1,23 +1,33 @@
 <?php
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+//Route::middleware('auth:sanctum')
+// Route::middleware('auth:sanctum')->group(function () {
+//     Route::group([
+
+//         'prefix' => 'admin',
+
+//     ], function ($router) {
+
+//         Route::apiResource('posts', 'Admin\PostsController');
+//         Route::apiResource('categories', 'Admin\CategoriesController');
+//         Route::apiResource('authors', 'Admin\AuthorsController');
+//         Route::apiResource('news', 'Admin\NewsController');
+//         Route::apiResource('tags', 'Admin\TagsController');
+//     });
+// });
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
 Route::middleware('auth:sanctum')->group(function () {
-    Route::group([
-
-        'prefix' => 'admin',
-
-    ], function ($router) {
-
-        Route::apiResource('posts', 'Admin\PostsController');
-        Route::apiResource('categories', 'Admin\CategoriesController');
-        Route::apiResource('authors', 'Admin\AuthorsController');
-        Route::apiResource('news', 'Admin\NewsController');
-        Route::apiResource('tags', 'Admin\TagsController');
-    });
-
-    // Route::namespace ('Auth')->group(function () {
-    //     Route::post('/logout', 'LoginController@logout');
-    // });
+    Route::apiResource('admin/posts', 'Admin\PostsController');
+    Route::apiResource('admin/categories', 'Admin\CategoriesController');
+    Route::apiResource('admin/authors', 'Admin\AuthorsController');
+    Route::apiResource('admin/news', 'Admin\NewsController');
+    Route::apiResource('admin/tags', 'Admin\TagsController');
 });
 
 // Route::group(['namespace' => 'Auth', 'middleware' => ['auth:sanctum']]);

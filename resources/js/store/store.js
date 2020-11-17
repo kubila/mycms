@@ -16,7 +16,8 @@ export default new Vuex.Store({
   state: {
     user: null,
     isLoggedIn: false,
-    search: null
+    search: null,
+    token: null
   },
 
   modules: {
@@ -31,10 +32,11 @@ export default new Vuex.Store({
   actions: {
     fetchUser({ commit }, credentials) {
       return UserService.login(credentials)
-        .then(({ data }) => {
-          commit('SET_USER', data);
+        .then(res => {
+          commit('SET_TOKEN', res);
+          commit('SET_USER', res);
           commit('SET_LOGGED_IN');
-          return data;
+          return res;
         })
         .catch(error => {
           console.log(error.response);
@@ -64,6 +66,11 @@ export default new Vuex.Store({
   mutations: {
     SET_SEARCH(state, search) {
       state.search = search;
+    },
+
+    SET_TOKEN(state, token) {
+      state.token = token.headers['x-auth-token'];
+      localStorage.setItem('auth-token', token.headers['x-auth-token']);
     },
 
     SET_USER(state, data) {

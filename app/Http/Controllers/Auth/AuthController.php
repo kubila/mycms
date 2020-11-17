@@ -11,11 +11,11 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
 
-    public function __construct()
-    {
+    // public function __construct()
+    // {
 
-        $this->middleware('auth:api', ['except' => ['login', 'signup']]);
-    }
+    //     $this->middleware('auth:api', ['except' => ['login', 'signup']]);
+    // }
 
     /**
      * Handle an incoming login request.
@@ -24,17 +24,25 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function login(Request $request)
+    public function login(Request $request, User $user)
     {
-        $credentials = $request->only('email', 'password');
+        $request->validate([
+            'email' => 'required', 'string', 'email', 'max:255', 'unique:users',
+            'password' => 'required', 'string', 'min:8', 'confirmed',
+        ]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
 
-            return $this->respondToUser();
+            $user = $this->getUser();
+            $token = $user->createToken('test')->plainTextToken;
+
+            return $this
+                ->respondToUserWithToken($token);
+            //return response()->json($user, 200, ['x-auth-token' => [$this->respondWithToken($token)]]);
         } else {
-            return response()->json(['error' => 'User not found.'], 404);
+            return response()
+                ->json(['error' => 'Not found.'], 404);
         }
-        return response()->json(['error' => 'No match for the email.'], 403);
     }
 
     /**
@@ -49,7 +57,7 @@ class AuthController extends Controller
         $user = $request->validated();
         if ($user) {
             User::create($user);
-            if (Auth::attempt($user)) {
+            if (Auth::guard('web')->attempt($user)) {
                 return $this->respondToUser();
             } else {
                 return response()->json(['error' => 'User created but couldn\'t logged in. Please login'], 404);
@@ -68,19 +76,49 @@ class AuthController extends Controller
      */
     protected function logout()
     {
-        Auth::logout();
-        return response()->json(['success' => 'Successfully logged out.'], 301);
+        Auth::guard('web')->logout();
+        //$this->revokeToken($user);
+        return response()->json('', 205);
     }
 
+    // /**
+    //  * Get the authenticated user.
+    //  *
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // protected function respondToUser()
+    // {
+    //     $user = Auth::user()->only('name', 'email', 'created');
+    //     return response()->json($user, 200);
+    // }
+
     /**
-     * Get the authenticated user.
+     * Delete all of the users' issued tokens.
      *
-     * @return \Illuminate\Http\Response
+     * @param  \App\User  $user
      */
-    protected function respondToUser()
+    public function revokeToken(User $user)
     {
-        $user = Auth::user()->only('name', 'email', 'created');
-        return response()->json($user, 200);
+        return $user
+            ->tokens()
+            ->delete();
+    }
+
+    public function getUser()
+    {
+        return auth()->user();
+
+    }
+    /**
+     * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
+     */
+    public function respondToUserWithToken($token)
+    {
+        return response()
+            ->json(
+                $this->getUser(),
+                200,
+                ['Authorization' => $token]);
     }
 
     // /**

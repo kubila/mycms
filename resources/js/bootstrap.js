@@ -1,3 +1,4 @@
+import axios from 'axios';
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
@@ -17,7 +18,7 @@
 
 window.axios = require('axios');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
+axios.defaults.withCredentials = true;
 // const jwtToken = `Bearer ${localStorage.getItem('token')}`;
 // window.axios.defaults.headers.common['Authorization'] = jwtToken;
 /**

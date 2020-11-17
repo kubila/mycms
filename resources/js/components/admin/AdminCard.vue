@@ -150,7 +150,7 @@ Vue.component('Toolbar', Toolbar);
 
 export default {
   components: {
-    editor: Editor
+    editor: Editor,
   },
   data() {
     return {
@@ -160,8 +160,8 @@ export default {
       id: {},
       post: {},
       options: {
-        plugins: [[codeSyntaxHightlight, { hljs }]]
-      }
+        plugins: [[codeSyntaxHightlight, { hljs }]],
+      },
     };
   },
   created() {
@@ -171,11 +171,11 @@ export default {
     ...mapState('post', ['posts']),
     adminPosts() {
       const orderedPosts = _.orderBy(this.posts, ['id'], 'desc');
-      return this.posts;
+      return this.orderedPosts;
     },
     adminPostPaginator() {
       return this.posts.length;
-    }
+    },
   },
   methods: {
     editPost(post) {
@@ -188,8 +188,8 @@ export default {
       this.deletePostDialog = true;
       return;
     },
-    deletePost() {}
-  }
+    deletePost() {},
+  },
 };
 </script>
 

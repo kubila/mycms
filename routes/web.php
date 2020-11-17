@@ -11,7 +11,14 @@
 |
  */
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
+//Auth::routes();
+Auth::routes();
 Route::view('/path?', 'newhome');
 Route::fallback(function () {
-  return view('newhome');
+    return view('newhome');
 });
+
+//Route::get('/home', 'HomeController@index')->name('home');

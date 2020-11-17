@@ -1,7 +1,7 @@
 import http from './httpService';
 
 async function getPosts() {
-  return await http.get('/api/posts');
+  return await http.get('/api/admin/posts');
 }
 
 async function getPinnedPosts() {
