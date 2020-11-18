@@ -72,16 +72,16 @@ class PostController extends Controller
     public function HomePosts()
     {
 
-        // $posts = Post::query()
-        //     ->select(['id', 'title', 'published', 'author_id', 'category_id', 'image'])
-        //     ->with('author')
-        //     ->with('category')
-        //     ->byPublished()
-        //     ->get();
+        $posts = Post::query()
+            ->select(['id', 'title', 'published', 'author_id', 'category_id', 'image'])
+            ->with('author')
+            ->with('category')
+            ->byPublished()
+            ->get();
 
-        // return response()
-        //     ->json($posts, 200);
-        return response('Get outta here', 404);
+        return response()
+            ->json($posts, 200);
+        // return response('Get outta here', 404);
 
     }
 }

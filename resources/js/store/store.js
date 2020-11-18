@@ -43,8 +43,8 @@ export default new Vuex.Store({
         });
     },
 
-    isLoggedIn({ commit }) {
-      const status = this.getters.Login;
+    isLoggedIn({ commit }, getters) {
+      const status = getters.Login;
       if (!status) {
         commit('SET_NOT_LOGGED_IN');
         return false;
@@ -69,8 +69,8 @@ export default new Vuex.Store({
     },
 
     SET_TOKEN(state, token) {
-      state.token = token.headers['x-auth-token'];
-      localStorage.setItem('auth-token', token.headers['x-auth-token']);
+      state.token = token.headers['authorization'];
+      localStorage.setItem('auth-token', token.headers['authorization']);
     },
 
     SET_USER(state, data) {
@@ -88,6 +88,8 @@ export default new Vuex.Store({
     SET_LOG_OUT(state) {
       state.isLoggedIn = false;
       state.user = null;
+      state.token = {};
+      localStorage.removeItem('auth-token');
       location.reload();
     }
   },

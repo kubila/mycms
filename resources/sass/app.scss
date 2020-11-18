@@ -11,8 +11,8 @@
 @import 'node_modules/@braid/vue-formulate/themes/snow/snow.scss';
 
 body {
-  background: #f5f5f6;
-  // background-color: $body-bg;
+  //background: #f5f5f6;
+  background-color: $body-bg;
 }
 
 .wrapper {
@@ -189,12 +189,13 @@ body {
   outline: 1px solid rgb(218, 218, 218);
   //background-color: ghostwhite;
   //filter: drop-shadow(0 0 0.1rem #8585a5);
-
+  background: #e2e8f0 !important;
   //filter: drop-shadow(0 0 0.1rem #8585a5);
   &:hover {
     cursor: pointer;
     //transform: scale(1.03);
-    outline: 5px solid rgb(255, 255, 255);
+    //outline: 5px solid rgb(255, 255, 255);
+    outline: 3px solid rgb(255, 255, 255);
     //filter: none;
     filter: drop-shadow(0.2rem 0.2rem 0.6rem #8585a5);
   }
@@ -205,7 +206,9 @@ body {
     margin-bottom: 0.2rem;
   }
 }
-
+// .p-card {
+//   background: #e2e8f0 !important;
+// }
 .p-card-content {
   padding-bottom: 0 !important;
   padding-top: 0 !important;
@@ -244,7 +247,15 @@ body {
   margin-top: 30vh;
 }
 .p-dataview-content {
-  background-color: #f5f5f6 !important;
+  //background-color: #f5f5f6 !important;
+  background-color: $body-bg !important;
+}
+.news {
+  //background: #ebf8ff !important;
+  background: #e4f0fd !important;
+  &:hover {
+    filter: drop-shadow(0.1rem 0.1rem 0.1rem #8585a5);
+  }
 }
 .poster {
   // margin-top: 10px;
@@ -254,6 +265,7 @@ body {
   //border-radius: 1rem;
   outline: 1px solid rgb(218, 218, 218);
   //background-color: #fff;
+  background: #eaf0f8 !important;
   transition: transform 0.1s ease-in-out;
   filter: drop-shadow(0.1rem 0.1rem 0.1rem #8585a5);
   //filter: drop-shadow(0 0 0.2rem #322348);
@@ -261,10 +273,12 @@ body {
   //filter: drop-shadow(0.5rem 0.5rem 1rem #8585a5);
   &:hover {
     cursor: pointer;
-    transform: scale(1.02);
-    outline: 3px solid rgb(218, 218, 218);
+    transform: scale(1.01);
+    //outline: 3px solid rgb(218, 218, 218);
+    outline: 3px solid #f5f5f6;
     //border: 3px solid #fff;
-    filter: drop-shadow(0.3rem 0.3rem 0.6rem #8585a5);
+    //filter: drop-shadow(0.3rem 0.3rem 0.6rem #8585a5);
+    filter: drop-shadow(0.3rem 0.3rem 0.6rem #c3c3d3);
     // border: 1px solid #322348;
     // border-radius: 1rem;
     //filter: drop-shadow(0 0 0.7rem #322348);

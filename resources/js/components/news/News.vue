@@ -11,13 +11,13 @@
     >
       >
       <template #list="slotProps">
-        <Card class="p-my-1">
+        <Card class="p-my-2 news">
           <template slot="title">
             <router-link
               class="card-news-title"
               :to="{
                 name: 'get-news',
-                params: { title: slotProps.data.title }
+                params: { title: slotProps.data.title },
               }"
             >
               {{ slotProps.data.title }}
@@ -29,7 +29,7 @@
                 class="card-main-text"
                 :to="{
                   name: 'get-news',
-                  params: { title: slotProps.data.title }
+                  params: { title: slotProps.data.title },
                 }"
               >
                 {{ slotProps.data.content.substr(0, 200) + '...' }}
@@ -66,13 +66,13 @@ export default {
   data() {
     return {
       isNewsLoading: true,
-      fakeNews: [{}, {}, {}, {}, {}]
+      fakeNews: [{}, {}, {}, {}, {}],
     };
   },
   methods: {
     async newsGetter() {
       await this.$store.dispatch('newsUp/fetchNews');
-    }
+    },
   },
   created() {
     this.newsGetter();
@@ -82,8 +82,8 @@ export default {
     ...mapState('newsUp', ['news']),
     allNews() {
       return this.news;
-    }
-  }
+    },
+  },
 };
 </script>
 

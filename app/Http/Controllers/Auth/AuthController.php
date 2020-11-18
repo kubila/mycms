@@ -76,7 +76,7 @@ class AuthController extends Controller
      */
     protected function logout()
     {
-        Auth::guard('web')->logout();
+        Auth::guard()->logout();
         //$this->revokeToken($user);
         return response()->json('', 205);
     }

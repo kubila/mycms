@@ -1,11 +1,7 @@
 <template>
   <div class="inner-wrapper">
-    <!-- <div class="container-fluid"> -->
-    <div class="p-grid p-nogutter">
-      <!-- <div class="row"> -->
+    <!-- <div class="p-grid p-nogutter">
       <div class="p-col-12 p-md-12 p-lg-12 main-image img-fluid">
-        <!-- <div class="col main-image img-fluid"> -->
-
         <div class="main-top text-center">
           <h2 class="text-white">Welcome to my blog</h2>
           <p class="lead">
@@ -14,10 +10,9 @@
           </p>
         </div>
       </div>
-      <!-- </div> -->
-    </div>
+    </div> -->
 
-    <div class="p-grid p-nogutter p-mx-6 p-mx-md-5 p-mx-sm-1 p-mx-xl-5">
+    <div class="p-grid p-nogutter p-mx-6 p-mx-md-5 p-mx-sm-1 p-mx-xl-5 p-mt-5">
       <!-- <div class="p-col-12 p-md-6 p-lg-3"> -->
       <div class="p-col-9 p-mx-auto">
         <div class="p-grid p-nogutter">
