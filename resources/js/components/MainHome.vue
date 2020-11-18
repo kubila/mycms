@@ -60,11 +60,7 @@
       </div>
     </Sidebar>
     <!-- <notifications /> -->
-    <Button
-      icon="pi pi-angle-double-left"
-      @click="switchSidebar"
-      class="sitting-button p-button-lg"
-    />
+    <Button :icon="switchIcon" @click="switchSidebar" :class="switchClass" />
     <!-- mount components here -->
     <router-view :key="$route.fullPath" />
     <Footer />
@@ -105,6 +101,7 @@ export default {
     return {
       visibleLeft: false,
       isCategoriesLoading: true,
+      isOpen: false,
     };
   },
   created() {
@@ -113,13 +110,45 @@ export default {
   },
   computed: {
     ...mapState('category', ['categories']),
+    switchClass() {
+      return [
+        'sitting-button p-button-lg',
+        {
+          'sitting-button-switched': this.isOpen == true,
+          'sitting-button-unswitched': this.isOpen !== true,
+        },
+      ];
+    },
+    switchIcon() {
+      return [
+        'pi ',
+        {
+          'pi-angle-double-left': this.isOpen !== true,
+          'pi-angle-double-right': this.isOpen == true,
+        },
+      ];
+    },
   },
   methods: {
     switchSidebar() {
+      this.isOpen = !this.isOpen;
       return (this.visibleLeft = !this.visibleLeft);
     },
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.sitting-button-switched {
+  margin-right: 320px !important;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+}
+.sitting-button-unswitched {
+  margin-right: 0px !important;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+}
+</style>

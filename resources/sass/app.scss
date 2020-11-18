@@ -235,6 +235,7 @@ body {
   z-index: 10002 !important;
   top: calc(25vh);
 }
+
 #mylinks {
   bottom: 0;
   display: flex;
@@ -252,9 +253,10 @@ body {
 }
 .news {
   //background: #ebf8ff !important;
-  background: #e4f0fd !important;
+  background: #e6e9f5 !important;
   &:hover {
     filter: drop-shadow(0.1rem 0.1rem 0.1rem #8585a5);
+    cursor: pointer;
   }
 }
 .poster {
