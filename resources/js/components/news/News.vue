@@ -44,7 +44,7 @@
     <DataView :value="fakeNews" layout="list" :rows="5">
       >
       <template #list="slotProps">
-        <Card class="p-my-1 p-col-12 p-mx-auto">
+        <Card class="p-my-2 p-col-12 p-mx-auto news">
           <template slot="title">
             <b-skeleton animation="wave" width="70%"></b-skeleton>
           </template>
@@ -72,11 +72,11 @@ export default {
   methods: {
     async newsGetter() {
       await this.$store.dispatch('newsUp/fetchNews');
+      this.isNewsLoading = false;
     },
   },
   created() {
     this.newsGetter();
-    this.isNewsLoading = false;
   },
   computed: {
     ...mapState('newsUp', ['news']),

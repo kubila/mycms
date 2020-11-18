@@ -17,7 +17,7 @@
               <router-link
                 :to="{
                   name: 'read',
-                  params: { title: slotProps.data.title }
+                  params: { title: slotProps.data.title },
                 }"
               >
                 <img
@@ -32,7 +32,7 @@
               <router-link
                 :to="{
                   name: 'getcategory',
-                  params: { name: slotProps.data.category.name }
+                  params: { name: slotProps.data.category.name },
                 }"
                 class="card-category-title"
               >
@@ -43,7 +43,7 @@
                 <router-link
                   :to="{
                     name: 'getauthor',
-                    params: { name: slotProps.data.author.name }
+                    params: { name: slotProps.data.author.name },
                   }"
                   class="card-author-title"
                 >
@@ -56,7 +56,7 @@
                 <router-link
                   :to="{
                     name: 'read',
-                    params: { title: slotProps.data.title }
+                    params: { title: slotProps.data.title },
                   }"
                   class="card-main-title"
                 >
@@ -71,7 +71,7 @@
                 <router-link
                   :to="{
                     name: 'read',
-                    params: { title: slotProps.data.title }
+                    params: { title: slotProps.data.title },
                   }"
                   class="card-main-text"
                 >
@@ -82,7 +82,7 @@
                 <router-link
                   :to="{
                     name: 'read',
-                    params: { title: slotProps.data.title }
+                    params: { title: slotProps.data.title },
                   }"
                   class="card-main-text"
                 >
@@ -136,12 +136,17 @@ export default {
   data() {
     return {
       isPinnedPostsLoading: true,
-      fakeCards: [{}, {}, {}, {}, {}, {}]
+      fakeCards: [{}, {}, {}, {}, {}, {}],
     };
   },
-  async created() {
-    await this.$store.dispatch('post/fetchPinnedPosts');
-    this.isPinnedPostsLoading = false;
+  methods: {
+    async pinnedPostsFetcher() {
+      await this.$store.dispatch('post/fetchPinnedPosts');
+      this.isPinnedPostsLoading = false;
+    },
+  },
+  created() {
+    this.pinnedPostsFetcher();
   },
   computed: {
     ...mapState('post', ['pinned']),
@@ -151,8 +156,8 @@ export default {
         .orderBy(['id'], ['desc'])
         .value();
       return fas;
-    }
-  }
+    },
+  },
 };
 </script>
 

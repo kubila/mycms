@@ -11,7 +11,7 @@
       >
 
       <template #list="slotProps">
-        <div class="p-col-12 p-my-2 ">
+        <div class="p-col-12 p-my-2">
           <div class="poster p-card">
             <div class="p-grid p-nogutter">
               <div class="p-col-3 p-px-0 p-my-auto">
@@ -19,7 +19,7 @@
                   <router-link
                     :to="{
                       name: 'read',
-                      params: { title: slotProps.data.title }
+                      params: { title: slotProps.data.title },
                     }"
                   >
                     <img
@@ -39,7 +39,7 @@
                       <router-link
                         :to="{
                           name: 'getcategory',
-                          params: { name: slotProps.data.category.name }
+                          params: { name: slotProps.data.category.name },
                         }"
                         class="card-category-title"
                       >
@@ -51,7 +51,7 @@
                       <router-link
                         :to="{
                           name: 'read',
-                          params: { title: slotProps.data.title }
+                          params: { title: slotProps.data.title },
                         }"
                         class="card-main-title"
                       >
@@ -64,7 +64,7 @@
                         <router-link
                           :to="{
                             name: 'getauthor',
-                            params: { name: slotProps.data.author.name }
+                            params: { name: slotProps.data.author.name },
                           }"
                           class="card-author-title"
                           ><strong>{{ slotProps.data.author.name }}</strong>
@@ -127,16 +127,21 @@ export default {
   data() {
     return {
       isLatestPostsLoading: true,
-      fakePosts: [{}, {}, {}, {}, {}]
+      fakePosts: [{}, {}, {}, {}, {}],
     };
   },
-  async created() {
-    await this.$store.dispatch('post/fetchHomePosts');
-    this.isLatestPostsLoading = false;
+  methods: {
+    async latestPostsFetcher() {
+      await this.$store.dispatch('post/fetchHomePosts');
+      this.isLatestPostsLoading = false;
+    },
+  },
+  created() {
+    this.latestPostsFetcher();
   },
   computed: {
-    ...mapState('post', ['homePosts'])
-  }
+    ...mapState('post', ['homePosts']),
+  },
 };
 </script>
 

@@ -165,7 +165,7 @@ export default {
     };
   },
   created() {
-    this.$store.dispatch('post/fetchPosts');
+    this.allPostsFetcher();
   },
   computed: {
     ...mapState('post', ['posts']),
@@ -178,6 +178,9 @@ export default {
     },
   },
   methods: {
+    async allPostsFetcher() {
+      await this.$store.dispatch('post/fetchPosts');
+    },
     editPost(post) {
       this.post = { ...post };
       this.editPostDialog = true;
