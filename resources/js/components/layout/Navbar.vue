@@ -37,7 +37,7 @@
             <Button
               icon="pi pi-sign-in"
               label="Login"
-              class="p-button-outlined p-button-info"
+              class="p-button-outlined"
               @click="goToLogin"
             />
           </div>
@@ -85,13 +85,13 @@ export default {
     BIcon,
     BIconPersonCircle,
     BIconPersonFill,
-    Search
+    Search,
   },
   data() {
     return {
       form: {
-        search: null
-      }
+        search: null,
+      },
     };
   },
   computed: {
@@ -99,7 +99,7 @@ export default {
     ...mapState(['user']),
     getUser() {
       return this.user;
-    }
+    },
   },
   methods: {
     goToHome() {
@@ -121,8 +121,8 @@ export default {
     },
     async logout() {
       await this.$store.dispatch('Logout');
-    }
-  }
+    },
+  },
 };
 </script>
 
