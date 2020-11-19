@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PostsCollection;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -18,11 +19,12 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        dd($request);
-        $posts = Post::all();
-        return response()->json($posts, 200);
+        // dd($request);
+        // $posts = Post::all();
+        // return response()->json($posts, 200);
+        return response(PostsCollection::collection(Post::all()));
     }
 
     /**

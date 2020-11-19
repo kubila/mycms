@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
 
-class PostsCollection extends ResourceCollection
+class PostsCollection extends JsonResource
 {
     /**
      * Transform the resource collection into an array.
@@ -14,6 +14,17 @@ class PostsCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'description' => $this->description,
+            'content' => $this->content,
+            'image' => $this->image,
+            'published' => $this->published,
+            'updated' => $this->updated,
+            'author' => $this->author,
+            'category' => $this->category,
+            'tags' => $this->tags,
+        ];
     }
 }
