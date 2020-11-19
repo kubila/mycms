@@ -22,9 +22,9 @@ class PostsCollection extends JsonResource
             'image' => $this->image,
             'published' => $this->published,
             'updated' => $this->updated,
-            'author' => $this->author,
-            'category' => $this->category,
-            'tags' => $this->tags,
+            'author' => $this->whenLoaded('author')->only('name'),
+            'category' => $this->whenLoaded('category')->only('name'),
+            'tags' => $this->whenLoaded('tags')->only('id', 'name'),
         ];
     }
 }

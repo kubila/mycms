@@ -45,7 +45,6 @@ import HomePost from '../posts/HomePost';
 import News from '../news/News';
 
 import { mapState } from 'vuex';
-import _ from 'lodash';
 
 export default {
   name: 'Apphome',

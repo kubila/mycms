@@ -31,7 +31,7 @@ Route::namespace ('Auth')->group(function () {
 
 Route::namespace ('API')->group(function () {
 
-    Route::get('/posts', 'PostController@index');
+    //Route::get('/posts', 'PostController@index');
     Route::get('/posts/{post}', 'PostController@show');
     Route::get('/pinned', 'PostController@PinnedOnes');
     Route::get('/homeposts', 'PostController@HomePosts');

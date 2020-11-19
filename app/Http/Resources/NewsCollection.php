@@ -20,7 +20,7 @@ class NewsCollection extends JsonResource
             'url' => $this->url,
             'content' => $this->content,
             'created' => $this->created,
-            'categories' => $this->categories,
+            'categories' => $this->whenLoaded('categories'),
         ];
     }
 }

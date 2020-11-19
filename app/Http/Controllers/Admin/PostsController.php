@@ -46,7 +46,7 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        //
+        return response(PostsCollection::collection(Post::all()));
     }
 
     /**

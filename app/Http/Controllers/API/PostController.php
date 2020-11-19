@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PostsCollection;
 use App\Models\Post;
 
 class PostController extends Controller
@@ -35,15 +36,13 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        $poster = Post::byPublished()
-            ->with('category')
-            ->with('author')
-            ->with('tags')
-            ->where('title', $post->title)
-            ->first();
-
-        return response()
-            ->json($poster, 200);
+        return response(PostsCollection::make(
+            Post::byPublished()
+                ->with('category')
+                ->with('author')
+                ->with('tags')
+                ->where('title', $post->title)
+                ->first()));
     }
 
     /**
@@ -53,17 +52,17 @@ class PostController extends Controller
      */
     public function PinnedOnes()
     {
-        $posts = Post::query()
-            ->select(['id', 'title', 'published', 'author_id', 'category_id', 'image', 'content'])
-            ->with('category')
-            ->with('author')
-            ->with('tags')
-            ->byPublished()
-            ->byPinned()
-            ->get();
 
-        return response()
-            ->json($posts, 200);
+        return response(PostsCollection::collection(
+            Post::query()
+                ->select(['id', 'title', 'published', 'author_id', 'category_id', 'image', 'content'])
+                ->with('category')
+                ->with('author')
+                ->byPublished()
+                ->byPinned()
+                ->get()
+
+        ));
     }
 
     /**
@@ -74,16 +73,13 @@ class PostController extends Controller
     public function HomePosts()
     {
 
-        $posts = Post::query()
-            ->select(['id', 'title', 'published', 'author_id', 'category_id', 'image'])
-            ->with('author')
-            ->with('category')
-            ->byPublished()
-            ->get();
-
-        return response()
-            ->json($posts, 200);
-        // return response('Get outta here', 404);
-
+        return response(PostsCollection::collection(
+            Post::query()
+                ->select(['id', 'title', 'published', 'author_id', 'category_id', 'image'])
+                ->with('author')
+                ->with('category')
+                ->byPublished()
+                ->get()
+        ));
     }
 }

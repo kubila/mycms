@@ -7,7 +7,7 @@
     </Toolbar>
     <DataTable
       ref="dt"
-      :value="adminPosts"
+      :value="posts"
       dataKey="id"
       :paginator="true"
       :rows="5"
@@ -170,7 +170,7 @@ export default {
   computed: {
     ...mapState('post', ['posts']),
     adminPosts() {
-      const orderedPosts = _.orderBy(this.posts, ['id'], 'desc');
+      const orderedPosts = _.orderBy(this.posts, ['id'], ['desc']);
       return this.orderedPosts;
     },
     adminPostPaginator() {
