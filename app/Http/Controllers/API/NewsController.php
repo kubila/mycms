@@ -16,7 +16,7 @@ class NewsController extends Controller
     public function index()
     {
         //return response()->json(News::all(), 200);
-        return response(NewsCollection::collection(News::all()));
+        return response(NewsCollection::collection(News::all(['id', 'created', 'content', 'title'])));
     }
 
     /**

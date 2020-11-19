@@ -53,11 +53,13 @@ class PostController extends Controller
      */
     public function PinnedOnes()
     {
-        $posts = Post::byPublished()
-            ->byPinned()
+        $posts = Post::query()
+            ->select(['id', 'title', 'published', 'author_id', 'category_id', 'image', 'content'])
             ->with('category')
             ->with('author')
             ->with('tags')
+            ->byPublished()
+            ->byPinned()
             ->get();
 
         return response()

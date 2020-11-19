@@ -5,11 +5,11 @@
     <Sidebar
       :visible.sync="visibleLeft"
       style="overflow: auto"
-      :modal="false"
-      :dismissable="true"
+      :modal="true"
+      :dismissable="false"
       class="p-sidebar-sm"
       position="right"
-      ariaCloseLabel="Close"
+      :showCloseIcon="false"
     >
       <div class="p-sidebar-active">
         <div class="p-pl-1 p-pr-5 p-pb-3">

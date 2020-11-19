@@ -1,11 +1,11 @@
 import http from './httpService';
 
 async function getTags() {
-  return await http.get('/api/tags/');
+  return await http.get('api/tags/');
 }
 
 async function getTag(name) {
-  return await http.get('/api/tags/' + name);
+  return await http.get('api/tags/' + name);
 }
 
 export default {

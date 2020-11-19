@@ -21,6 +21,7 @@ import 'primeflex/primeflex.css';
 import 'primevue/resources/themes/saga-blue/theme.css';
 import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
+Vue.prototype.$primevue = { ripple: true };
 
 import Sidebar from 'primevue/sidebar';
 import Dialog from 'primevue/dialog';
@@ -28,8 +29,10 @@ import Card from 'primevue/card';
 import ProgressSpinner from 'primevue/progressspinner';
 import DataView from 'primevue/dataview';
 import InputText from 'primevue/inputtext';
+import ToastService from 'primevue/toastservice';
 import { BSkeletonImg } from 'bootstrap-vue';
 
+Vue.use(ToastService);
 Vue.component('b-skeleton-img', BSkeletonImg);
 
 Vue.component('DataView', DataView);

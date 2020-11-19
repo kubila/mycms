@@ -19,8 +19,16 @@ import axios from 'axios';
 window.axios = require('axios');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 axios.defaults.withCredentials = true;
-// const jwtToken = `Bearer ${localStorage.getItem('token')}`;
+
+//fix sanctum issue
+// const jwtToken = `Bearer ${localStorage.getItem('auth-token')}`;
 // window.axios.defaults.headers.common['Authorization'] = jwtToken;
+
+// if (token) {
+//   http.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+//   //http.defaults.headers.Authorization = `Bearer ${token}`;
+// }
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

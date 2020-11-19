@@ -1,19 +1,19 @@
 import http from './httpService';
 
 async function getPosts() {
-  return await http.get('/api/admin/posts');
+  return await http.get('api/admin/posts');
 }
 
 async function getPinnedPosts() {
-  return await http.get('/api/pinned');
+  return await http.get('api/pinned');
 }
 
 async function getHomePosts() {
-  return await http.get('/api/homeposts');
+  return await http.get('api/homeposts');
 }
 
 async function getPost(adi) {
-  return await http.get('/api/posts/' + adi);
+  return await http.get('api/posts/' + adi);
 }
 
 export default {
