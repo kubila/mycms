@@ -19,6 +19,22 @@
             <div class="content-inner">
               <div class="p-mt-4 p-mb-2">
 
+                <!-- <p class="pl-1 d-inline-block" v-if="news.categories.length > 1">
+                  <pre class="d-inline date-sizes">in</pre>
+                  <span v-for="(cat, index) in news.categories">
+                    <router-link
+                      v-if="index === news.categories.length"
+                    class="pl-1 post-category-title"
+                    :to="{
+                      name: 'getcategory',
+                      params: { name: cat.name }
+                    }"
+                    ><strong>{{ cat.name }}</strong></router-link
+                  >
+                  </span>
+
+                </p> -->
+
                 <p class="pl-1 d-inline-block" v-if="news.categories.length > 0">
                   <pre class="d-inline date-sizes">in</pre>
                   <span v-for="cat in news.categories">
@@ -29,21 +45,6 @@
                       params: { name: cat.name }
                     }"
                     ><strong>{{cat.name }}</strong></router-link
-                  >
-                  </span>
-
-                </p>
-                <p class="pl-1 d-inline-block" v-else-if="news.categories.length > 1">
-                  <pre class="d-inline date-sizes">in</pre>
-                  <span v-for="(cat, index) in news.categories">
-                    <router-link
-                      v-if="index === news.categories.length"
-                    class="pl-1 post-category-title"
-                    :to="{
-                      name: 'getcategory',
-                      params: { name: cat.name }
-                    }"
-                    ><strong>{{ cat.name,}}</strong></router-link
                   >
                   </span>
 

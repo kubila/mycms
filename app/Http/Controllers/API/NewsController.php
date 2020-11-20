@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\NewsCollection;
+use App\Http\Resources\SpecificNewsCollection;
 use App\Models\News;
 
 class NewsController extends Controller
@@ -28,6 +29,6 @@ class NewsController extends Controller
     public function show(News $news)
     {
 
-        return response(NewsCollection::make(News::with('categories')->where('id', $news->id)->first()));
+        return response(SpecificNewsCollection::make(News::with('categories')->where('id', $news->id)->first()));
     }
 }
