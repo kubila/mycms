@@ -43,7 +43,7 @@
                       name: 'getcategory',
                       params: { name: cat.name }
                     }"
-                    ><strong>{{ cat.name, index }}</strong></router-link
+                    ><strong>{{ cat.name,}}</strong></router-link
                   >
                   </span>
 
