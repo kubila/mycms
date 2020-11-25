@@ -13,7 +13,6 @@
     </div> -->
 
     <div class="p-grid p-nogutter p-mx-6 p-mx-md-5 p-mx-sm-1 p-mx-xl-5 p-mt-5">
-      <!-- <div class="p-col-12 p-md-6 p-lg-3"> -->
       <div class="p-col-9 p-mx-auto">
         <div class="p-grid p-nogutter">
           <home-card />
@@ -22,16 +21,10 @@
     </div>
 
     <div class="p-grid p-nogutter p-my-2 p-mx-6 p-mx-md-5 p-mx-sm-1 p-mx-xl-5">
-      <!-- <div class="p-col-12 p-md-6 p-lg-3"> -->
-      <!-- <div class="p-xl-7 p-lg-7 p-md-12">
-        <home-post />
-      </div>
-      <div class="p-xl-5 p-lg-5 p-md-12">
-        <News />
-      </div> -->
       <div class="p-xl-8 p-lg-8 p-md-8 p-mx-auto">
         <home-post />
       </div>
+
       <div class="p-xl-8 p-lg-8 p-md-8 p-mx-auto">
         <News />
       </div>

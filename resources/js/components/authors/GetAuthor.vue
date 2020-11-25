@@ -9,11 +9,11 @@
               Posts found:
               <p class="text-success d-inline-block">{{ authorCount }}</p>
             </div>
-            <home-post
+            <!-- <home-post
               v-for="post in authorArticles"
               :key="post.id"
               :post="post"
-            />
+            /> -->
             <div v-if="!authorCount" class="card-main-title">
               Couldn't find any post for the author:
               <p class="text-danger d-inline-block">{{ authorCount }}</p>
@@ -33,8 +33,9 @@
 
 <script>
 import Author from './Author';
-import HomePost from '../posts/HomePost';
 import { mapState } from 'vuex';
+import nProgress from 'nprogress';
+
 export default {
   name: 'Getauthor',
   metaInfo() {
@@ -56,6 +57,10 @@ export default {
       count: 0,
     };
   },
+  beforeRouteEnter(to, from, next) {
+    nProgress.start();
+    next();
+  },
   methods: {
     async getAuthorPosts() {
       const authorName = this.$attrs.name;
@@ -73,10 +78,10 @@ export default {
   created() {
     this.getAuthorPosts();
     this.getAuthor();
+    //nProgress.done();
   },
   components: {
     Author,
-    HomePost,
   },
   computed: {
     ...mapState('author', ['authorOne', 'authorPosts']),

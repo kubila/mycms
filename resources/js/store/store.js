@@ -9,6 +9,7 @@ import * as category from './modules/category';
 import * as author from './modules/author';
 import * as newsUp from './modules/newsUp';
 import * as notification from './modules/notification';
+import * as tag from './modules/tag';
 
 Vue.use(Vuex);
 
@@ -25,6 +26,7 @@ export default new Vuex.Store({
     post,
     author,
     newsUp,
+    tag,
     notification
   },
   //plugins: [createPersistedState()],

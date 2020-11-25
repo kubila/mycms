@@ -24,6 +24,7 @@ class PostCollection extends JsonResource
             'updated' => $this->updated,
             'author' => $this->whenLoaded('author')->only('name'),
             'category' => $this->whenLoaded('category')->only('name'),
+            'tags' => $this->whenLoaded('tags'),
         ];
     }
 }

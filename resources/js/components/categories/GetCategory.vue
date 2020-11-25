@@ -11,7 +11,7 @@
             <p class="text-success d-inline-block">{{ calculateCount }}</p>
           </div>
 
-          <home-post v-for="post in Posts" :key="post.id" :post="post" />
+          <!-- <home-post v-for="post in Posts" :key="post.id" :post="post" /> -->
           <div v-if="!calculateCount" class="card-main-title">
             Couldn't find any post for the category:
             <p class="text-danger d-inline-block">{{ calculateCount }}</p>
@@ -43,8 +43,8 @@
 
 <script>
 import CategoryNews from './CategoryNews';
-import HomePost from '../posts/HomePost';
 import { mapState } from 'vuex';
+import nProgress from 'nprogress';
 export default {
   name: 'Getcategory',
   metaInfo() {
@@ -67,16 +67,18 @@ export default {
       newsCount: 0,
     };
   },
+  beforeRouteEnter(to, from, next) {
+    nProgress.start();
+    next();
+  },
   methods: {
     // consider using a mixin for this type of requests, news returning the old category news, make it reactive
     async getPosts() {
       const category = this.$attrs.name;
-      //await this.$store.dispatch('fetchCategoryNews', category);
       await this.$store
         .dispatch('category/fetchCategoryPosts', category)
 
         .then((this.isLoading = false));
-      //.then((this.isNewsLoading = false));
     },
     async getNews() {
       const category = this.$attrs.name;
@@ -91,7 +93,6 @@ export default {
   },
   components: {
     CategoryNews,
-    HomePost,
   },
   computed: {
     ...mapState('category', ['categoryPosts', 'categoryNews']),

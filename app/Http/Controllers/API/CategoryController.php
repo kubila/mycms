@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryCollection;
+use App\Http\Resources\NewsCollection;
+use App\Http\Resources\PostCollection;
 use App\Models\Category;
 use App\Models\News;
 use App\Models\Post;
@@ -13,7 +15,7 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
@@ -26,29 +28,28 @@ class CategoryController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function posts(Category $category)
     {
-        $posts = Post::with('category')->with('author')->where('category_id', $category->id)->get();
-
-        return response()->json($posts, 200);
+        return response(PostCollection::collection(
+            Post::query()
+                ->select(['id', 'title', 'published', 'author_id', 'category_id', 'image'])
+                ->with(['author', 'category'])
+                ->where('category_id', $category->id)
+                ->byPublished()
+                ->get()
+        ));
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function news(Category $category)
     {
-        // $news_id = DB::table('category_news')->where('category_id', $category->id)->pluck('news_id')->first();
-        // if (!$news_id) {
-        //     return response()->json(['error' => 'No news for the category'], 404);
-        // }
-        $cat = Category::with('news')->get();
-        return response()->json($cat, 200);
-
+        return response(NewsCollection::collection(News::all(['id', 'created', 'content', 'title'])));
     }
 }

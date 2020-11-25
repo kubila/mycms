@@ -18,7 +18,6 @@ import GetNews from '../components/news/GetNews';
 import GetTag from '../components/tags/GetTag';
 import NotFound from '../components/helpers/NotFound';
 import nProgress from 'nprogress';
-import NewEdit from '../components/admin/NewEdit';
 import Categories from '../components/categories/Categories';
 import Posts from '../components/posts/Posts';
 import Authors from '../components/authors/Authors';
@@ -85,13 +84,17 @@ const router = new VueRouter({
       name: 'read',
       component: ReadPost,
       beforeEnter: (to, from, next) => {
+        nProgress.start();
         store
           .dispatch('post/fetchPost', to.params.title)
           .then(post => {
             to.params.post = post;
             next();
           })
-          .catch(error => console.log(error.response));
+          .catch(error => {
+            console.log(error.response);
+            nProgress.done();
+          });
       },
       meta: {
         guest: true
@@ -121,13 +124,17 @@ const router = new VueRouter({
       props: true,
       component: GetNews,
       beforeEnter: (to, from, next) => {
+        nProgress.start();
         store
           .dispatch('newsUp/fetchSpecificNews', to.params.title)
           .then(nws => {
             to.params.news = nws;
             next();
           })
-          .catch(error => console.log(error.response));
+          .catch(error => {
+            console.log(error.response);
+            nProgress.done();
+          });
       },
       meta: {
         guest: true
@@ -138,6 +145,19 @@ const router = new VueRouter({
       name: 'get-tag',
       props: true,
       component: GetTag,
+      beforeEnter: (to, from, next) => {
+        nProgress.start();
+        store
+          .dispatch('tag/fetchTag', to.params.name)
+          .then(tag => {
+            to.params.tag = tag;
+            next();
+          })
+          .catch(err => {
+            console.log(err.response);
+            nProgress.done();
+          });
+      },
       meta: {
         guest: true
       }
@@ -155,27 +175,7 @@ const router = new VueRouter({
         {
           path: '/posts',
           name: 'posts',
-          component: Posts,
-          children: [
-            {
-              path: '/edit/post/:title',
-              name: 'editpost',
-              component: NewEdit,
-              props: true,
-              beforeEnter: (to, from, next) => {
-                store
-                  .dispatch('post/fetchPost', to.params.title)
-                  .then(post => {
-                    to.params.post = post;
-                    to.params.isOpen = true;
-                    next();
-                  })
-                  .catch(error => {
-                    console.log(error.response);
-                  });
-              }
-            }
-          ]
+          component: Posts
         },
         {
           path: '/authors',

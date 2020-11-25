@@ -12,7 +12,7 @@ class NewsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
@@ -24,7 +24,7 @@ class NewsController extends Controller
      * Display the specified resource.
      *
      * @param  \App\News  $news
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(News $news)
     {

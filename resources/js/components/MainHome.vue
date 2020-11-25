@@ -1,7 +1,9 @@
 <template>
   <div class="wrapper">
+    <!-- Navbar -->
     <Navbar />
 
+    <!-- Sidebar -->
     <Sidebar
       :visible.sync="visibleLeft"
       style="overflow: auto"
@@ -59,10 +61,14 @@
         </div>
       </div>
     </Sidebar>
-    <!-- <notifications /> -->
+
+    <!-- Sidebar switch button -->
     <Button :icon="switchIcon" @click="switchSidebar" :class="switchClass" />
-    <!-- mount components here -->
+
+    <!-- This view mounts page components in here -->
     <router-view :key="$route.fullPath" />
+
+    <!-- Footer -->
     <Footer />
   </div>
 </template>
