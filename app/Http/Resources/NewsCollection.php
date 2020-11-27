@@ -18,8 +18,8 @@ class NewsCollection extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             //'url' => $this->url,
-            'content' => $this->content,
-            //'created' => $this->created,
+            //'content' => $this->content,
+            'created' => $this->created,
 
         ];
     }

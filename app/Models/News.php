@@ -39,6 +39,11 @@ class News extends Model
         'is_published' => false,
     ];
 
+    public function scopeByPublished($query)
+    {
+        return $query->where('is_published', '=', 1);
+    }
+
     public function getRouteKeyName()
     {
         return 'title';

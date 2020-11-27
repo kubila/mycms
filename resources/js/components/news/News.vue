@@ -24,7 +24,7 @@
             </router-link>
           </template>
           <template slot="content">
-            <p>
+            <h6>
               <!-- <router-link
                 class="card-main-text"
                 :to="{
@@ -34,7 +34,9 @@
               >
                 {{ slotProps.data.content.substr(0, 200) + '...' }}
               </router-link> -->
-            </p>
+              <pre class="d-inline p-pl-1">posted on </pre>
+              <span class="text-black-50">{{ slotProps.data.created }}</span>
+            </h6>
           </template>
         </Card>
       </template>

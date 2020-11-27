@@ -17,7 +17,13 @@ class NewsController extends Controller
     public function index()
     {
         //return response()->json(News::all(), 200);
-        return response(NewsCollection::collection(News::all(['id', 'created', 'content', 'title'])));
+        return response(NewsCollection::collection(
+            News::query()
+                ->select(['id', 'created', 'title'])
+                ->byPublished()
+                ->get()
+
+        ));
     }
 
     /**
@@ -29,6 +35,11 @@ class NewsController extends Controller
     public function show(News $news)
     {
 
-        return response(SpecificNewsCollection::make(News::with('categories')->where('id', $news->id)->first()));
+        return response(SpecificNewsCollection::make(
+            News::with('categories')
+                ->where('id', $news->id)
+                ->byPublished()
+                ->first()
+        ));
     }
 }

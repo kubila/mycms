@@ -1,12 +1,13 @@
 <template>
   <div v-if="!isLatestPostsLoading">
+    <div><h5>Recent Posts</h5></div>
     <DataView
       :value="homePosts"
       layout="list"
       :paginator="true"
       :rows="5"
       paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} posts"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
     >
       >
 

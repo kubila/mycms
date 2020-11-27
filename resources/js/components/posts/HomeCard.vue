@@ -6,7 +6,7 @@
       :rows="6"
       :paginator="true"
       paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} pinned posts"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Pinned Posts"
     >
       >
 
@@ -67,7 +67,7 @@
             <template slot="subtitle"> </template>
 
             <template slot="content">
-              <p class="m-1" v-if="slotProps.data.content.length > 100">
+              <p class="m-1" v-if="slotProps.data.description.length > 100">
                 <router-link
                   :to="{
                     name: 'read',
@@ -75,7 +75,7 @@
                   }"
                   class="card-main-text"
                 >
-                  {{ slotProps.data.content.substr(0, 100) + '...' }}
+                  {{ slotProps.data.description.substr(0, 100) + '...' }}
                 </router-link>
               </p>
               <p class="m-1" v-else>
@@ -86,7 +86,7 @@
                   }"
                   class="card-main-text"
                 >
-                  {{ slotProps.data.content }}
+                  {{ slotProps.data.description }}
                 </router-link>
               </p>
             </template>

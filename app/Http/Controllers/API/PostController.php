@@ -36,7 +36,7 @@ class PostController extends Controller
 
         return response(PostCollection::collection(
             Post::query()
-                ->select(['id', 'title', 'published', 'author_id', 'category_id', 'image', 'content'])
+                ->select(['id', 'title', 'published', 'author_id', 'category_id', 'image', 'description'])
                 ->with(['category', 'author'])
                 ->byPublished()
                 ->byPinned()
