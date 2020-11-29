@@ -2,7 +2,7 @@
   <div v-if="!isLatestPostsLoading">
     <div><h5>Recent Posts</h5></div>
     <DataView
-      :value="homePosts"
+      :value="lastPosts"
       layout="list"
       :paginator="true"
       :rows="5"
@@ -142,6 +142,9 @@ export default {
   },
   computed: {
     ...mapState('post', ['homePosts']),
+    lastPosts() {
+      return _.chain(this.homePosts).orderBy(['id'], ['desc']).value();
+    },
   },
 };
 </script>
