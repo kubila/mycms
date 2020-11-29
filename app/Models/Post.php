@@ -51,10 +51,10 @@ class Post extends Model
         'title', 'image', 'content', 'description', 'published', 'updated', 'category_id', 'author_id', 'is_published', 'is_pinned',
     ];
 
-    protected $attributes = [
-        'is_published' => true,
+    // protected $attributes = [
+    //     'is_published' => true,
 
-    ];
+    // ];
 
     public function getRouteKeyName()
     {

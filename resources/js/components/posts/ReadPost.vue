@@ -138,6 +138,7 @@ export default {
       ],
     };
   },
+  inheritAttrs: false,
   components: {
     BIcon,
     BIconTagFill,

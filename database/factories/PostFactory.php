@@ -23,6 +23,7 @@ $factory->define(Post::class, function (Faker $faker) {
         'content' => $faker->paragraphs(50, true),
         'description' => $faker->paragraphs(2, true),
         'is_pinned' => $faker->boolean(10),
+        'is_published' => $faker->boolean(50),
 
     ];
 });

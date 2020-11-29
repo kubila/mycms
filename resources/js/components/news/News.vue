@@ -1,6 +1,10 @@
 <template>
   <div class="p-mx-2" v-if="!isNewsLoading">
-    <div><h5>Latest News</h5></div>
+    <div class="p-my-1 p-col-12 p-mx-auto">
+      <div class="news-title">
+        <h5>Latest News</h5>
+      </div>
+    </div>
     <DataView
       :value="allNews"
       layout="list"

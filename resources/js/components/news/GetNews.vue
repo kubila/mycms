@@ -88,6 +88,7 @@ export default {
       ],
     };
   },
+  inheritAttrs: false,
   props: {
     news: {
       type: Object,
