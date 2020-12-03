@@ -19,6 +19,7 @@ class NewsController extends Controller
         return response(NewsCollection::collection(
             News::query()
                 ->select(['id', 'created', 'title'])
+                ->with('categories')
                 ->byPublished()
                 ->get()
 

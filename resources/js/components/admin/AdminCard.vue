@@ -67,8 +67,14 @@
 
       </div> -->
       <template #header>
-        <h3>{{ post.title }}</h3>
+        <InputText
+          type="text"
+          v-model="post.title"
+          class="p-inputtext-lg w-100"
+        />
+        <!-- <h3>{{ post.title }}</h3> -->
       </template>
+
       <editor
         :initialValue="post.content"
         :options="options"
@@ -170,8 +176,7 @@ export default {
   computed: {
     ...mapState('post', ['posts']),
     adminPosts() {
-      const orderedPosts = _.orderBy(this.posts, ['id'], ['desc']);
-      return this.orderedPosts;
+      return _.orderBy(this.posts, ['id'], ['desc']);
     },
     adminPostPaginator() {
       return this.posts.length;

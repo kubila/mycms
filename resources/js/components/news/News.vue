@@ -17,6 +17,20 @@
       <template #list="slotProps">
         <Card class="p-my-2 p-col-12 p-mx-auto news">
           <template slot="title">
+            <h5 v-if="slotProps.data.categories">
+              <span v-for="category in slotProps.data.categories">
+                <router-link
+                  :to="{
+                    name: 'getcategory',
+                    params: { name: category.name },
+                  }"
+                  class="card-category-title"
+                >
+                  {{ category.name }}</router-link
+                >
+              </span>
+            </h5>
+
             <router-link
               class="card-news-title"
               :to="{

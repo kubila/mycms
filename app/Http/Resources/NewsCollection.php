@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\CategoryCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class NewsCollection extends JsonResource
@@ -20,6 +21,7 @@ class NewsCollection extends JsonResource
             //'url' => $this->url,
             //'content' => $this->content,
             'created' => $this->created,
+            'categories' => CategoryCollection::collection($this->categories),
 
         ];
     }
