@@ -7,9 +7,8 @@ use Carbon\Carbon;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 
-class Tags extends Model
+class Tag extends Model
 {
-
     /**
      * Prepare a date for array / JSON serialization.
      *
@@ -42,6 +41,6 @@ class Tags extends Model
 
     public function posts()
     {
-        return $this->belongsToMany(Post::class);
+        return $this->belongsToMany(Post::class, 'post_tags', 'tags_id', 'post_id')->withPivot('post_id', 'tags_id');
     }
 }

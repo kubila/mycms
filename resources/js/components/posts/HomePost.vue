@@ -1,6 +1,10 @@
 <template>
   <div v-if="!isLatestPostsLoading">
-    <div><h5>Recent Posts</h5></div>
+    <div class="p-my-1 p-col-6 p-mx-auto">
+      <div class="topic-hp-title topic">
+        <h5>Recent Posts</h5>
+      </div>
+    </div>
     <DataView
       :value="lastPosts"
       layout="list"
@@ -10,7 +14,6 @@
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
     >
       >
-
       <template #list="slotProps">
         <div class="p-col-12 p-my-2">
           <div class="poster p-card">
@@ -62,6 +65,7 @@
 
                     <h5>
                       <em>
+                        By
                         <router-link
                           :to="{
                             name: 'getauthor',

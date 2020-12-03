@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Tags;
+use App\Models\Tag;
 use Carbon\Carbon;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
@@ -78,6 +78,6 @@ class Post extends Model
 
     public function tags()
     {
-        return $this->belongsToMany(Tags::class)->withTimestamps();
+        return $this->belongsToMany(Tag::class, 'post_tags', 'post_id', 'tags_id')->withPivot('post_id', 'tags_id');
     }
 }

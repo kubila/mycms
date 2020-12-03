@@ -3,40 +3,39 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\PostCollection;
-use App\Models\Post;
-use App\Models\Tags;
+use App\Http\Resources\TagPostsCollection;
+use App\Models\Tag;
 
 class TagsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function index()
-    {
-        return response()->json(Tags::all(), 200);
-    }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Tags  $tags
+     * @param  \App\Tag  $tag
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Tags $tags)
+    public function show(Tag $tag)
     {
-        //return response()->json(Post::all()->with('tags'), 200);
 
-        return response(PostCollection::make(
-            Post::query()
-                ->select(['id', 'title', 'published', 'author_id', 'category_id', 'image'])
-                ->with(['author', 'category', 'tags'])
-                ->byPublished()
-                ->where('tags_id', $tags->id)
-                ->get()
-            //$tags->posts->where('id', $tags->id)->all()
+        return response(TagPostsCollection::make(
+            Tag::with(['posts', 'posts.author', 'posts.category'])
+                ->where('id', $tag->id)
+                ->first()
         ));
+        // if ($tag->posts_count > 1) {
+        //     return response(TagPostsCollection::collection(
+        //         Tag::with(['posts', 'posts.author', 'posts.category'])
+        //             ->where('id', $tag->id)
+        //             ->first()
+        //     ));
+        // } else {
+        //     return response(TagPostsCollection::make(
+        //         Tag::with(['posts', 'posts.author', 'posts.category'])
+        //             ->where('id', $tag->id)
+        //             ->first()
+        //     ));
+        // }
+
     }
 }

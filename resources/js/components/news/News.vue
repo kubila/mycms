@@ -1,7 +1,7 @@
 <template>
   <div class="p-mx-2" v-if="!isNewsLoading">
-    <div class="p-my-1 p-col-12 p-mx-auto">
-      <div class="news-title">
+    <div class="p-my-1 p-col-6 p-mx-auto">
+      <div class="news-title topic">
         <h5>Latest News</h5>
       </div>
     </div>

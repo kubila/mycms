@@ -261,9 +261,24 @@ body {
   &-title {
     background: #e6e9f5 !important;
     filter: drop-shadow(0.1rem 0.1rem 0.1rem #8585a5);
-    h5 {
-      font-size: 1.5rem;
-    }
+  }
+}
+.topic {
+  display: flex;
+  justify-content: center;
+  height: calc(4vh);
+  align-items: center;
+  h5 {
+    font-family: 'primeicons';
+    font-size: 1.5rem;
+  }
+  &-hp-title {
+    background: #eaf0f8 !important;
+    filter: drop-shadow(0.1rem 0.1rem 0.1rem #8585a5);
+  }
+  &-hc-title {
+    background: #e2e8f0 !important;
+    filter: drop-shadow(0.1rem 0.1rem 0.1rem #8585a5);
   }
 }
 .poster {

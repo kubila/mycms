@@ -1,5 +1,10 @@
 <template>
   <div v-if="!isPinnedPostsLoading">
+    <!-- <div class="p-my-1 p-col-6 p-mx-auto">
+      <div class="topic-hc-title topic">
+        <h5>Pinned Posts</h5>
+      </div>
+    </div> -->
     <DataView
       :value="featured"
       layout="grid"
