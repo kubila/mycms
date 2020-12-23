@@ -12,6 +12,10 @@
 
 `php artisan key:generate`
 
+### Migrate the database.
+
+`php artisan migrate`
+
 #### Install frontend dependencies.
 
 `npm install`
