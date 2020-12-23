@@ -1,5 +1,7 @@
 ## Simple Blog with a CMS written in Laravel and Vue, not finished yet but you could see the ui.
 
+### I tend to use this project for my personal blog when it's ready.
+
 ### Install
 
 `composer install`
@@ -18,10 +20,12 @@
 
 `php artisan storage:link`
 
-#### Seed the database. Don't foget to create "images" folder in "storage/app/public". Wait for it to finish, its big. If you encounter any errors, please seed again it should work.
+#### Seed the database. Wait for it to finish, its big. If you encounter any errors, please seed again it should work.
 
 `php artisan db:seed`
 
-#### And finally run. It should open "localhost:3000", if you want to see admin side go to "localhost:3000/posts"
+#### And finally run.
 
 `npm run prod`
+
+It should open "localhost:3000", if you want to see the admin side go to "localhost:3000/posts".
