@@ -16,11 +16,11 @@ import { mapState } from 'vuex';
 export default {
   data() {
     return {
-      counter: 2
+      counter: 2,
     };
   },
   computed: {
-    ...mapState('notification', ['notifications'])
+    ...mapState('notification', ['notifications']),
   },
   mounted() {},
   methods: {
@@ -30,10 +30,10 @@ export default {
         title: this.notifications.statusText,
         toaster: toaster,
         solid: true,
-        appendToast: append
+        appendToast: append,
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
