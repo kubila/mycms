@@ -7,6 +7,7 @@ use App\Http\Requests\SignupRequest;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -54,16 +55,17 @@ class AuthController extends Controller
      */
     public function signup(SignupRequest $request)
     {
-        $user = $request->validated();
-        if ($user) {
-            User::create($user);
-            if (Auth::guard('web')->attempt($user)) {
-                return $this->respondToUser();
-            } else {
-                return response()->json(['error' => 'User created but couldn\'t logged in. Please login'], 404);
-            }
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)]);
+
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            $user = $this->getUser();
+            $token = $user->createToken('test')->plainTextToken;
+            return $this->respondToUserWithToken($token);
         } else {
-            return response()->json(['error' => 'User cannot be created.'], 400);
+            return response()->json(['error' => 'User created but couldn\'t logged in. Please login'], 404);
         }
     }
 

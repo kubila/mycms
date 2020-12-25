@@ -7,8 +7,8 @@ async function logOut() {
 
 async function login(credentials) {
   //await http.get('/sanctum/csrf-cookie');
-  //return await http.post('api/login', credentials);
-  return await http({ method: 'post', url: 'api/login', data: credentials });
+  return await http.post('api/login', credentials);
+  //return await http({ method: 'post', url: 'api/login', data: credentials });
 }
 
 async function getUser() {

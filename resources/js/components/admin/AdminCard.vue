@@ -1,5 +1,5 @@
 <template>
-  <div class="col-auto">
+  <div class="col-auto" v-if="!isAdminPostsLoading">
     <Toolbar class="p-mb-4">
       <template slot="left">
         <Button label="New" icon="pi pi-plus" class="p-button-success p-mr-1" />
@@ -20,15 +20,11 @@
       <template #header>
         <div class="table-header">
           <h5 class="p-m-0">Manage Posts</h5>
-          <span class="p-input-icon-left">
-            <i class="pi pi-search" />
-            <!-- <InputText v-model="filters['global']" placeholder="Search..." /> -->
-          </span>
         </div>
       </template>
 
       <Column
-        selectionMode="multiple"
+        selectionMode="single"
         headerStyle="width: 3rem"
         :exportable="false"
       ></Column>
@@ -57,6 +53,7 @@
         </template>
       </Column>
     </DataTable>
+
     <Dialog :visible.sync="editPostDialog" header="Edit" :modal="true">
       <!-- <div class="confirmation-content">
         <i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem" />
@@ -83,6 +80,7 @@
         previewStyle="vertical"
         ref="toastuiEditor"
       />
+
       <template #footer>
         <Button
           label="No"
@@ -98,6 +96,7 @@
         />
       </template>
     </Dialog>
+
     <Dialog :visible.sync="deletePostDialog" header="Confirm" :modal="true">
       <div class="confirmation-content">
         <i class="pi pi-exclamation-triangle p-mr-3" style="font-size: 2rem" />
@@ -121,6 +120,14 @@
         />
       </template>
     </Dialog>
+  </div>
+  <div v-else-if="isAdminPostsLoading" class="p-col-12 p-mx-auto">
+    <div class="spinner">
+      <ProgressSpinner
+        style="width: 140px; height: 140px"
+        animationDuration="1s"
+      />
+    </div>
   </div>
 </template>
 
@@ -162,9 +169,11 @@ export default {
     return {
       deletePostDialog: false,
       editPostDialog: false,
+      isAdminPostsLoading: true,
       title: {},
       id: {},
       post: {},
+      fakeAdminPosts: [{}, {}, {}, {}],
       options: {
         plugins: [[codeSyntaxHightlight, { hljs }]],
       },
@@ -175,9 +184,7 @@ export default {
   },
   computed: {
     ...mapState('post', ['posts']),
-    adminPosts() {
-      return _.orderBy(this.posts, ['id'], ['desc']);
-    },
+
     adminPostPaginator() {
       return this.posts.length;
     },
@@ -185,6 +192,7 @@ export default {
   methods: {
     async allPostsFetcher() {
       await this.$store.dispatch('post/fetchPosts');
+      this.isAdminPostsLoading = false;
     },
     editPost(post) {
       this.post = { ...post };

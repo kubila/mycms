@@ -2,93 +2,222 @@
   <div class="container inner-wrapper form-register">
     <div class="row mb-5">
       <div class="col-lg-5 col-md-7 col-sm-9 mx-auto login-col">
-        <!-- <div class="card login-card">
+        <div class="card login-card">
           <div class="card-header bg-grey">
             <h1 class="form-text text-white-50">Register</h1>
           </div>
-          <div class="card-body"> -->
-        <FormulateForm class="login-form" v-model="formValues">
-          <h2 class="form-title">Register</h2>
+          <div class="card-body">
+            <form @submit.prevent="register">
+              <div class="form-group">
+                <label for="name" class="text-white-50 lead">Name</label>
+                <input
+                  id="name"
+                  v-model="form.name"
+                  @blur="$v.form.name.$touch()"
+                  type="text"
+                  name="name"
+                  class="form-control"
+                />
+                <div class="mt-1">
+                  <span v-if="errors.name" class="form-error">
+                    <p class="form-error" v-for="error in errors.name">
+                      {{ error }}
+                    </p>
+                  </span>
+                  <template v-if="$v.form.name.$error">
+                    <span v-if="!$v.form.name.required" class="form-error"
+                      >Name is required</span
+                    >
+                    <span v-if="!$v.form.name.maxLength" class="form-error"
+                      >Name must be 255 or less characters length!</span
+                    >
+                  </template>
+                </div>
+              </div>
 
-          <FormulateInput
-            name="name"
-            type="text"
-            label="Your name"
-            placeholder="Your name"
-            validation="required"
-          />
-          <FormulateInput
-            name="email"
-            type="email"
-            label="Email address"
-            placeholder="Email address"
-            validation="required|email"
-          />
-          <div class="double-wide">
-            <FormulateInput
-              name="password"
-              type="password"
-              label="Password"
-              placeholder="Your password"
-              validation="required"
-            />
-            <FormulateInput
-              name="password_confirm"
-              type="password"
-              label="Confirm your password"
-              placeholder="Confirm password"
-              validation="required|confirm"
-              validation-name="Confirmation"
-            />
-            <!-- </div> -->
-            <FormulateInput type="submit" label="Register" />
+              <div class="form-group">
+                <label for="email" class="text-white-50 lead"
+                  >Email Address</label
+                >
+                <input
+                  id="email"
+                  v-model="form.email"
+                  @blur="$v.form.email.$touch()"
+                  type="text"
+                  name="email"
+                  class="form-control"
+                />
+                <div class="mt-1">
+                  <span v-if="errors.email" class="form-error">
+                    <p class="form-error" v-for="error in errors.email">
+                      {{ error }}
+                    </p>
+                  </span>
+                  <template v-if="$v.form.email.$error">
+                    <span v-if="!$v.form.email.required" class="form-error"
+                      >Email is required</span
+                    >
+                    <span v-else-if="!$v.form.email.email" class="form-error"
+                      >This is not a valid email address</span
+                    >
+                    <span
+                      v-else-if="!$v.form.email.maxLength"
+                      class="form-error"
+                      >Email must be 255 or less characters length!</span
+                    >
+                  </template>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="password" class="text-white-50 lead"
+                  >Password</label
+                >
+                <input
+                  id="password"
+                  v-model="form.password"
+                  @blur="$v.form.password.$touch()"
+                  type="password"
+                  name="password"
+                  class="form-control"
+                />
+                <div class="mt-1">
+                  <span v-if="errors.password" class="form-error">
+                    <p class="form-error" v-for="error in errors.password">
+                      {{ error }}
+                    </p>
+                  </span>
+                  <template v-if="$v.form.password.$error">
+                    <span v-if="!$v.form.password.required" class="form-error"
+                      >Password is required</span
+                    >
+                    <span v-if="!$v.form.password.minLength" class="form-error"
+                      >Password must be at least 6 characters length</span
+                    >
+                  </template>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="password_confirm" class="text-white-50 lead"
+                  >Confirm Password</label
+                >
+                <input
+                  id="password_confirm"
+                  v-model="form.password_confirm"
+                  @blur="$v.form.password_confirm.$touch()"
+                  type="password"
+                  name="password_confirm"
+                  class="form-control"
+                />
+                <div class="mt-1">
+                  <span v-if="errors.password" class="form-error">
+                    <p class="form-error" v-for="error in errors.password">
+                      {{ error }}
+                    </p>
+                  </span>
+                  <template v-if="$v.form.password_confirm.$error">
+                    <span
+                      v-if="!$v.form.password_confirm.required"
+                      class="form-error"
+                      >Password confirmation is required</span
+                    >
+                    <span
+                      v-if="!$v.form.password_confirm.minLength"
+                      class="form-error"
+                      >Password confirmation must be at least 6 characters
+                      length</span
+                    >
+                  </template>
+                </div>
+              </div>
+
+              <p v-if="status" class="form-success">
+                {{ status.success }}
+              </p>
+
+              <button type="submit" class="col btn btn-dark btn-md">
+                <i class="fas fa-user"></i>Submit
+              </button>
+            </form>
           </div>
-          <pre class="code" v-text="formValues" />
-        </FormulateForm>
-        <!-- </div>
-        </div> -->
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import {
+  required,
+  email,
+  minLength,
+  maxLength
+} from 'vuelidate/lib/validators';
+import UserService from '../../services/UserService';
+import httpService from '../../services/httpService';
+
 export default {
   data() {
     return {
-      formValues: {}
+      form: {
+        name: null,
+        email: null,
+        password: null,
+        password_confirm: null
+      },
+      errors: {},
+      status: null
     };
+  },
+  validations: {
+    form: {
+      name: {
+        required,
+        maxLength: maxLength(255)
+      },
+      email: {
+        required,
+        email,
+        maxLength: maxLength(255)
+      },
+      password: {
+        required,
+        minLength: minLength(6)
+      },
+      password_confirm: {
+        required,
+        minLength: minLength(6)
+      }
+    }
+  },
+  methods: {
+    async register() {
+      this.$v.form.$touch();
+      if (this.$v.form.$invalid) {
+        return;
+      }
+
+      const credentials = {
+        name: this.form.name,
+        email: this.form.email,
+        password: this.form.password,
+        password_confirmation: this.form.password_confirm
+      };
+
+      return await UserService.signUp(credentials)
+        .then(() => this.$store.dispatch('fetchUser'))
+        .then(() => this.$store.dispatch('isLoggedIn'))
+        .then(() => this.$router.push({ name: 'app-home' }))
+        .catch(error => {
+          this.errors = error.response.data.errors;
+          console.log(error.response.data.errors);
+        });
+
+      //console.log(this.form);
+    }
   }
 };
 </script>
 
-<style scoped>
-.login-form {
-  padding: 2em;
-  border: 1px solid #a8a8a8;
-  border-radius: 0.5em;
-  max-width: 500px;
-  box-sizing: border-box;
-}
-.form-title {
-  margin-top: 0;
-}
-.login-form::v-deep .formulate-input .formulate-input-element {
-  max-width: none;
-}
-@media (min-width: 420px) {
-  .double-wide {
-    display: flex;
-  }
-  .double-wide .formulate-input {
-    flex-grow: 1;
-    width: calc(50% - 0.5em);
-  }
-  .double-wide .formulate-input:first-child {
-    margin-right: 0.5em;
-  }
-  .double-wide .formulate-input:last-child {
-    margin-left: 0.5em;
-  }
-}
-</style>
+<style lang="scss" scoped></style>
