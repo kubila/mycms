@@ -34,12 +34,14 @@ class AuthController extends Controller
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
 
-            $user = $this->getUser();
-            $token = $user->createToken('test')->plainTextToken;
-
-            return $this
-                ->respondToUserWithToken($token);
-            //return response()->json($user, 200, ['x-auth-token' => [$this->respondWithToken($token)]]);
+            // FIX
+            // make sure to return only the plain token, it causes axios to ignore token
+            $user = auth()->guard()->user();
+            $token = $user->createToken('test'); //->plainTextToken;
+            $token2 = $token->plainTextToken;
+            // return $this
+            //     ->respondToUserWithToken($token);
+            return response($user, 200, ['Authorization' => $token2]);
         } else {
             return response()
                 ->json(['error' => 'Not found.'], 404);
@@ -61,9 +63,11 @@ class AuthController extends Controller
             'password' => Hash::make($request->password)]);
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            $user = $this->getUser();
-            $token = $user->createToken('test')->plainTextToken;
-            return $this->respondToUserWithToken($token);
+            // FIX ME HERE
+            // make sure to return only the plain token, it causes axios to ignore token
+            $user = Auth::user();
+            $token = $user->createToken('test'); //->plainTextToken;
+            return response($user, 200, ['Authorization' => $token]);
         } else {
             return response()->json(['error' => 'User created but couldn\'t logged in. Please login'], 404);
         }
@@ -120,7 +124,7 @@ class AuthController extends Controller
             ->json(
                 $this->getUser(),
                 200,
-                ['Authorization' => $token]);
+                ['Authorization' => $token->plainTextToken]);
     }
 
     // /**

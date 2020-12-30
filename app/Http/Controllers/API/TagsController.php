@@ -17,7 +17,7 @@ class TagsController extends Controller
      */
     public function show(Tag $tag)
     {
-
+        // FIX ME HERE
         return response(TagPostsCollection::make(
             Tag::with(['posts', 'posts.author', 'posts.category'])
                 ->where('id', $tag->id)

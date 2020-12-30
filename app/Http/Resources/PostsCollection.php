@@ -2,7 +2,12 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Author;
+use App\Models\Category;
+use App\Models\Tag;
 use Illuminate\Http\Resources\Json\JsonResource;
+
+//use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class PostsCollection extends JsonResource
 {
@@ -24,7 +29,9 @@ class PostsCollection extends JsonResource
             'updated' => $this->updated,
             'author' => $this->author->only('name'),
             'category' => $this->category->only('name'),
-            'tags' => $this->tags,
+            'authors' => Author::query()->select('id', 'name')->get(),
+            'categories' => Category::query()->select('id', 'name')->get(),
+            'tags' => Tag::query()->select('id', 'name')->get(),
         ];
     }
 }
