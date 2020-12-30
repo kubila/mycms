@@ -81,6 +81,22 @@
         ref="toastuiEditor"
       />
 
+      <div class="my-3">
+        <base-select
+          v-model="post.category"
+          label="Select a category"
+          :options="post.categories"
+        />
+      </div>
+
+      <div class="my-3">
+        <base-select
+          v-model="post.author"
+          label="Select an author"
+          :options="post.authors"
+        />
+      </div>
+
       <template #footer>
         <Button
           label="No"
@@ -150,6 +166,7 @@ import javascript from 'highlight.js/lib/languages/javascript';
 import php from 'highlight.js/lib/languages/php';
 import csharp from 'highlight.js/lib/languages/cs';
 import python from 'highlight.js/lib/languages/python';
+import BaseSelect from '../helpers/BaseSelect.vue';
 
 hljs.registerLanguage('javascript', javascript);
 hljs.registerLanguage('php', php);
@@ -164,6 +181,7 @@ Vue.component('Toolbar', Toolbar);
 export default {
   components: {
     editor: Editor,
+    BaseSelect,
   },
   data() {
     return {
