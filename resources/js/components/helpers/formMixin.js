@@ -6,7 +6,7 @@ export const formMixin = {
       default: ''
     },
     value: {
-      type: [String, Number, Object]
+      type: [String, Number]
     }
   },
   methods: {

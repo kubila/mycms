@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label class="text-secondary"
+    <label :class="labelClass" class="mb-1" v-if="label"
       ><b>{{ label }}</b></label
     >
     <select
@@ -33,6 +33,10 @@ export default {
     options: {
       type: Array,
       required: true,
+    },
+    labelClass: {
+      type: String,
+      default: '',
     },
   },
 };

@@ -69,6 +69,8 @@
           v-model="post.title"
           class="p-inputtext-lg w-100"
         />
+
+        <!-- <base-input v-model="post.title" label="Edit Post Title" /> -->
         <!-- <h3>{{ post.title }}</h3> -->
       </template>
 
@@ -82,18 +84,30 @@
       />
 
       <div class="my-3">
-        <base-select
-          v-model="post.category"
-          label="Select a category"
+        <Dropdown
+          v-model="selectedCategory"
           :options="post.categories"
+          optionLabel="name"
+          placeholder="Select a Category"
         />
       </div>
 
       <div class="my-3">
-        <base-select
-          v-model="post.author"
-          label="Select an author"
+        <Dropdown
+          v-model="selectedAuthor"
           :options="post.authors"
+          optionLabel="name"
+          placeholder="Select an Author"
+        />
+      </div>
+
+      <div class="my-3">
+        <MultiSelect
+          v-model="selectedTags"
+          :options="post.tags"
+          optionLabel="name"
+          placeholder="Select Tags"
+          class="card-tag-title"
         />
       </div>
 
@@ -166,7 +180,6 @@ import javascript from 'highlight.js/lib/languages/javascript';
 import php from 'highlight.js/lib/languages/php';
 import csharp from 'highlight.js/lib/languages/cs';
 import python from 'highlight.js/lib/languages/python';
-import BaseSelect from '../helpers/BaseSelect.vue';
 
 hljs.registerLanguage('javascript', javascript);
 hljs.registerLanguage('php', php);
@@ -181,7 +194,6 @@ Vue.component('Toolbar', Toolbar);
 export default {
   components: {
     editor: Editor,
-    BaseSelect,
   },
   data() {
     return {
@@ -190,7 +202,10 @@ export default {
       isAdminPostsLoading: true,
       title: {},
       id: {},
-      post: {},
+      post: { category: null },
+      selectedCategory: null,
+      selectedAuthor: null,
+      selectedTags: null,
       fakeAdminPosts: [{}, {}, {}, {}],
       options: {
         plugins: [[codeSyntaxHightlight, { hljs }]],

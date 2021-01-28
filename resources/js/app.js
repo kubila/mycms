@@ -31,6 +31,8 @@ import DataView from 'primevue/dataview';
 import InputText from 'primevue/inputtext';
 import ToastService from 'primevue/toastservice';
 import { BSkeletonImg } from 'bootstrap-vue';
+import MultiSelect from 'primevue/multiselect';
+import Dropdown from 'primevue/dropdown';
 
 Vue.use(ToastService);
 Vue.component('b-skeleton-img', BSkeletonImg);
@@ -41,6 +43,8 @@ Vue.component('Card', Card);
 Vue.component('Sidebar', Sidebar);
 Vue.component('Dialog', Dialog);
 Vue.component('InputText', InputText);
+Vue.component('MultiSelect', MultiSelect);
+Vue.component('Dropdown', Dropdown);
 
 Vue.component('Notifications', Notifications);
 //Vue.component('MainHome', require('./MainHome.vue').default);
